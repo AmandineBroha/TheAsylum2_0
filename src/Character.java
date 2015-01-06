@@ -1,3 +1,4 @@
+import java.util.Random; 
 /**
  * Write a description of class Players here.
  * 
@@ -39,5 +40,67 @@ public class Character
     {
         return HealthPoint;
     }
+    /*
+    public void fight(int EnnemyLife)
+    {
+        while(EnnemyLife>0)
+        {
+            if(combat(playerchoice)){
+                EnnemyLife--;
+            }
+            else{ hurt();}  
+        }
+         
+    }
+    public boolean combat(String Choice)
+    {
+        int IAchoice= (int)(Math.random()*3);
+        while (IAchoice != playerchoice){
+           IAchoice= (int)(Math.random()*3);
+        }
+        //0 = rock
+        //1=paper
+        ///2=scissors
+        if (playerchoice=="rock"){
+            if(IAchoice==2){
+                return true;              
+            }
+            if(IAchoice==1){
+                return false;                
+            }
+        }
+         if (playerchoice=="paper"){
+            if(IAchoice==0){
+                return true;              
+            }
+            if(IAchoice==2){
+                return false;                
+            }
+        }
+        if (playerchoice=="scissors"){
+            if(IAchoice==1){
+                return true;              
+            }
+            if(IAchoice==0){
+                return false;                
+            }
+        }
+        
+        
+    }
     
+    public int getVal(String string)
+    {
+        if (string.equalsIgnoreCase("rock")){
+            return 0;
+        }
+        if (string.equalsIgnoreCase("paper")){
+            return 1;
+        } 
+        else {
+            return 2;
+        }
+               
+    }
+    */
 }

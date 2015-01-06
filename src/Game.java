@@ -28,6 +28,7 @@ public class Game
         createRooms();
         parser = new Parser();
         player= new Players(currentRoom);
+        
     }
 
     /**
@@ -170,7 +171,7 @@ public class Game
      * Try to go to one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    private void goRoom(Command command) 
+    public void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...

@@ -54,31 +54,32 @@ public class CharacterEnigma extends Character
             case 0: 
                 Random randomGenerator = new Random();
                 int randomInt = randomGenerator.nextInt(2);
-                return listEnigma.get(randomInt);
-                break;
+                return listEnigma.get(randomInt);                
             //character : teletubbies
             case 1:
                 return listEnigma.get(3);
-                break;
+                
             //character : poney king
             case 2:
                 return listEnigma.get(4);
-                break;
+                
             //character : evil robot
             case 3:
                 return listEnigma.get(5);
-                break;
+                
             //character : evil robot(2)
             case 4:
                 return listEnigma.get(6);
-                break;
+               
             //character : evil robot(3)
             case 5:
                 return listEnigma.get(7);
-                break;
+                
             default : System.out.println("Error in picking enigma choice");
             break;
                 
         }
+        System.out.println("Error in picking enigma choice");
+        return null;
     }
 }
