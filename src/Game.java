@@ -50,13 +50,14 @@ public class Game
         stairs = new Room("in the stairs");
         kitchen = new Room("in the kitchen");
         laboratory = new Room("in the laboratory");
-        directorOffice = new Room("in the director office","/bureauBoss.png");  
-        chambreIRL = new Room("in your cell"); 
-        tulipefield = new Room(" in the tulips field"); 
-        rainbowPlace = new Room("in the rainbowplace"); 
-        simbaPlace = new Room("in the savane Papy Brossard "); 
-        caseDora = new Room("in the Dora's  way"); 
-        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow"); 
+        directorOffice = new Room("in the director office");  
+        exit = new Room("in the garden in front "); 
+        chambreIRL = new Room("in your cell","/roomIRL.png"); 
+        tulipefield = new Room(" in the tulips field","/tulipe.png"); 
+        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png"); 
+        simbaPlace = new Room("in the savane Papy Brossard","/simba.png"); 
+        caseDora = new Room("in the Dora's  way","/dora.png"); 
+        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","/fight_robot.png"); 
         
         
         Item item = new Item("key",1);
