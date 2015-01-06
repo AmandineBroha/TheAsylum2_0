@@ -58,15 +58,15 @@ public class Room
         if(exit==null){
             return null;
         }
-        if(exit instanceof MagicalExit)
+        else if(exit instanceof MagicalExit)
         {   
-       return ((MagicalExit)exit).open(item);
-    }
-    else 
-    {
-         return exit.open();
+            return ((MagicalExit)exit).open(item);
+        }
+        else 
+        {
+             return exit.open();
       
-    }
+        }
     }
     
 

@@ -180,16 +180,9 @@ public class Game
             return;
         }
         String direction = command.getSecondWord();
-        Item item = null;
-        Room nextRoom=currentRoom.getNextRoom(direction,item);
-        
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else
-        {
             // Try to leave current room.
-            nextRoom = null;
+            Room nextRoom = null;
+            Item item = null;
             
             if (player.getListItem().isEmpty() && (currentRoom.isMagical(direction)))
             {
@@ -208,8 +201,10 @@ public class Game
                     if(nextRoom != currentRoom)break;
                 }
             }
-        
-             if(nextRoom == currentRoom)
+            if (nextRoom == null) {
+            System.out.println("There is no door!");
+            }
+            else if(nextRoom == currentRoom)
              {
                 System.out.println("The door is locked!");
             }
@@ -220,8 +215,7 @@ public class Game
                 System.out.println("You are " + currentRoom.getDescription());
                 currentRoom.getExits(); 
             }
-        }
-    
+            
 }
 
     /** 
