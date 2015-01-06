@@ -55,6 +55,9 @@ public class Room
     
     public Room getNextRoom(String direction,Item item){
         ExitRoom exit = exitMap.get(direction);
+        if(exit==null){
+            return null;
+        }
         if(exit instanceof MagicalExit)
         {   
        return ((MagicalExit)exit).open(item);

@@ -68,6 +68,7 @@ public class Game
         
         // initialise room exits
         garden.addexits("north", new ExitRoom(hall,garden));
+        
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
@@ -178,44 +179,49 @@ public class Game
             System.out.println("Go where?");
             return;
         }
-
         String direction = command.getSecondWord();
-
-        // Try to leave current room.
-        Room nextRoom = null;
         Item item = null;
-        if (player.getListItem().isEmpty() && (currentRoom.isMagical(direction)))
-        {
-            nextRoom=currentRoom;
-        }
-        else if (player.getListItem().isEmpty() && !(currentRoom.isMagical(direction)))
-        {
-            nextRoom = currentRoom.getNextRoom(direction,item);
-        }
-       else
-       {
-            
-for (Item i : player.getListItem())
-{
-    nextRoom = currentRoom.getNextRoom(direction,i);
-    if(nextRoom != currentRoom)break;
-}
-}
+        Room nextRoom=currentRoom.getNextRoom(direction,item);
         
-if (nextRoom == null) {
+        if (nextRoom == null) {
             System.out.println("There is no door!");
         }
-        else if(nextRoom == currentRoom)
-        {
-           System.out.println("The door is locked!");
-        }
-        
         else
         {
-             currentRoom = nextRoom;
-            System.out.println("You are " + currentRoom.getDescription());
-            currentRoom.getExits(); 
+            // Try to leave current room.
+            nextRoom = null;
+            
+            if (player.getListItem().isEmpty() && (currentRoom.isMagical(direction)))
+            {
+                nextRoom=currentRoom;
+            }
+            else if (player.getListItem().isEmpty() && !(currentRoom.isMagical(direction)))
+            {
+            
+                nextRoom = currentRoom.getNextRoom(direction,item);
+            }
+            else
+            {
+                for (Item i : player.getListItem())
+                {
+                    nextRoom = currentRoom.getNextRoom(direction,i);
+                    if(nextRoom != currentRoom)break;
+                }
+            }
+        
+             if(nextRoom == currentRoom)
+             {
+                System.out.println("The door is locked!");
+            }
+        
+            else
+            {
+                currentRoom = nextRoom;
+                System.out.println("You are " + currentRoom.getDescription());
+                currentRoom.getExits(); 
+            }
         }
+    
 }
 
     /** 
