@@ -19,17 +19,24 @@ public class Room
 {
     private String description;
     private HashMap<String, ExitRoom> exitMap;
-
+    private String image;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description)
+             {
+        this.description = description;
+        exitMap = new HashMap<String, ExitRoom>();
+    }
+    
+    public Room(String description, String Nomimage) 
     {
         this.description = description;
         exitMap = new HashMap<String, ExitRoom>();
+        image = Nomimage;   
     }
     
     /**
@@ -87,5 +94,9 @@ public class Room
         {
         return false;
     }
+    }
+    public String getImage()
+    {
+        return image;
     }
 }

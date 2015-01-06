@@ -42,8 +42,8 @@ public class Game
       
         // create the rooms
         
-        garden = new Room("in the garden");
-        hall = new Room("in the entry hall");
+        garden = new Room("in the garden","/jardin.png");
+        hall = new Room("in the entry hall","/hall.png");
         refectory = new Room("in the refectory");
         logeGardien = new Room("in the gardian lounge");
         RobertRoom = new Room("in the Rooobert's bedroom");
@@ -233,5 +233,9 @@ public class Game
         else {
            return true;  // signal that we want to quit
         }
+    }
+    public Room getCurrentRoom()
+    {
+        return currentRoom;
     }
 }
