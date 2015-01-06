@@ -216,21 +216,22 @@ public class Game
                 currentRoom.getExits(); 
             }
             
-}
+    }   
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
      * @return true, if this command quits the game, false otherwise.
      */
-    private boolean quit(Command command) 
+    public boolean quit(Command command) 
     {
+        
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
+           System.out.println("Quit what?");
+           return false;
         }
         else {
-            return true;  // signal that we want to quit
+           return true;  // signal that we want to quit
         }
     }
 }
