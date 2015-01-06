@@ -44,14 +44,13 @@ public class Game
         
         garden = new Room("in the garden","/jardin.png");
         hall = new Room("in the entry hall","/hall.png");
-        refectory = new Room("in the refectory");
+        refectory = new Room("in the refectory","/refectoire.png");
         logeGardien = new Room("in the gardian lounge");
         RobertRoom = new Room("in the Rooobert's bedroom");
         stairs = new Room("in the stairs");
         kitchen = new Room("in the kitchen");
         laboratory = new Room("in the laboratory");
-        directorOffice = new Room("in the director office");  
-        exit = new Room("in the garden in front "); 
+        directorOffice = new Room("in the director office","/bureauBoss.png");  
         chambreIRL = new Room("in your cell"); 
         tulipefield = new Room(" in the tulips field"); 
         rainbowPlace = new Room("in the rainbowplace"); 
