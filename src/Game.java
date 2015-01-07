@@ -50,7 +50,7 @@ public class Game
         stairs = new Room("in the stairs");
         kitchen = new Room("in the kitchen");
         laboratory = new Room("in the laboratory");
-        directorOffice = new Room("in the director office");  
+        directorOffice = new Room("in the director office","/bureauBoss.png");  
         exit = new Room("in the garden in front "); 
         chambreIRL = new Room("in your cell","/roomIRL.png"); 
         tulipefield = new Room(" in the tulips field","/tulipe.png"); 
