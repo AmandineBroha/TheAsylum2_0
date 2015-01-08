@@ -1,4 +1,5 @@
 import java.util.Random; 
+import javax.swing.ButtonGroup;
 /**
  * Write a description of class Players here.
  * 
@@ -40,67 +41,70 @@ public class Character
     {
         return HealthPoint;
     }
-    /*
-    public void fight(int EnnemyLife)
+    
+    public boolean fight(String playerchoice)
     {
-        while(EnnemyLife>0)
-        {
-            if(combat(playerchoice)){
-                EnnemyLife--;
-            }
-            else{ hurt();}  
+        
+        if(combat(playerchoice)){
+            return true;
         }
+        else{ 
+            hurt();
+            return false;
+            }  
+        
          
     }
-    public boolean combat(String Choice)
+    public boolean combat(String choice)
     {
-        int IAchoice= (int)(Math.random()*3);
-        while (IAchoice != playerchoice){
-           IAchoice= (int)(Math.random()*3);
+        int playerchoice =0 ;
+       
+        if (choice=="Rock"){
+            playerchoice=0;
         }
+        else if(choice=="Paper"){
+            playerchoice=1;
+        }
+        else{
+            playerchoice=2;
+        }
+        
+        int IAchoice= (int)(Math.random()*3);
+        
+        if(IAchoice == playerchoice){
+            while (IAchoice == playerchoice){
+                 IAchoice= (int)(Math.random()*3);
+                 
+                }
+        }
+        
         //0 = rock
         //1=paper
         ///2=scissors
-        if (playerchoice=="rock"){
+        if (playerchoice==0){
             if(IAchoice==2){
+                
                 return true;              
             }
-            if(IAchoice==1){
+            else{
                 return false;                
             }
         }
-         if (playerchoice=="paper"){
+        else if (playerchoice==1){
             if(IAchoice==0){
                 return true;              
             }
-            if(IAchoice==2){
+            else{
                 return false;                
             }
         }
-        if (playerchoice=="scissors"){
+        else{
             if(IAchoice==1){
                 return true;              
             }
-            if(IAchoice==0){
+            else{
                 return false;                
             }
-        }
-        
-        
-    }
-    
-    public int getVal(String string)
-    {
-        if (string.equalsIgnoreCase("rock")){
-            return 0;
-        }
-        if (string.equalsIgnoreCase("paper")){
-            return 1;
-        } 
-        else {
-            return 2;
-        }
-               
-    }
-    */
+        }        
+    }    
 }

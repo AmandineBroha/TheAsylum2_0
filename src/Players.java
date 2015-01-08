@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import javax.swing.ButtonModel;
 /**
  * Write a description of class Players here.
  * 
@@ -19,7 +20,7 @@ public class Players extends Character
     public Players(Room myRoom)
     {
         // initialise instance variables
-        super(myRoom, 4);
+        super(myRoom, 9);
         listItem= new ArrayList<Item>();
        
     }
@@ -41,4 +42,8 @@ public ArrayList<Item> getListItem()
 {
     return listItem;
 }
+
+    void combat(int i, ButtonModel selection) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
