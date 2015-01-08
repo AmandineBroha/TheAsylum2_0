@@ -224,17 +224,20 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        game.goRoom(new Command("go","south"));
+        String text = jTextArea2.getText() + game.goRoom(new Command("go","south"));
+        jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        game.goRoom(new Command("go","east"));
+        String text = jTextArea2.getText() + game.goRoom(new Command("go","east"));
+        jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        game.goRoom(new Command("go","west"));
+        String text = jTextArea2.getText() + game.goRoom(new Command("go","west"));
+        jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -257,14 +260,14 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        game.goRoom(new Command("go","north"));
+        String text = jTextArea2.getText() + game.goRoom(new Command("go","north"));
+        jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String text = jTextArea2.getText();
-        text += game.printHelp();
+        String text = jTextArea2.getText() + game.printHelp();
         jTextArea2.setText(text);
     }//GEN-LAST:event_jButton2ActionPerformed
 

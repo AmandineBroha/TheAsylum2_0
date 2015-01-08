@@ -157,7 +157,7 @@ public class Game
      */
     public String printHelp() 
     {
-        String s = "HELP: \n You came here to find some clues\n"
+        String s = "HELP: \nYou came here to find some clues\n"
                 + "about unethical experiments\n"
                 + "on the mentally ill.\n"
                 + "Click on the arrows to\n"
@@ -169,13 +169,8 @@ public class Game
      * Try to go to one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    public void goRoom(Command command) 
+    public String goRoom(Command command) 
     {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
-            return;
-        }
         String direction = command.getSecondWord();
             // Try to leave current room.
             Room nextRoom = null;
@@ -199,18 +194,17 @@ public class Game
                 }
             }
             if (nextRoom == null) {
-            System.out.println("There is no door!");
+                return "There is no door!\n";
             }
             else if(nextRoom == currentRoom)
-             {
-                System.out.println("The door is locked!");
+            {
+                return "The door is locked!\n";
             }
         
             else
             {
                 currentRoom = nextRoom;
-                System.out.println("You are " + currentRoom.getDescription());
-                currentRoom.getExits(); 
+                return "You are " + currentRoom.getDescription() + "\n";
             }
             
     }   
