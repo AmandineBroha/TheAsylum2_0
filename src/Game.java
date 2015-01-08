@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Players player;    
+    protected Players player;    
     /**
      * Create the game and initialise its internal map.
      */
@@ -65,6 +65,7 @@ public class Game
         Item bisous = new Item("Magical kiss",1);
         Item poney = new Item("Magical little poney",1);
         Item rainbow = new Item("Magical rainbow",1);
+        Item fairy = new Item("Fairy dust",1);
         
         // initialise room exits
         garden.addexits("north", new ExitRoom(hall,garden));
@@ -72,7 +73,7 @@ public class Game
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
-        hall.addexits("west",new ExitRoom(refectory,hall));
+        hall.addexits("west",new MagicalExit(refectory,hall,fairy));
         refectory.addexits("north",new ExitRoom(logeGardien,refectory));
         refectory.addexits("west",new ExitRoom(RobertRoom,refectory));
         refectory.addexits("east",new ExitRoom(hall,refectory));

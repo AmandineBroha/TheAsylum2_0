@@ -21,7 +21,6 @@ public class Players extends Character
         // initialise instance variables
         super(myRoom, 4);
         listItem= new ArrayList<Item>();
-        listItem.add(new Item("key",1));
        
     }
     
