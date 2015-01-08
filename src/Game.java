@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    Players player;    
+    protected Players player;    
     /**
      * Create the game and initialise its internal map.
      */
@@ -42,14 +42,14 @@ public class Game
       
         // create the rooms
         
-        garden = new Room("in the garden","/jardin.png");
+        garden = new Room("in the garden","/garden.png");
         hall = new Room("in the entry hall","/hall.png");
         refectory = new Room("in the refectory","/refectoire.png");
-        logeGardien = new Room("in the gardian lounge");
-        RobertRoom = new Room("in the Rooobert's bedroom");
-        stairs = new Room("in the stairs");
-        kitchen = new Room("in the kitchen");
-        laboratory = new Room("in the laboratory");
+        logeGardien = new Room("in the gardian lounge","/logegardien.png");
+        RobertRoom = new Room("in the Robert's bedroom","/robert.png");
+        stairs = new Room("in the stairs","/stairs.png");
+        kitchen = new Room("in the kitchen","kitchen.png");
+        laboratory = new Room("in the laboratory","/laboratory.png");
         directorOffice = new Room("in the director office","/bureauBoss.png");  
         exit = new Room("in the garden in front "); 
         chambreIRL = new Room("in your cell","/roomIRL.png"); 
@@ -65,6 +65,7 @@ public class Game
         Item bisous = new Item("Magical kiss",1);
         Item poney = new Item("Magical little poney",1);
         Item rainbow = new Item("Magical rainbow",1);
+        Item fairy = new Item("Fairy dust",1);
         
         // initialise room exits
         garden.addexits("north", new ExitRoom(hall,garden));
@@ -72,7 +73,7 @@ public class Game
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
-        hall.addexits("west",new ExitRoom(refectory,hall));
+        hall.addexits("west",new MagicalExit(refectory,hall,fairy));
         refectory.addexits("north",new ExitRoom(logeGardien,refectory));
         refectory.addexits("west",new ExitRoom(RobertRoom,refectory));
         refectory.addexits("east",new ExitRoom(hall,refectory));
@@ -157,7 +158,7 @@ public class Game
      */
     public String printHelp() 
     {
-        String s = "HELP: \n You came here to find some clues\n"
+        String s = "HELP: \nYou came here to find some clues\n"
                 + "about unethical experiments\n"
                 + "on the mentally ill.\n"
                 + "Click on the arrows to\n"
@@ -169,13 +170,8 @@ public class Game
      * Try to go to one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    public void goRoom(Command command) 
+    public String goRoom(Command command) 
     {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
-            return;
-        }
         String direction = command.getSecondWord();
             // Try to leave current room.
             Room nextRoom = null;
@@ -199,18 +195,17 @@ public class Game
                 }
             }
             if (nextRoom == null) {
-            System.out.println("There is no door!");
+                return "There is no door!\n";
             }
             else if(nextRoom == currentRoom)
-             {
-                System.out.println("The door is locked!");
+            {
+                return "The door is locked!\n";
             }
         
             else
             {
                 currentRoom = nextRoom;
-                System.out.println("You are " + currentRoom.getDescription());
-                currentRoom.getExits(); 
+                return "You are " + currentRoom.getDescription() + "\n";
             }
             
     }   

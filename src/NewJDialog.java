@@ -16,6 +16,10 @@ import javax.swing.ImageIcon;
  */
 public class NewJDialog extends javax.swing.JDialog {
     public static Game game=new Game();
+    private boolean porte1 = false;
+    private boolean porte2 = false;
+    private boolean porte3 = false;
+    
     /**
      * Creates new form NewJDialog
      */
@@ -65,7 +69,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jardin.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garden.png"))); // NOI18N
 
         jButton1.setText("Choices");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +231,15 @@ public class NewJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private boolean IsChecked()
+    {
+         if (game.getCurrentRoom().getDescription()=="in the entry hall")
+         {
+             return true;
+         }
+         return false;
+    }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
@@ -241,18 +254,27 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        game.goRoom(new Command("go","south"));
+        String text =game.goRoom(new Command("go","south"));
+        jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+        if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3)
+        {
+            game.player.takeItem(new Item("Fairy dust",1));
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        game.goRoom(new Command("go","east"));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+        String text = game.goRoom(new Command("go","east"));
+        jTextArea2.setText(text);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+        porte3=IsChecked();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        game.goRoom(new Command("go","west"));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+        String text = game.goRoom(new Command("go","west"));
+        jTextArea2.setText(text);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+        porte1=IsChecked();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -268,14 +290,15 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        game.goRoom(new Command("go","north"));
+        String text = game.goRoom(new Command("go","north"));
+        jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+        porte2=IsChecked();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String text = jTextArea2.getText();
-        text += game.printHelp();
+        String text = jTextArea2.getText() + game.printHelp();
         jTextArea2.setText(text);
     }//GEN-LAST:event_jButton2ActionPerformed
 
