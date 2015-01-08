@@ -22,7 +22,6 @@ public class Players extends Character
         // initialise instance variables
         super(myRoom, 9);
         listItem= new ArrayList<Item>();
-       
     }
     
     public void takeItem(Item item)
@@ -42,6 +41,8 @@ public ArrayList<Item> getListItem()
 {
     return listItem;
 }
+
+
 
     void combat(int i, ButtonModel selection) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

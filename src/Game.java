@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    protected Players player;    
+    protected Players player; 
     /**
      * Create the game and initialise its internal map.
      */
@@ -230,4 +230,16 @@ public class Game
     {
         return currentRoom;
     }
+   public boolean getkeyItem()
+{
+    for(Item i : player.getListItem())
+    {
+        if (i.getDescription()=="key")
+        {
+            System.out.println("Coucou");
+            return true;
+        }
+    }
+    return false;
+}
 }

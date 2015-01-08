@@ -72,6 +72,11 @@ public class NewJDialog extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garden.png"))); // NOI18N
 
         jButton1.setText("Choices");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -240,13 +245,21 @@ public class NewJDialog extends javax.swing.JDialog {
          }
          return false;
     }
+   
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") ||((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true) )|| (game.getCurrentRoom().getDescription()=="in the director office"))
+        {
         jRadioButton1.setVisible(true);
         jRadioButton2.setVisible(true);
         jRadioButton3.setVisible(true);
-        
+        }
+        else if (jRadioButton1.isVisible())
+        { 
+            jRadioButton1.setVisible(false);
+        jRadioButton2.setVisible(false);
+        jRadioButton3.setVisible(false);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -327,6 +340,10 @@ public class NewJDialog extends javax.swing.JDialog {
         
         System.out.println("combat finiiiii");
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
