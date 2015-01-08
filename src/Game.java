@@ -42,14 +42,14 @@ public class Game
       
         // create the rooms
         
-        garden = new Room("in the garden","/jardin.png");
+        garden = new Room("in the garden","/garden.png");
         hall = new Room("in the entry hall","/hall.png");
         refectory = new Room("in the refectory","/refectoire.png");
-        logeGardien = new Room("in the gardian lounge");
-        RobertRoom = new Room("in the Rooobert's bedroom");
-        stairs = new Room("in the stairs");
-        kitchen = new Room("in the kitchen");
-        laboratory = new Room("in the laboratory");
+        logeGardien = new Room("in the gardian lounge","/logegardien.png");
+        RobertRoom = new Room("in the Robert's bedroom","/robert.png");
+        stairs = new Room("in the stairs","/stairs.png");
+        kitchen = new Room("in the kitchen","kitchen.png");
+        laboratory = new Room("in the laboratory","/laboratory.png");
         directorOffice = new Room("in the director office","/bureauBoss.png");  
         exit = new Room("in the garden in front "); 
         chambreIRL = new Room("in your cell","/roomIRL.png"); 

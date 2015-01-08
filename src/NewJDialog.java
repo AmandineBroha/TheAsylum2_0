@@ -61,7 +61,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jardin.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garden.png"))); // NOI18N
 
         jButton1.setText("Choices");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
