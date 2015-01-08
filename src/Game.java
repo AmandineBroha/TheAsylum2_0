@@ -100,8 +100,6 @@ public class Game
      */
     public void play() 
     {            
-        printWelcome();
-
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
                 
@@ -116,15 +114,13 @@ public class Game
     /**
      * Print out the opening message for the player.
      */
-    private void printWelcome()
+    public String printWelcome()
     {
-        System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
-        System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
-        currentRoom.getExits();
+        String s = "\nYou've arrived in front of the Asylum.\n"
+                + "Are you ready to get some clues?\n"
+                + "Press the 'Help' button if you ever feel lost\n"
+                + "You are " + currentRoom.getDescription() + "\n";
+        return s;
     }
 
     /**
@@ -159,13 +155,14 @@ public class Game
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
      */
-    private void printHelp() 
+    public String printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        String s = "HELP: \n You came here to find some clues\n"
+                + "about unethical experiments\n"
+                + "on the mentally ill.\n"
+                + "Click on the arrows to\n"
+                + "head to different rooms.\n";
+        return s;
     }
 
     /** 
