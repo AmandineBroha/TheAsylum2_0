@@ -159,6 +159,7 @@ public class NewJDialog extends javax.swing.JDialog {
             }
         });
 
+        jButton7.setVisible(false);
         jButton7.setText("valide");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +261,11 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton2.setVisible(true);
         jRadioButton3.setVisible(true);
     }
+     private void setChoicesInvisible() {
+        jRadioButton1.setVisible(false);
+        jRadioButton2.setVisible(false);
+        jRadioButton3.setVisible(false);
+    }
     
     private void setHP() 
     {
@@ -290,21 +296,25 @@ public class NewJDialog extends javax.swing.JDialog {
    
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         if ((game.getCurrentRoom().getDescription()=="in the gardian lounge"))
         {
         setChoicesVisible();
         jLabel2.setIcon(new javax.swing.ImageIcon("/logegardien+zombie.png"));
+        jButton7.setVisible(true);
         }
         
         else if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
         {
             setChoicesVisible();
             jLabel2.setIcon(new javax.swing.ImageIcon("/hall+zombie.png)"));
+            jButton7.setVisible(true);
         }
         
         else if (game.getCurrentRoom().getDescription()=="in the director office")
         {
             setChoicesVisible();
+            jButton7.setVisible(true);
         }
         
         else if (jRadioButton1.isVisible())
@@ -312,6 +322,7 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton1.setVisible(false);
         jRadioButton2.setVisible(false);
         jRadioButton3.setVisible(false);
+        jButton7.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -382,7 +393,7 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
+        jButton7.setVisible(false);
         String choix="";
         
         
@@ -408,6 +419,7 @@ public class NewJDialog extends javax.swing.JDialog {
         game.getCurrentRoom().removeZombie();
         String currentText = jTextArea2.getText();
         jTextArea2.setText(currentText + "The combat is over");
+        setChoicesInvisible();
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
