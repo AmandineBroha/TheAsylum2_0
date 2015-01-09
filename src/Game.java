@@ -51,7 +51,6 @@ public class Game
         kitchen = new Room("in the kitchen","kitchen.png");
         laboratory = new Room("in the laboratory","/laboratory.png");
         directorOffice = new Room("in the director office","/bureauBoss.png");  
-        exit = new Room("in the garden in front "); 
         chambreIRL = new Room("in your cell","/roomIRL.png"); 
         tulipefield = new Room(" in the tulips field","/tulipe.png"); 
         rainbowPlace = new Room("in the rainbowplace","/teletubbies.png"); 
@@ -245,7 +244,6 @@ public class Game
     {
         if (i.getDescription()=="key")
         {
-            System.out.println("Coucou");
             return true;
         }
     }
