@@ -46,7 +46,7 @@ public class Game
         hall = new Room("in the entry hall","/hall.png");
         refectory = new Room("in the refectory","/refectoire.png");
         logeGardien = new Room("in the gardian lounge","/logegardien.png");
-        RobertRoom = new Room("in the Robert's bedroom","/robert.png");
+        RobertRoom = new Room("in Robert's bedroom","/robert.png");
         stairs = new Room("in the stairs","/stairs.png");
         kitchen = new Room("in the kitchen","kitchen.png");
         laboratory = new Room("in the laboratory","/laboratory.png");

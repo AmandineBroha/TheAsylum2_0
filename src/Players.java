@@ -30,11 +30,12 @@ public class Players extends Character
         {
         listItem.add(item);
         totalWeight+=item.getWeight();
-        return item.getDescription() + "has been added to\n your inventory";
+        return "A "+ item.getDescription() 
+                + " has been added to\n your inventory.\n";
     }
         else
     {
-        return "You can't carry any more items";
+        return "You can't carry any more items.\n";
     }
 }
 

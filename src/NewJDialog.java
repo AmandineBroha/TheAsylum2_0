@@ -353,6 +353,11 @@ public class NewJDialog extends javax.swing.JDialog {
         jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte1=isChecked();
+        if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
+        {
+            String current = jTextArea2.getText();
+            jTextArea2.setText(current + game.player.takeItem(new Item("note", 1)));
+        }
         zombieWarning();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -379,7 +384,7 @@ public class NewJDialog extends javax.swing.JDialog {
         }
         if (game.getCurrentRoom().getDescription()=="in the gardian lounge" && !game.getCurrentRoom().hasCharacter())
         {
-            String current = jTextArea2.getText();
+            String current = jTextArea2.getText() +"\n";
             jTextArea2.setText(current + game.player.takeItem(new Item("key",1)));
         }
         zombieWarning();
