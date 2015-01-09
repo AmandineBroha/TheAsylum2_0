@@ -312,7 +312,6 @@ public class NewJDialog extends javax.swing.JDialog {
         else if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
         {
             setChoicesVisible();
-            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png)")));
             jButton7.setVisible(true);
         }
         
