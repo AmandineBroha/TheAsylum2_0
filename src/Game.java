@@ -45,7 +45,7 @@ public class Game
         garden = new Room("in the garden","/garden.png");
         hall = new Room("in the entry hall","/hall.png");
         refectory = new Room("in the refectory","/refectoire.png");
-        logeGardien = new Room("in the gardian lounge","/logegardien.png");
+        logeGardien = new Room("in the gardian lounge","/logegardien.png", true);
         RobertRoom = new Room("in the Robert's bedroom","/robert.png");
         stairs = new Room("in the stairs","/stairs.png");
         kitchen = new Room("in the kitchen","kitchen.png");
@@ -66,6 +66,11 @@ public class Game
         Item poney = new Item("Magical little poney",1);
         Item rainbow = new Item("Magical rainbow",1);
         Item fairy = new Item("Fairy dust",1);
+        
+        //Initialise characters
+        Character zombieGuardian = new Character(logeGardien, 2);
+        Character zombieHall = new Character(hall, 2);
+        Character boss = new Character(directorOffice, 3);
         
         // initialise room exits
         garden.addexits("north", new ExitRoom(hall,garden));
