@@ -20,20 +20,21 @@ public class Players extends Character
     public Players(Room myRoom)
     {
         // initialise instance variables
-        super(myRoom, 9);
+        super(myRoom, 4);
         listItem= new ArrayList<Item>();
     }
     
-    public void takeItem(Item item)
+    public String takeItem(Item item)
     {
         if (totalWeight <= MaxWeight)
         {
         listItem.add(item);
         totalWeight+=item.getWeight();
+        return item.getDescription() + "has been added to\n your inventory";
     }
         else
     {
-        System.out.println("You can't carry any more items");
+        return "You can't carry any more items";
     }
 }
 

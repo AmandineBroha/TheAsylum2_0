@@ -20,6 +20,7 @@ public class Room
     private String description;
     private HashMap<String, ExitRoom> exitMap;
     private String image;
+    private boolean hasZombie;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -37,6 +38,32 @@ public class Room
         this.description = description;
         exitMap = new HashMap<String, ExitRoom>();
         image = Nomimage;   
+    }
+    
+    public Room(String description, String Nomimage, boolean hasZombie) 
+    {
+        this.description = description;
+        exitMap = new HashMap<String, ExitRoom>();
+        image = Nomimage;   
+        this.hasZombie = hasZombie;
+    }
+    
+    /*
+    The following methods allow to manage the zombie's presence in a room
+    */
+    public void addZombie()
+    {
+        if (!hasZombie) hasZombie = true;
+    }
+    
+    public void removeZombie() 
+    {
+        if (hasZombie) hasZombie = false;
+    }
+    
+    public boolean hasZombie()
+    {
+        return hasZombie;
     }
     
     /**

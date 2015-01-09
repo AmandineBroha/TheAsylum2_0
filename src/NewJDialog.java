@@ -55,6 +55,7 @@ public class NewJDialog extends javax.swing.JDialog {
         jTextArea2 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -165,6 +166,8 @@ public class NewJDialog extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hp4.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,7 +178,9 @@ public class NewJDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -232,12 +237,16 @@ public class NewJDialog extends javax.swing.JDialog {
                             .addComponent(jButton2)
                             .addComponent(jButton7))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean IsChecked()
+    private boolean isChecked()
     {
          if (game.getCurrentRoom().getDescription()=="in the entry hall")
          {
@@ -245,18 +254,62 @@ public class NewJDialog extends javax.swing.JDialog {
          }
          return false;
     }
-   
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") ||((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true) )|| (game.getCurrentRoom().getDescription()=="in the director office"))
-        {
+    private void setChoicesVisible() {
         jRadioButton1.setVisible(true);
         jRadioButton2.setVisible(true);
         jRadioButton3.setVisible(true);
+    }
+    
+    private void setHP() 
+    {
+        int hp = game.player.getHealthPoint();
+        switch(hp)
+        
+        {
+            case 0: jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hp0.png")));
+                break;
+            case 1: jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hp1.png")));
+                break;
+            case 2: jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hp2.png")));
+                break;
+            case 3: jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hp3.png")));
+                break;
+            case 4: jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hp4.png")));
+                break;
         }
+    }
+    
+    private void zombieWarning() {
+        if (game.getCurrentRoom().hasZombie())
+        {
+            String current = jTextArea2.getText();
+            jTextArea2.setText(current + "BEWARE!\nThere's a Zombie in the Room!");
+        }
+    }
+   
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge"))
+        {
+        setChoicesVisible();
+        jLabel2.setIcon(new javax.swing.ImageIcon("/logegardien+zombie.png"));
+        }
+        
+        else if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
+        {
+            setChoicesVisible();
+            jLabel2.setIcon(new javax.swing.ImageIcon("/hall+zombie.png)"));
+        }
+        
+        else if (game.getCurrentRoom().getDescription()=="in the director office")
+        {
+            setChoicesVisible();
+        }
+        
         else if (jRadioButton1.isVisible())
         { 
-            jRadioButton1.setVisible(false);
+        jRadioButton1.setVisible(false);
         jRadioButton2.setVisible(false);
         jRadioButton3.setVisible(false);
         }
@@ -274,20 +327,28 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             game.player.takeItem(new Item("Fairy dust",1));
         }
+        zombieWarning();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         String text = game.goRoom(new Command("go","east"));
         jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-        porte3=IsChecked();
+        porte3=isChecked();
+        if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
+        {
+            jLabel2.setIcon(new javax.swing.ImageIcon("/hall+zombie.png)"));
+            game.getCurrentRoom().addZombie();
+        }
+        zombieWarning();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String text = game.goRoom(new Command("go","west"));
         jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-        porte1=IsChecked();
+        porte1=isChecked();
+        zombieWarning();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -306,7 +367,12 @@ public class NewJDialog extends javax.swing.JDialog {
         String text = game.goRoom(new Command("go","north"));
         jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-        porte2=IsChecked();
+        porte2=isChecked();
+        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && game.getCurrentRoom().hasZombie())
+        {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardien+zombie.png")));
+        }
+        zombieWarning();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -329,16 +395,20 @@ public class NewJDialog extends javax.swing.JDialog {
             }
             boolean win= game.player.fight(choix);
                 if (win){                    
-                    System.out.println("tu as gaggnéééé");
+                    jTextArea2.setText("You defeated the zombie.\n");
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
                 }
                 else{
-                    System.out.println("tu as perduuuuuu");                    
+                    jTextArea2.setText("You lost.\nThe Zombie has hurt you\nand ran away.");
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                    setHP();
                 }
                 buttonGroup1.clearSelection();
                 
-            
+        game.getCurrentRoom().removeZombie();
+        String currentText = jTextArea2.getText();
+        jTextArea2.setText(currentText + "The combat is over");
         
-        System.out.println("combat finiiiii");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -403,6 +473,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
