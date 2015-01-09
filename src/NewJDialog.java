@@ -41,6 +41,11 @@ public class NewJDialog extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jFrame1 = new javax.swing.JFrame();
+        deadDialog = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        quitButton = new javax.swing.JButton();
+        retryButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
@@ -66,6 +71,56 @@ public class NewJDialog extends javax.swing.JDialog {
         jFrame1Layout.setVerticalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("YOU ARE DEAD");
+
+        jLabel4.setText("Do you want to try again?");
+
+        quitButton.setText("Quit");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+
+        retryButton1.setText("Retry");
+        retryButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retryButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout deadDialogLayout = new javax.swing.GroupLayout(deadDialog.getContentPane());
+        deadDialog.getContentPane().setLayout(deadDialogLayout);
+        deadDialogLayout.setHorizontalGroup(
+            deadDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deadDialogLayout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addGroup(deadDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(deadDialogLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3))
+                    .addGroup(deadDialogLayout.createSequentialGroup()
+                        .addComponent(retryButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(quitButton)))
+                .addGap(82, 82, 82))
+        );
+        deadDialogLayout.setVerticalGroup(
+            deadDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deadDialogLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(deadDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(retryButton1)
+                    .addComponent(quitButton))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -190,7 +245,7 @@ public class NewJDialog extends javax.swing.JDialog {
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,11 +447,6 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardien+zombie.png")));
         }
-        if (game.getCurrentRoom().getDescription()=="in the gardian lounge" && !game.getCurrentRoom().hasCharacter())
-        {
-            String current = jTextArea2.getText() +"\n";
-            jTextArea2.setText(current + game.player.takeItem(new Item("key",1)));
-        }
         zombieWarning();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -433,12 +483,17 @@ public class NewJDialog extends javax.swing.JDialog {
             Character enemy = game.getCurrentRoom().getCharacter();
             boolean win= game.player.fight(choix, enemy);
                 if (win){                    
-                    jTextArea2.setText("You defeated the zombie.\n He dropped an old key\n you decided to take it.\nThe key has been added to\nyou're inventory.");
+                    jTextArea2.setText("You defeated the zombie.\nHe dropped an old key."
+                            + "\nYou decided to take it."
+                            + "\nThe key has been added to\nyour inventory.");
                     jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                     game.player.takeItem(new Item("key",1));
                 }
                 else{
-                    jTextArea2.setText("You lost.\nThe Zombie has hurt you\nand ran away.");
+                    jTextArea2.setText("You lost.\nThe Zombie has hurt you\nand ran away."
+                    + "\nHe dropped an old key.\n You decided to take it."
+                    + "\nThe key has been added to\nyou're inventory.");
+                    game.player.takeItem(new Item("key",1));
                     jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                 }
                 buttonGroup1.clearSelection();
@@ -449,11 +504,21 @@ public class NewJDialog extends javax.swing.JDialog {
         setHP();
         setChoicesInvisible();
         
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void retryButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_retryButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -498,11 +563,18 @@ public class NewJDialog extends javax.swing.JDialog {
                 
             }
         });
-        game.play();
+        while(game.player.getHealthPoint() > 0)
+        {
+                game.play();
+        }
+        deadDialog.setVisible(true);
+        
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    public static javax.swing.JDialog deadDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -514,10 +586,14 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JButton quitButton;
+    private javax.swing.JButton retryButton1;
     // End of variables declaration//GEN-END:variables
 }
