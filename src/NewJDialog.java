@@ -286,8 +286,13 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }
     
+    private boolean isThereZombie()
+    {
+        return game.getCurrentRoom().hasCharacter() && game.getCurrentRoom().getCharacter().isEnemy();
+    }
+    
     private void zombieWarning() {
-        if (game.getCurrentRoom().hasZombie())
+        if (isThereZombie())
         {
             String current = jTextArea2.getText();
             jTextArea2.setText(current + "BEWARE!\nThere's a Zombie in the Room!");
@@ -349,7 +354,7 @@ public class NewJDialog extends javax.swing.JDialog {
         if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
         {
             jLabel2.setIcon(new javax.swing.ImageIcon("/hall+zombie.png)"));
-            game.getCurrentRoom().addZombie();
+            game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
         }
         zombieWarning();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -379,17 +384,34 @@ public class NewJDialog extends javax.swing.JDialog {
         jTextArea2.setText(text);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
-        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && game.getCurrentRoom().hasZombie())
+        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && game.getCurrentRoom().hasCharacter())
         {
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardien+zombie.png")));
+        }
+        if (game.getCurrentRoom().getDescription()=="in the gardian lounge" && !game.getCurrentRoom().hasCharacter())
+        {
+            String current = jTextArea2.getText();
+            jTextArea2.setText(current + game.player.takeItem(new Item("key",1)));
         }
         zombieWarning();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String text = jTextArea2.getText() + game.printHelp();
-        jTextArea2.setText(text);
+        if (isThereZombie())
+        {
+            String text = jTextArea2.getText()
+                    + "\nTo fight it, use the 'Choices'\n"
+                    + "button. Once you choose,\n"
+                    + "click on 'Validate";
+            jTextArea2.setText(text);
+        }
+        else
+        {
+            String text = jTextArea2.getText() + game.printHelp();
+            jTextArea2.setText(text);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -404,7 +426,8 @@ public class NewJDialog extends javax.swing.JDialog {
                     choix =button.getText();
                 }
             }
-            boolean win= game.player.fight(choix);
+            Character enemy = game.getCurrentRoom().getCharacter();
+            boolean win= game.player.fight(choix, enemy);
                 if (win){                    
                     jTextArea2.setText("You defeated the zombie.\n");
                     jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
@@ -412,13 +435,13 @@ public class NewJDialog extends javax.swing.JDialog {
                 else{
                     jTextArea2.setText("You lost.\nThe Zombie has hurt you\nand ran away.");
                     jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-                    setHP();
                 }
                 buttonGroup1.clearSelection();
                 
-        game.getCurrentRoom().removeZombie();
+        game.getCurrentRoom().removeCharacter();
         String currentText = jTextArea2.getText();
         jTextArea2.setText(currentText + "The combat is over");
+        setHP();
         setChoicesInvisible();
         
     }//GEN-LAST:event_jButton7ActionPerformed

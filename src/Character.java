@@ -12,6 +12,7 @@ public class Character
     private String Name;
     private Room currentRoom;
     private int HealthPoint;
+    private boolean isEnemy;
 
     /**
      * Constructor for objects of class Players
@@ -22,6 +23,20 @@ public class Character
         Name="OSEF";
         this.currentRoom=myRoom; 
         HealthPoint = life;
+    }
+    
+    public Character(Room myRoom, int life, boolean isEnemy)
+    {
+        // initialise instance variables
+        Name="OSEF";
+        this.currentRoom=myRoom; 
+        HealthPoint = life;
+        this.isEnemy = isEnemy;
+    }
+    
+    public boolean isEnemy()
+    {
+        return isEnemy;
     }
 
 
@@ -42,11 +57,19 @@ public class Character
         return HealthPoint;
     }
     
-    public boolean fight(String playerchoice)
+    public boolean fight(String playerchoice, Character enemy)
     {
         
         if(combat(playerchoice)){
-            return true;
+            enemy.hurt();
+            if (enemy.getHealthPoint() <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else{ 
             hurt();

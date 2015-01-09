@@ -45,7 +45,7 @@ public class Game
         garden = new Room("in the garden","/garden.png");
         hall = new Room("in the entry hall","/hall.png");
         refectory = new Room("in the refectory","/refectoire.png");
-        logeGardien = new Room("in the gardian lounge","/logegardien.png", true);
+        logeGardien = new Room("in the gardian lounge","/logegardien.png");
         RobertRoom = new Room("in the Robert's bedroom","/robert.png");
         stairs = new Room("in the stairs","/stairs.png");
         kitchen = new Room("in the kitchen","kitchen.png");
@@ -67,9 +67,13 @@ public class Game
         Item fairy = new Item("Fairy dust",1);
         
         //Initialise characters
-        Character zombieGuardian = new Character(logeGardien, 2);
-        Character zombieHall = new Character(hall, 2);
-        Character boss = new Character(directorOffice, 3);
+        Character zombieGuardian = new Character(logeGardien, 2, true);
+        Character boss = new Character(directorOffice, 3, true);
+        
+        //Place the characters in their respective rooms
+        logeGardien.addCharacter(zombieGuardian);
+        directorOffice.addCharacter(boss);
+        
         
         // initialise room exits
         garden.addexits("north", new ExitRoom(hall,garden));
