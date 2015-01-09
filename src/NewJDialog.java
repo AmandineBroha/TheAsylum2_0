@@ -159,6 +159,7 @@ public class NewJDialog extends javax.swing.JDialog {
             }
         });
 
+        jButton7.setVisible(false);
         jButton7.setText("valide");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +261,11 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton2.setVisible(true);
         jRadioButton3.setVisible(true);
     }
+     private void setChoicesInvisible() {
+        jRadioButton1.setVisible(false);
+        jRadioButton2.setVisible(false);
+        jRadioButton3.setVisible(false);
+    }
     
     private void setHP() 
     {
@@ -295,21 +301,25 @@ public class NewJDialog extends javax.swing.JDialog {
    
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         if ((game.getCurrentRoom().getDescription()=="in the gardian lounge"))
         {
         setChoicesVisible();
-        jLabel2.setIcon(new javax.swing.ImageIcon("/logegardien+zombie.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
+        jButton7.setVisible(true);
         }
         
         else if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
         {
             setChoicesVisible();
-            jLabel2.setIcon(new javax.swing.ImageIcon("/hall+zombie.png)"));
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png)")));
+            jButton7.setVisible(true);
         }
         
         else if (game.getCurrentRoom().getDescription()=="in the director office")
         {
             setChoicesVisible();
+            jButton7.setVisible(true);
         }
         
         else if (jRadioButton1.isVisible())
@@ -317,6 +327,7 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton1.setVisible(false);
         jRadioButton2.setVisible(false);
         jRadioButton3.setVisible(false);
+        jButton7.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -342,7 +353,7 @@ public class NewJDialog extends javax.swing.JDialog {
         porte3=isChecked();
         if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
         {
-            jLabel2.setIcon(new javax.swing.ImageIcon("/hall+zombie.png)"));
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
             game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
         }
         zombieWarning();
@@ -409,7 +420,7 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
+        jButton7.setVisible(false);
         String choix="";
         
         
@@ -423,8 +434,9 @@ public class NewJDialog extends javax.swing.JDialog {
             Character enemy = game.getCurrentRoom().getCharacter();
             boolean win= game.player.fight(choix, enemy);
                 if (win){                    
-                    jTextArea2.setText("You defeated the zombie.\n");
-                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+                    jTextArea2.setText("You defeated the zombie.\n He dropped an old key\n you decided to take it.\nThe key has been added to\nyou're inventory.");
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                    game.player.takeItem(new Item("key",1));
                 }
                 else{
                     jTextArea2.setText("You lost.\nThe Zombie has hurt you\nand ran away.");
@@ -436,6 +448,7 @@ public class NewJDialog extends javax.swing.JDialog {
         String currentText = jTextArea2.getText();
         jTextArea2.setText(currentText + "The combat is over");
         setHP();
+        setChoicesInvisible();
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
