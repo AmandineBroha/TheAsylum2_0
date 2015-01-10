@@ -461,7 +461,7 @@ public class NewJDialog extends javax.swing.JDialog {
             String text = instructions.getText()
                     + "\nTo fight it, use the 'Choices'\n"
                     + "button. Once you choose,\n"
-                    + "click on 'Validate";
+                    + "click on 'Validate' \n";
             instructions.setText(text);
         }
         else
