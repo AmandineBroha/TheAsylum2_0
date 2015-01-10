@@ -152,7 +152,7 @@ public class Game
         else if (commandWord.equals("go"))
             goRoom(command);
         else if (commandWord.equals("quit"))
-            wantToQuit = quit(command);
+            wantToQuit = true;
 
         return wantToQuit;
     }
@@ -223,17 +223,7 @@ public class Game
      * whether we really quit the game.
      * @return true, if this command quits the game, false otherwise.
      */
-    public boolean quit(Command command) 
-    {
-        
-        if(command.hasSecondWord()) {
-           System.out.println("Quit what?");
-           return false;
-        }
-        else {
-           return true;  // signal that we want to quit
-        }
-    }
+    
     public Room getCurrentRoom()
     {
         return currentRoom;

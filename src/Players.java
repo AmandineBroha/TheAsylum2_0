@@ -24,6 +24,19 @@ public class Players extends Character
         listItem= new ArrayList<Item>();
     }
     
+    //Makes the player die suddenly; it is supposed to be called when he
+    //falls down the stairs
+    public void die()
+    {
+        while (super.getHealthPoint() > 0)
+        {
+            super.hurt();
+        }
+    }
+    
+    
+    
+    
     public String takeItem(Item item)
     {
         if (totalWeight <= MaxWeight)

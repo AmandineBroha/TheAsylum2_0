@@ -57,6 +57,13 @@ public class Character
         return HealthPoint;
     }
     
+    //The player regains health; used when the player takes a potion
+    //or to restart the game
+    public void heal()
+    {
+        HealthPoint += 2 ;
+    }
+    
     public boolean fight(String playerchoice, Character enemy)
     {
         
