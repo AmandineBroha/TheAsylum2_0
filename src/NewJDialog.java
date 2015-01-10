@@ -446,7 +446,7 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             game.player.die();
             setHP();
-            instructions.setText("Pushed by a strange force, you fall down \n the stairs and broke your neck.\n "
+            instructions.setText("Pushed by a strange force, you fall down \n the stairs and break your neck.\n "
                     + "A black veil falls upon your eyes \n"
                     + "and you're never going to wake up again");
             retryPane.setVisible(true);
@@ -461,7 +461,7 @@ public class NewJDialog extends javax.swing.JDialog {
             String text = instructions.getText()
                     + "\nTo fight it, use the 'Choices'\n"
                     + "button. Once you choose,\n"
-                    + "click on 'Validate' \n";
+                    + "click on 'Go!' \n";
             instructions.setText(text);
         }
         else
