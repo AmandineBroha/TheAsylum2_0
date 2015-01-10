@@ -290,7 +290,12 @@ public class NewJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //returns whether the player is still alive
+    private boolean isAlive()
+    {
+        return game.player.getHealthPoint() > 0;
+    }
+    
     private boolean isChecked()
     {
          if (game.getCurrentRoom().getDescription()=="in the entry hall")
@@ -315,6 +320,8 @@ public class NewJDialog extends javax.swing.JDialog {
     {
         return retryPane;
     }
+    
+    
     
     private void setHP() 
     {
@@ -341,11 +348,8 @@ public class NewJDialog extends javax.swing.JDialog {
     }
     
     private void zombieWarning() {
-        if (isThereZombie())
-        {
-            String current = instructions.getText();
-            instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room! \n ");
-        }
+        String current = instructions.getText();
+        instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room! \n ");
     }
    
     
@@ -384,41 +388,63 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_itemListActionPerformed
 
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
-        
-        String text =game.goRoom(new Command("go","south"));
-        instructions.setText(text);
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-        if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3)
+        if (!isThereZombie() && isAlive())
         {
-            game.player.takeItem(new Item("Fairy dust",1));
+            String text =game.goRoom(new Command("go","south"));
+            instructions.setText(text);
+            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+            if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3)
+            {
+                instructions.setText(game.player.takeItem(new Item("fairy dust",1))
+                    + "Its magical powers have open\none of the doors!");
+            }
         }
+        else if (isThereZombie())
+        {
         zombieWarning();
+        instructions.setText("You can't escape!");
+        }
     }//GEN-LAST:event_downArrowActionPerformed
 
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
+        if (!isThereZombie() && isAlive())
+        {
         String text = game.goRoom(new Command("go","east"));
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
-        if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
-        {
-            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
-            game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
+            if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
+            {
+                scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
+                game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
+                zombieWarning();
+            }
         }
-        zombieWarning();
+        else if (isThereZombie())
+        {
+            instructions.setText("You can't escape!");
+        }
+        
     }//GEN-LAST:event_rightArrowActionPerformed
 
     private void leftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowActionPerformed
+        if (!isThereZombie() && isAlive())
+        {
         String text = game.goRoom(new Command("go","west"));
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte1=isChecked();
-        if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
-        {
-            String current = instructions.getText();
-            instructions.setText(current + game.player.takeItem(new Item("note", 1)));
+            if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
+            {
+                String current = instructions.getText();
+                instructions.setText(current + game.player.takeItem(new Item("note", 1)));
+            }
         }
-        zombieWarning();
+        else if (isThereZombie())
+        {
+            instructions.setText("You can't escape!");
+        }
+        
     }//GEN-LAST:event_leftArrowActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -434,24 +460,32 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
+        if (!isThereZombie() && isAlive())
+        {
         String text = game.goRoom(new Command("go","north"));
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
-        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && game.getCurrentRoom().hasCharacter())
-        {
+            if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && isThereZombie())
+            {
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
-        }
-        else if (game.getCurrentRoom().getDescription()=="in the stairs")
-        {
+            zombieWarning();
+            }
+            else if (game.getCurrentRoom().getDescription()=="in the stairs")
+            {
             game.player.die();
             setHP();
-            instructions.setText("Pushed by a strange force, you fall down \n the stairs and break your neck.\n "
-                    + "A black veil falls upon your eyes \n"
+            instructions.setText("Pushed by a strange force, you fall down\nthe stairs and break your neck.\n "
+                    + "A black veil falls upon your eyes\n"
                     + "and you're never going to wake up again");
             retryPane.setVisible(true);
+            }
         }
-        zombieWarning();
+        else if (isThereZombie())
+        {
+            instructions.setText("You can't escape!");
+        }
+
     }//GEN-LAST:event_upArrowActionPerformed
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
@@ -507,6 +541,10 @@ public class NewJDialog extends javax.swing.JDialog {
         instructions.setText(currentText + "The combat is over");
         setHP();
         setChoicesInvisible();
+        if (!isAlive())
+        {
+            retryPane.setVisible(true);
+        }
         
         
     }//GEN-LAST:event_goButtonActionPerformed
