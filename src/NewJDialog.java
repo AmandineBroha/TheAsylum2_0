@@ -347,7 +347,7 @@ public class NewJDialog extends javax.swing.JDialog {
         if (isThereZombie())
         {
             String current = instructions.getText();
-            instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room!");
+            instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room! \n ");
         }
     }
    
