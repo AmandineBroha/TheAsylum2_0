@@ -19,7 +19,6 @@ public class NewJDialog extends javax.swing.JDialog {
     private boolean porte1 = false;
     private boolean porte2 = false;
     private boolean porte3 = false;
-    
     /**
      * Creates new form NewJDialog
      */
@@ -63,13 +62,13 @@ public class NewJDialog extends javax.swing.JDialog {
         hpCounter = new javax.swing.JLabel();
 
         retryPane.setAlwaysOnTop(true);
-        retryPane.setMaximumSize(new java.awt.Dimension(234, 171));
         retryPane.setMinimumSize(new java.awt.Dimension(234, 171));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Chiller", 1, 36)); // NOI18N
         jLabel2.setText("YOU ARE DEAD!");
 
-        jLabel3.setText("Try again?");
+        jLabel3.setFont(new java.awt.Font("Chiller", 0, 24)); // NOI18N
+        jLabel3.setText("          Try again?");
 
         retryButton.setText("Yes!");
         retryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -89,18 +88,16 @@ public class NewJDialog extends javax.swing.JDialog {
         retryPane.getContentPane().setLayout(retryPaneLayout);
         retryPaneLayout.setHorizontalGroup(
             retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(retryPaneLayout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addGroup(retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, retryPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(retryPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(retryPaneLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(retryButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(quitButton)
                 .addGap(30, 30, 30))
         );
@@ -111,11 +108,11 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(retryButton)
-                    .addComponent(quitButton))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59))
         );
 
         jLabel1.setText("jLabel1");
@@ -443,7 +440,7 @@ public class NewJDialog extends javax.swing.JDialog {
         porte2=isChecked();
         if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && game.getCurrentRoom().hasCharacter())
         {
-            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardien+zombie.png")));
+            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
         }
         else if (game.getCurrentRoom().getDescription()=="in the stairs")
         {
