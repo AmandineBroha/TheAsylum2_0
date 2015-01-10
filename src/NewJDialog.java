@@ -449,13 +449,16 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             game.player.die();
             setHP();
+            instructions.setText("Pushed by a strange force, you fall down \n the stairs and broke your neck.\n "
+                    + "A black veil falls upon your eyes \n"
+                    + "and you're never going to wake up again");
+            retryPane.setVisible(true);
         }
         zombieWarning();
     }//GEN-LAST:event_upArrowActionPerformed
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
         // TODO add your handling code here:
-        retryPane.setVisible(true);
         if (isThereZombie())
         {
             String text = instructions.getText()
