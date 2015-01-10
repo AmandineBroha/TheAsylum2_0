@@ -64,7 +64,7 @@ public class Game
         Item bisous = new Item("Magical kiss",1);
         Item poney = new Item("Magical little poney",1);
         Item rainbow = new Item("Magical rainbow",1);
-        Item fairy = new Item("Fairy dust",1);
+        Item fairy = new Item("fairy dust",1);
         
         //Initialise characters
         Character zombieGuardian = new Character(logeGardien, 2, true);

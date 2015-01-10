@@ -26,12 +26,12 @@
                   </Group>
                   <EmptySpace pref="69" max="32767" attributes="0"/>
               </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="retryButton" min="-2" pref="69" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="retryButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="quitButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -44,8 +44,8 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="quitButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="retryButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="quitButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
@@ -69,7 +69,7 @@
             <Property name="text" type="java.lang.String" value="          Try again?"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="retryButton">
+        <Component class="javax.swing.JButton" name="retryButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Yes!"/>
           </Properties>
@@ -77,7 +77,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="retryButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="quitButton">
+        <Component class="javax.swing.JButton" name="quitButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="No, I quit"/>
           </Properties>
