@@ -42,8 +42,8 @@ public class NewJDialog extends javax.swing.JDialog {
         retryPane = new javax.swing.JDialog(this, true);
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        retryButton = new javax.swing.JToggleButton();
-        quitButton = new javax.swing.JToggleButton();
+        retryButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         scene = new javax.swing.JLabel();
         choicesButton = new javax.swing.JButton();
@@ -94,12 +94,12 @@ public class NewJDialog extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(69, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, retryPaneLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(retryPaneLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(retryButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(quitButton)
-                .addGap(30, 30, 30))
+                .addGap(46, 46, 46))
         );
         retryPaneLayout.setVerticalGroup(
             retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,8 +110,8 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59))
         );
 
@@ -513,15 +513,10 @@ public class NewJDialog extends javax.swing.JDialog {
 
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
-        while (game.player.getHealthPoint() < 4)
-        {
-            game.player.heal();
-        }
     }//GEN-LAST:event_retryButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_quitButtonActionPerformed
 
     /**
@@ -588,8 +583,8 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton leftArrow;
-    private javax.swing.JToggleButton quitButton;
-    private javax.swing.JToggleButton retryButton;
+    private javax.swing.JButton quitButton;
+    private javax.swing.JButton retryButton;
     private javax.swing.JDialog retryPane;
     private javax.swing.JButton rightArrow;
     private javax.swing.JLabel scene;
