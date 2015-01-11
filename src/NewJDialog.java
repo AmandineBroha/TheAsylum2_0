@@ -357,6 +357,13 @@ public class NewJDialog extends javax.swing.JDialog {
         String current = instructions.getText();
         instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room! \n ");
     }
+    private void refreshItemList(){
+        jComboBox1.removeAllItems();
+         for(Item i : game.player.getListItem())
+        {
+           jComboBox1.addItem(i.getDescription());
+        }
+    }
    
     
     private void choicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choicesButtonActionPerformed
@@ -395,14 +402,11 @@ public class NewJDialog extends javax.swing.JDialog {
             String text =game.goRoom(new Command("go","south"));
             instructions.setText(text);
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-            if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("fairy dust")==false))
+            if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
             {
-                instructions.setText(game.player.takeItem(new Item("fairy dust",1))
+                instructions.setText(game.player.takeItem(game.fairy)
                     + "Its magical powers have open\none of the doors!");
-                   for(Item i : game.player.getListItem())
-                   {
-                      jComboBox1.addItem(i.getDescription());
-                   }
+                   refreshItemList();
             }
         }
         else if (isThereZombie())
@@ -531,13 +535,15 @@ public class NewJDialog extends javax.swing.JDialog {
                             + "\nYou decided to take it."
                             + "\nThe key has been added to\nyour inventory.");
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-                    game.player.takeItem(new Item("key",1));
+                    game.player.takeItem(game.item);
+                    refreshItemList();
                 }
                 else{
                     instructions.setText("You lost.\nThe Zombie has hurt you\nand ran away."
                     + "\nHe dropped an old key.\n You decided to take it."
                     + "\nThe key has been added to\nyou're inventory.");
-                    game.player.takeItem(new Item("key",1));
+                    game.player.takeItem(game.item);
+                    refreshItemList();
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                 }
                 buttonGroup1.clearSelection();
