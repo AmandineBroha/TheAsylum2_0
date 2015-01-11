@@ -228,15 +228,16 @@ public class Game
     {
         return currentRoom;
     }
-   public boolean getkeyItem()
+   public boolean getkeyItem(String NameItem)
 {
     for(Item i : player.getListItem())
     {
-        if (i.getDescription()=="key")
+        if (i.getDescription()==NameItem)
         {
             return true;
         }
     }
     return false;
 }
+   
 }

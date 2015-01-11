@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,12 +43,11 @@ public class NewJDialog extends javax.swing.JDialog {
         retryPane = new javax.swing.JDialog(this, true);
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        retryButton = new javax.swing.JButton();
-        quitButton = new javax.swing.JButton();
+        retryButton = new javax.swing.JToggleButton();
+        quitButton = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         scene = new javax.swing.JLabel();
         choicesButton = new javax.swing.JButton();
-        itemList = new javax.swing.JComboBox();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
@@ -60,6 +60,7 @@ public class NewJDialog extends javax.swing.JDialog {
         helpButton = new javax.swing.JButton();
         goButton = new javax.swing.JButton();
         hpCounter = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
 
         retryPane.setAlwaysOnTop(true);
         retryPane.setMinimumSize(new java.awt.Dimension(234, 171));
@@ -94,12 +95,12 @@ public class NewJDialog extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(69, Short.MAX_VALUE))
-            .addGroup(retryPaneLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(retryButton)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, retryPaneLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(quitButton)
-                .addGap(46, 46, 46))
+                .addGap(30, 30, 30))
         );
         retryPaneLayout.setVerticalGroup(
             retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,8 +111,8 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59))
         );
 
@@ -125,13 +126,6 @@ public class NewJDialog extends javax.swing.JDialog {
         choicesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 choicesButtonActionPerformed(evt);
-            }
-        });
-
-        itemList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        itemList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemListActionPerformed(evt);
             }
         });
 
@@ -212,6 +206,14 @@ public class NewJDialog extends javax.swing.JDialog {
         });
 
         hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hp4.png"))); // NOI18N
+        hpCounter.setToolTipText("");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,6 +223,9 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(leftArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -229,44 +234,52 @@ public class NewJDialog extends javax.swing.JDialog {
                         .addGap(10, 10, 10)
                         .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93)
+                            .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(helpButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(choicesButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(goButton))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jRadioButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton3))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jRadioButton3)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(downArrow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(leftArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 31, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(downArrow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(leftArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(120, 120, 120))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(409, 409, 409)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -276,16 +289,9 @@ public class NewJDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(choicesButton)
-                            .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(helpButton)
                             .addComponent(goButton))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(142, 142, 142))
         );
 
         pack();
@@ -362,7 +368,7 @@ public class NewJDialog extends javax.swing.JDialog {
         goButton.setVisible(true);
         }
         
-        else if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
+        else if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem("key")==true))
         {
             setChoicesVisible();
             goButton.setVisible(true);
@@ -383,20 +389,20 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_choicesButtonActionPerformed
 
-    private void itemListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemListActionPerformed
-
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
         if (!isThereZombie() && isAlive())
         {
             String text =game.goRoom(new Command("go","south"));
             instructions.setText(text);
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-            if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3)
+            if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("fairy dust")==false))
             {
                 instructions.setText(game.player.takeItem(new Item("fairy dust",1))
                     + "Its magical powers have open\none of the doors!");
+                   for(Item i : game.player.getListItem())
+                   {
+                      jComboBox1.addItem(i.getDescription());
+                   }
             }
         }
         else if (isThereZombie())
@@ -413,7 +419,7 @@ public class NewJDialog extends javax.swing.JDialog {
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
-            if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
+            if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem("key")==true))
             {
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
                 game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
@@ -557,6 +563,10 @@ public class NewJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_quitButtonActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -612,7 +622,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel hpCounter;
     private javax.swing.JTextArea instructions;
-    private javax.swing.JComboBox itemList;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -621,8 +631,8 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton leftArrow;
-    private javax.swing.JButton quitButton;
-    private javax.swing.JButton retryButton;
+    private javax.swing.JToggleButton quitButton;
+    private javax.swing.JToggleButton retryButton;
     private javax.swing.JDialog retryPane;
     private javax.swing.JButton rightArrow;
     private javax.swing.JLabel scene;
