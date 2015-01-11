@@ -63,7 +63,8 @@ public class NewJDialog extends javax.swing.JDialog {
         itemList = new javax.swing.JComboBox();
 
         retryPane.setAlwaysOnTop(true);
-        retryPane.setMinimumSize(new java.awt.Dimension(234, 171));
+        retryPane.setMinimumSize(new java.awt.Dimension(350, 240));
+        retryPane.setPreferredSize(new java.awt.Dimension(350, 240));
 
         jLabel2.setFont(new java.awt.Font("Chiller", 1, 36)); // NOI18N
         jLabel2.setText("YOU ARE DEAD!");
@@ -109,11 +110,11 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addGroup(retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setText("jLabel1");
@@ -354,9 +355,14 @@ public class NewJDialog extends javax.swing.JDialog {
         return game.getCurrentRoom().hasCharacter() && game.getCurrentRoom().getCharacter().isEnemy();
     }
     
-    private void zombieWarning() {
+    private boolean isThereSomeone()
+    {
+        return game.getCurrentRoom().hasCharacter();
+    }
+    
+    private void characterMessage() {
         String current = instructions.getText();
-        instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room! \n ");
+        instructions.setText(current + "\n" + game.getCurrentRoom().getCharacter().toString());
     }
     private void refreshItemList(){
         itemList.removeAllItems();
@@ -368,31 +374,15 @@ public class NewJDialog extends javax.swing.JDialog {
    
     
     private void choicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choicesButtonActionPerformed
-        
-        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge"))
-        {
-        setChoicesVisible();
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
-        goButton.setVisible(true);
-        }
-        
-        else if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem("key")==true))
+        if (isThereZombie())
         {
             setChoicesVisible();
             goButton.setVisible(true);
         }
         
-        else if (game.getCurrentRoom().getDescription()=="in the director office")
-        {
-            setChoicesVisible();
-            goButton.setVisible(true);
-        }
-        
-        else if (jRadioButton1.isVisible())
+        else
         { 
-        jRadioButton1.setVisible(false);
-        jRadioButton2.setVisible(false);
-        jRadioButton3.setVisible(false);
+        setChoicesInvisible();
         goButton.setVisible(false);
         }
     }//GEN-LAST:event_choicesButtonActionPerformed
@@ -412,7 +402,7 @@ public class NewJDialog extends javax.swing.JDialog {
         }
         else if (isThereZombie())
         {
-        zombieWarning();
+        characterMessage();
         instructions.setText("You can't escape!");
         }
     }//GEN-LAST:event_downArrowActionPerformed
@@ -424,11 +414,11 @@ public class NewJDialog extends javax.swing.JDialog {
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
-            if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem("key")==true))
+            if ((game.getCurrentRoom().getDescription()=="in the entry hall") && game.getkeyItem("key"))
             {
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
-                game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
-                zombieWarning();
+                game.getCurrentRoom().addCharacter(new Character("A zombie", game.getCurrentRoom(), 2, true));
+                characterMessage();
             }
         }
         else if (isThereZombie())
@@ -478,10 +468,10 @@ public class NewJDialog extends javax.swing.JDialog {
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
-            if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && isThereZombie())
+            if ((game.getCurrentRoom().getDescription()=="in the guardian lounge") && isThereZombie())
             {
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
-            zombieWarning();
+            characterMessage();
             }
             else if (game.getCurrentRoom().getDescription()=="in the stairs")
             {
@@ -522,45 +512,38 @@ public class NewJDialog extends javax.swing.JDialog {
         goButton.setVisible(false);
         String choix="";
         
-        
-            for (Enumeration<AbstractButton> buttons = buttonGroup1.getElements(); buttons.hasMoreElements();) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup1.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
-
                 if (button.isSelected()) {
                     choix =button.getText();
                 }
+        }
+        Character enemy = game.getCurrentRoom().getCharacter();
+        boolean win= game.player.fight(choix, enemy);
+            if (win){                    
+                instructions.setText("You defeated the enemy.");
             }
-            Character enemy = game.getCurrentRoom().getCharacter();
-            boolean win= game.player.fight(choix, enemy);
-                if (win){                    
-                    instructions.setText("You defeated the zombie.\nHe dropped an old key."
-                            + "\nYou decided to take it."
-                            + "\nThe key has been added to\nyour inventory.");
-                    scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-                    game.player.takeItem(game.item);
-                    refreshItemList();
-                }
-                else{
-                    instructions.setText("You lost.\nThe Zombie has hurt you\nand ran away."
-                    + "\nHe dropped an old key.\n You decided to take it."
+            else{
+                instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
+            }
+        buttonGroup1.clearSelection();
+        if (game.getCurrentRoom().getDescription() == "in the guardian lounge"){
+            instructions.setText(instructions.getText() + "\nHe dropped an old key."
+                    + "\nYou decided to take it."
                     + "\nThe key has been added to\nyou're inventory.");
-                    game.player.takeItem(game.item);
-                    refreshItemList();
-                    scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-                }
-                buttonGroup1.clearSelection();
-                
-        game.getCurrentRoom().removeCharacter();
-        String currentText = instructions.getText();
-        instructions.setText(currentText + "The combat is over");
+            game.player.takeItem(game.item);
+            refreshItemList();
+        }  
+                game.getCurrentRoom().removeCharacter();
+        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+
+        instructions.setText(instructions.getText() + "\nThe combat is over.");
         setHP();
         setChoicesInvisible();
         if (!isAlive())
         {
             retryPane.setVisible(true);
-        }
-        
-        
+        }        
     }//GEN-LAST:event_goButtonActionPerformed
 
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
@@ -569,6 +552,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void itemListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListActionPerformed
@@ -658,151 +642,151 @@ public class NewJDialog extends javax.swing.JDialog {
  *
  * @author Jan
  */
-class Retry extends javax.swing.JDialog {
-
-    /**
-     * Creates new form Retry
-     */
-    public Retry(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
-    
-    private boolean retry;
-    
-    public boolean playAgain()
-    {
-        return retry;
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents() {
-
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        quitButton = new javax.swing.JButton();
-        retryButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel3.setText("Try again?");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("YOU ARE DEAD!");
-
-        quitButton.setText("No, I quit");
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitButtonActionPerformed(evt);
-            }
-        });
-
-        retryButton.setText("Yes!");
-        retryButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retryButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(retryButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(quitButton)
-                .addGap(30, 30, 30))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(retryButton)
-                    .addComponent(quitButton))
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-
-        pack();
-    }// </editor-fold>                        
-
-    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-        retry = false;
-    }                                          
-
-    private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-        retry = true;
-    }                                           
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Retry dialog = new Retry(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton quitButton;
-    private javax.swing.JButton retryButton;
-    // End of variables declaration                   
-}
+//class Retry extends javax.swing.JDialog {
+//
+//    /**
+//     * Creates new form Retry
+//     */
+//    public Retry(java.awt.Frame parent, boolean modal) {
+//        super(parent, modal);
+//        initComponents();
+//    }
+//    
+//    private boolean retry;
+//    
+//    public boolean playAgain()
+//    {
+//        return retry;
+//    }
+//
+//    /**
+//     * This method is called from within the constructor to initialize the form.
+//     * WARNING: Do NOT modify this code. The content of this method is always
+//     * regenerated by the Form Editor.
+//     */
+//    @SuppressWarnings("unchecked")
+//    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+//    private void initComponents() {
+//
+//        jLabel3 = new javax.swing.JLabel();
+//        jLabel2 = new javax.swing.JLabel();
+//        quitButton = new javax.swing.JButton();
+//        retryButton = new javax.swing.JButton();
+//
+//        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+//
+//        jLabel3.setText("Try again?");
+//
+//        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+//        jLabel2.setText("YOU ARE DEAD!");
+//
+//        quitButton.setText("No, I quit");
+//        quitButton.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                quitButtonActionPerformed(evt);
+//            }
+//        });
+//
+//        retryButton.setText("Yes!");
+//        retryButton.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                retryButtonActionPerformed(evt);
+//            }
+//        });
+//
+//        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+//        getContentPane().setLayout(layout);
+//        layout.setHorizontalGroup(
+//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+//                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//                .addComponent(jLabel2)
+//                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+//            .addGroup(layout.createSequentialGroup()
+//                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//                .addComponent(jLabel3)
+//                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+//            .addGroup(layout.createSequentialGroup()
+//                .addGap(37, 37, 37)
+//                .addComponent(retryButton)
+//                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+//                .addComponent(quitButton)
+//                .addGap(30, 30, 30))
+//        );
+//        layout.setVerticalGroup(
+//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(layout.createSequentialGroup()
+//                .addGap(20, 20, 20)
+//                .addComponent(jLabel2)
+//                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+//                .addComponent(jLabel3)
+//                .addGap(30, 30, 30)
+//                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+//                    .addComponent(retryButton)
+//                    .addComponent(quitButton))
+//                .addContainerGap(56, Short.MAX_VALUE))
+//        );
+//
+//        pack();
+//    }// </editor-fold>                        
+//
+//    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+//        // TODO add your handling code here:
+//        retry = false;
+//    }                                          
+//
+//    private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+//        // TODO add your handling code here:
+//        retry = true;
+//    }                                           
+//
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Retry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                Retry dialog = new Retry(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
+//    }
+//
+//    // Variables declaration - do not modify                     
+//    private javax.swing.JLabel jLabel2;
+//    private javax.swing.JLabel jLabel3;
+//    private javax.swing.JButton quitButton;
+//    private javax.swing.JButton retryButton;
+//    // End of variables declaration                   
+//}
 

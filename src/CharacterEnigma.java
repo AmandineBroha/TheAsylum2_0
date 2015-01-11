@@ -23,10 +23,10 @@ public class CharacterEnigma extends Character
     /**
      * Constructor for objects of class Monstre
      */
-    public CharacterEnigma(Room myRoom, int life)
+    public CharacterEnigma(String name,Room myRoom, int life)
     {
         // initialise instance variables
-        super(myRoom,life);
+        super(name, myRoom,life);
         Enigma enigme0 = new Enigma("", "1","2","3","145");
         Enigma enigme1 = new Enigma("", "1","2","3","45");
         Enigma enigme2 = new Enigma("", "1","2","3","45");

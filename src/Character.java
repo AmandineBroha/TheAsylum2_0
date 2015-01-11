@@ -9,7 +9,7 @@ import javax.swing.ButtonGroup;
 public class Character
 {
     // instance variables - replace the example below with your own
-    private String Name;
+    private String name;
     private Room currentRoom;
     private int HealthPoint;
     private boolean isEnemy;
@@ -17,21 +17,24 @@ public class Character
     /**
      * Constructor for objects of class Players
      */
-    public Character(Room myRoom, int life)
+    public Character(String name, Room myRoom, int life)
     {
         // initialise instance variables
-        Name="OSEF";
+        this.name=name;
         this.currentRoom=myRoom; 
         HealthPoint = life;
     }
     
-    public Character(Room myRoom, int life, boolean isEnemy)
+    public Character(String name, Room myRoom, int life, boolean isEnemy)
     {
         // initialise instance variables
-        Name="OSEF";
-        this.currentRoom=myRoom; 
-        HealthPoint = life;
+        this(name, myRoom, life);
         this.isEnemy = isEnemy;
+    }
+    
+    public String toString()
+    {
+        return name + " is in the room!\n";
     }
     
     public boolean isEnemy()
@@ -42,16 +45,7 @@ public class Character
 
     public void hurt()
     {
-        int HealthPointMinus=HealthPoint--;
-        if (HealthPointMinus==0)
-        {
-            System.out.println("You are dead");
-        }
-        else
-        {
-            System.out.println("You have been hurt! You lose 1 HP !");
-            HealthPoint--;
-        }
+        this.HealthPoint--;
     }
     public int getHealthPoint()
     {
@@ -70,22 +64,14 @@ public class Character
         
         if(combat(playerchoice)){
             enemy.hurt();
-            if (enemy.getHealthPoint() <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
         else{ 
-            hurt();
+            this.hurt();
             return false;
-            }  
-        
-         
+            }
     }
+    
     public boolean combat(String choice)
     {
         int playerchoice =0 ;

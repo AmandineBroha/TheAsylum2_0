@@ -20,7 +20,7 @@ public class Players extends Character
     public Players(Room myRoom)
     {
         // initialise instance variables
-        super(myRoom, 4);
+        super("Robert",myRoom, 4);
         listItem= new ArrayList<Item>();
     }
     

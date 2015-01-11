@@ -21,7 +21,7 @@ public class Game
     private Room currentRoom;
     protected final  Players player; 
     public final Item fairy = new Item("Fairy dust",1);
-    public final Item item = new Item("key ",1);
+    public final Item item = new Item("key",1);
     public final Item note = new Item("note",1);
     public final Item bisous = new Item("Magical kiss",1);
     public final Item poney = new Item("Magical little poney",1);
@@ -52,7 +52,7 @@ public class Game
         garden = new Room("in the garden","/garden.png");
         hall = new Room("in the entry hall","/hall.png");
         refectory = new Room("in the refectory","/refectoire.png");
-        logeGardien = new Room("in the gardian lounge","/logegardien.png");
+        logeGardien = new Room("in the guardian lounge","/logegardien.png");
         RobertRoom = new Room("in Robert's bedroom","/robert.png");
         stairs = new Room("in the stairs","/stairs.png");
         kitchen = new Room("in the kitchen","kitchen.png");
@@ -70,8 +70,8 @@ public class Game
         
         
         //Initialise characters
-        Character zombieGuardian = new Character(logeGardien, 2, true);
-        Character boss = new Character(directorOffice, 3, true);
+        Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
+        Character boss = new Character("Dr. Zombie", directorOffice, 3, true);
         
         //Place the characters in their respective rooms
         logeGardien.addCharacter(zombieGuardian);
@@ -231,11 +231,11 @@ public class Game
     {
         return currentRoom;
     }
-   public boolean getkeyItem(String NameItem)
+   public boolean getkeyItem(String nameItem)
 {
     for(Item i : player.getListItem())
     {
-        if (i.getDescription()==NameItem)
+        if (i.getDescription()==nameItem)
         {
             return true;
         }
