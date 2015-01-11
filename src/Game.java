@@ -19,9 +19,14 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    protected Players player; 
-    public Item fairy = new Item("Fairy dust",1);
-    public Item item = new Item("key ",1);
+    protected final  Players player; 
+    public final Item fairy = new Item("Fairy dust",1);
+    public final Item item = new Item("key ",1);
+    public final Item note = new Item("note",1);
+    public final Item bisous = new Item("Magical kiss",1);
+    public final Item poney = new Item("Magical little poney",1);
+    public final Item rainbow = new Item("Magical rainbow",1);
+    
     /**
      * Create the game and initialise its internal map.
      */
@@ -61,13 +66,8 @@ public class Game
         robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","/fight_robot.png"); 
         
         
-        Item item = new Item("key ",1);
-        
         Item never = new Item("never ever EVER",999);
-        Item bisous = new Item("Magical kiss",1);
-        Item poney = new Item("Magical little poney",1);
-        Item rainbow = new Item("Magical rainbow",1);
-        Item fairy = new Item("fairy dust",1);
+        
         
         //Initialise characters
         Character zombieGuardian = new Character(logeGardien, 2, true);
