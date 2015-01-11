@@ -66,15 +66,16 @@ public class Character
     
     public boolean fight(String playerchoice, Character enemy)
     {
-        
+
         if(combat(playerchoice)){
             enemy.hurt();
-            return true;
+            return true;   
         }
         else{ 
             this.hurt();
             return false;
             }
+       
     }
     
     public boolean combat(String choice)

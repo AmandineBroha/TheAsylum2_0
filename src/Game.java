@@ -62,7 +62,7 @@ public class Game
         directorOffice = new Room("in the Head's office","/bureauBoss.png");  
         chambreIRL = new Room("in your cell","/roomIRL.png"); 
         tulipefield = new Room(" in the tulips field","/teletubbies.png"); 
-        rainbowPlace = new Room("in the rainbowplace", "/rainbow.png"); 
+        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png"); 
         simbaPlace = new Room("in the savane Papy Brossard","/simba.png"); 
         caseDora = new Room("in the Dora's  way","/dora.png"); 
         robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow",
@@ -106,6 +106,7 @@ public class Game
         kitchen.addexits("east",new ExitRoom(laboratory,kitchen));
         kitchen.addexits("west",new ExitRoom(hall,kitchen));
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
+
         tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));
@@ -114,6 +115,7 @@ public class Game
         caseDora.addexits("south",new ExitRoom(rainbowPlace,caseDora));
         simbaPlace.addexits("east",new ExitRoom(rainbowPlace,simbaPlace));
         robotPlace.addexits("south",new MagicalExit(caseDora,robotPlace,rainbow));
+        chambreIRL.addexits("west",new ExitRoom(directorOffice,chambreIRL));
         currentRoom = garden; //Start game in the Hall
     }
 
