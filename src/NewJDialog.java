@@ -548,8 +548,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        retryPane.setVisible(false);
+        this.dispose();
         NewJDialog.main(null);
         
     }//GEN-LAST:event_retryButtonActionPerformed
