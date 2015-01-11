@@ -32,6 +32,11 @@ public class Character
         this.isEnemy = isEnemy;
     }
     
+    public String getName()
+    {
+        return name;
+    }
+    
     public String toString()
     {
         return name + " is in the room!\n";
@@ -54,9 +59,9 @@ public class Character
     
     //The player regains health; used when the player takes a potion
     //or to restart the game
-    public void heal()
+    public void heal(Item potion)
     {
-        HealthPoint += 2 ;
+        HealthPoint += 2;
     }
     
     public boolean fight(String playerchoice, Character enemy)

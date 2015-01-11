@@ -23,9 +23,11 @@ public class Game
     public final Item fairy = new Item("Fairy dust",1);
     public final Item item = new Item("key",1);
     public final Item note = new Item("note",1);
-    public final Item bisous = new Item("Magical kiss",1);
-    public final Item poney = new Item("Magical little poney",1);
+    public final Item bisous = new Item("magical kiss",1);
+    public final Item translator = new Item("translator",1);
+    public final Item poney = new Item("magical little poney",1);
     public final Item rainbow = new Item("Magical rainbow",1);
+    public final Item potion = new Item("potion", 1);
     
     /**
      * Create the game and initialise its internal map.
@@ -57,13 +59,14 @@ public class Game
         stairs = new Room("in the stairs","/stairs.png");
         kitchen = new Room("in the kitchen","kitchen.png");
         laboratory = new Room("in the laboratory","/laboratory.png");
-        directorOffice = new Room("in the director office","/bureauBoss.png");  
+        directorOffice = new Room("in the Head's office","/bureauBoss.png");  
         chambreIRL = new Room("in your cell","/roomIRL.png"); 
-        tulipefield = new Room(" in the tulips field","/tulipe.png"); 
-        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png"); 
+        tulipefield = new Room(" in the tulips field","/teletubbies.png"); 
+        rainbowPlace = new Room("in the rainbowplace", "/rainbow.png"); 
         simbaPlace = new Room("in the savane Papy Brossard","/simba.png"); 
         caseDora = new Room("in the Dora's  way","/dora.png"); 
-        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","/fight_robot.png"); 
+        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow",
+                "/fight_robot.png"); 
         
         
         Item never = new Item("never ever EVER",999);
@@ -72,15 +75,23 @@ public class Game
         //Initialise characters
         Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
         Character boss = new Character("Dr. Zombie", directorOffice, 3, true);
+        Character scientist = new CharacterEnigma("Dr. Zeus", laboratory, 4, potion);
+        Character ninjaTurtles = new CharacterEnigma("The Ninja Turtles", tulipefield, 4, bisous);
+        Character simba = new CharacterEnigma("Simba", simbaPlace, 4, translator);
+        Character poneyKing = new CharacterEnigma("Poney King", rainbowPlace,100, poney);
+        Character helpy = new Character("Helpy, the evil robot,", robotPlace,4, true);
         
         //Place the characters in their respective rooms
         logeGardien.addCharacter(zombieGuardian);
         directorOffice.addCharacter(boss);
+        laboratory.addCharacter(scientist);
+        rainbowPlace.addCharacter(poneyKing);
+        simbaPlace.addCharacter(simba);
+        robotPlace.addCharacter(helpy);
         
         
         // initialise room exits
         garden.addexits("north", new ExitRoom(hall,garden));
-        
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
@@ -95,7 +106,6 @@ public class Game
         kitchen.addexits("east",new ExitRoom(laboratory,kitchen));
         kitchen.addexits("west",new ExitRoom(hall,kitchen));
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
-        directorOffice.addexits("south",new ExitRoom(kitchen,directorOffice));
         tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));

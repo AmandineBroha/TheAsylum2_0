@@ -1,4 +1,7 @@
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Write a description of class Enigma here.
  * 
@@ -7,58 +10,62 @@
  */
 public class Enigma
 {
-    // instance variables - replace the example below with your own
-    private String Question;
-    private String Answer1;
-    private String Answer2;
-    private String Answer3;
-    private String GoodAnswer;
+
+    private String question;
+    public String[] answers = new String[4];
+    private String answer1;
+    private String answer2;
+    private String answer3;
+    private String rightAnswer;
+
 
     /**
      * Constructor for objects of class Enigma
      */
-    public Enigma(String Question, String Answer1, String Answer2, String Answer3, String GoodAnswer)
+    public Enigma(String question, String answer1, String answer2, String answer3, String rightAnswer)
     {
         // initialise instance variables
-        this.Question = Question;
-        this.Answer1 = Answer1;
-        this.Answer2 = Answer2;
-        this.Answer3 = Answer3;
-        this.GoodAnswer = GoodAnswer;
+        this.question = question;
+        this.answer1 = answer1;
+        this.answer2 = answer2;
+        this.answer3 = answer3;
+        this.rightAnswer = rightAnswer;
+        answers[0] = this.answer1;
+        answers[1] = this.answer2;
+        answers[2] = this.answer3;
+        answers[3] = this.rightAnswer;
     }
 
-    public void getEnigma()
+    public String getEnigma()
     {
-        System.out.println(Question);
+        return question;
     }
     
-    public void getAnswer1()
+    public String getRightAnswer()
     {
-        System.out.println(Answer1);
+        return rightAnswer;
     }
     
-    public void getAnswer2()
+    public String getQuestion()
     {
-        System.out.println(Answer2);
+        return question;
     }
     
-    public void getAnswer3()
+    public String[] getAnswers()
     {
-        System.out.println(Answer3);
+        Collections.shuffle(Arrays.asList(answers));
+        
+        return answers;
     }
     
-    public void getGoodAnswer()
-    {
-        System.out.println(GoodAnswer);
-    }
     
-    public boolean answer (String playerchoice){
-        if (playerchoice==GoodAnswer){ 
+    public boolean answer(String playerchoice){
+        if (playerchoice==answers[3]){ 
             return true;
         }
         else {return false;}
         
     }
         
-   
+    
 }
