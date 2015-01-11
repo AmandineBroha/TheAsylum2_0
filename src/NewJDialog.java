@@ -42,8 +42,8 @@ public class NewJDialog extends javax.swing.JDialog {
         retryPane = new javax.swing.JDialog(this, true);
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        retryButton = new javax.swing.JToggleButton();
-        quitButton = new javax.swing.JToggleButton();
+        retryButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         scene = new javax.swing.JLabel();
         choicesButton = new javax.swing.JButton();
@@ -94,12 +94,12 @@ public class NewJDialog extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(69, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, retryPaneLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(retryPaneLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(retryButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(quitButton)
-                .addGap(30, 30, 30))
+                .addGap(46, 46, 46))
         );
         retryPaneLayout.setVerticalGroup(
             retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,8 +110,8 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(retryPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(retryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59))
         );
 
@@ -290,7 +290,12 @@ public class NewJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //returns whether the player is still alive
+    private boolean isAlive()
+    {
+        return game.player.getHealthPoint() > 0;
+    }
+    
     private boolean isChecked()
     {
          if (game.getCurrentRoom().getDescription()=="in the entry hall")
@@ -315,6 +320,8 @@ public class NewJDialog extends javax.swing.JDialog {
     {
         return retryPane;
     }
+    
+    
     
     private void setHP() 
     {
@@ -341,11 +348,8 @@ public class NewJDialog extends javax.swing.JDialog {
     }
     
     private void zombieWarning() {
-        if (isThereZombie())
-        {
-            String current = instructions.getText();
-            instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room! \n ");
-        }
+        String current = instructions.getText();
+        instructions.setText(current + "BEWARE!\nThere's a Zombie in the Room! \n ");
     }
    
     
@@ -384,41 +388,63 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_itemListActionPerformed
 
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
-        
-        String text =game.goRoom(new Command("go","south"));
-        instructions.setText(text);
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-        if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3)
+        if (!isThereZombie() && isAlive())
         {
-            game.player.takeItem(new Item("Fairy dust",1));
+            String text =game.goRoom(new Command("go","south"));
+            instructions.setText(text);
+            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+            if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3)
+            {
+                instructions.setText(game.player.takeItem(new Item("fairy dust",1))
+                    + "Its magical powers have open\none of the doors!");
+            }
         }
+        else if (isThereZombie())
+        {
         zombieWarning();
+        instructions.setText("You can't escape!");
+        }
     }//GEN-LAST:event_downArrowActionPerformed
 
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
+        if (!isThereZombie() && isAlive())
+        {
         String text = game.goRoom(new Command("go","east"));
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
-        if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
-        {
-            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
-            game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
+            if ((game.getCurrentRoom().getDescription()=="in the entry hall")&&(game.getkeyItem()==true))
+            {
+                scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
+                game.getCurrentRoom().addCharacter(new Character(game.getCurrentRoom(), 2, true));
+                zombieWarning();
+            }
         }
-        zombieWarning();
+        else if (isThereZombie())
+        {
+            instructions.setText("You can't escape!");
+        }
+        
     }//GEN-LAST:event_rightArrowActionPerformed
 
     private void leftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowActionPerformed
+        if (!isThereZombie() && isAlive())
+        {
         String text = game.goRoom(new Command("go","west"));
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte1=isChecked();
-        if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
-        {
-            String current = instructions.getText();
-            instructions.setText(current + game.player.takeItem(new Item("note", 1)));
+            if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
+            {
+                String current = instructions.getText();
+                instructions.setText(current + game.player.takeItem(new Item("note", 1)));
+            }
         }
-        zombieWarning();
+        else if (isThereZombie())
+        {
+            instructions.setText("You can't escape!");
+        }
+        
     }//GEN-LAST:event_leftArrowActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -434,24 +460,32 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
+        if (!isThereZombie() && isAlive())
+        {
         String text = game.goRoom(new Command("go","north"));
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
-        if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && game.getCurrentRoom().hasCharacter())
-        {
+            if ((game.getCurrentRoom().getDescription()=="in the gardian lounge") && isThereZombie())
+            {
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
-        }
-        else if (game.getCurrentRoom().getDescription()=="in the stairs")
-        {
+            zombieWarning();
+            }
+            else if (game.getCurrentRoom().getDescription()=="in the stairs")
+            {
             game.player.die();
             setHP();
-            instructions.setText("Pushed by a strange force, you fall down \n the stairs and broke your neck.\n "
-                    + "A black veil falls upon your eyes \n"
+            instructions.setText("Pushed by a strange force, you fall down\nthe stairs and break your neck.\n "
+                    + "A black veil falls upon your eyes\n"
                     + "and you're never going to wake up again");
             retryPane.setVisible(true);
+            }
         }
-        zombieWarning();
+        else if (isThereZombie())
+        {
+            instructions.setText("You can't escape!");
+        }
+
     }//GEN-LAST:event_upArrowActionPerformed
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
@@ -461,7 +495,7 @@ public class NewJDialog extends javax.swing.JDialog {
             String text = instructions.getText()
                     + "\nTo fight it, use the 'Choices'\n"
                     + "button. Once you choose,\n"
-                    + "click on 'Validate' \n";
+                    + "click on 'Go!' \n";
             instructions.setText(text);
         }
         else
@@ -507,21 +541,20 @@ public class NewJDialog extends javax.swing.JDialog {
         instructions.setText(currentText + "The combat is over");
         setHP();
         setChoicesInvisible();
+        if (!isAlive())
+        {
+            retryPane.setVisible(true);
+        }
         
         
     }//GEN-LAST:event_goButtonActionPerformed
 
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
-        while (game.player.getHealthPoint() < 4)
-        {
-            game.player.heal();
-        }
     }//GEN-LAST:event_retryButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_quitButtonActionPerformed
 
     /**
@@ -588,8 +621,8 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton leftArrow;
-    private javax.swing.JToggleButton quitButton;
-    private javax.swing.JToggleButton retryButton;
+    private javax.swing.JButton quitButton;
+    private javax.swing.JButton retryButton;
     private javax.swing.JDialog retryPane;
     private javax.swing.JButton rightArrow;
     private javax.swing.JLabel scene;
