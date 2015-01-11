@@ -519,7 +519,8 @@ public class NewJDialog extends javax.swing.JDialog {
                 }
         }
         Character enemy = game.getCurrentRoom().getCharacter();
-        boolean win= game.player.fight(choix, enemy);
+  
+        boolean win= game.player.fight(choix, enemy);     
             if (win){                    
                 instructions.setText("You defeated the enemy.");
             }
