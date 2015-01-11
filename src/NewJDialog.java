@@ -435,7 +435,7 @@ public class NewJDialog extends javax.swing.JDialog {
         instructions.setText(text);
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte1=isChecked();
-            if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
+            if (game.getCurrentRoom().getDescription() == "in Robert's bedroom" && game.getkeyItem("note")==false)
             {
                 String current = instructions.getText();
                 instructions.setText(current + game.player.takeItem(game.note));
