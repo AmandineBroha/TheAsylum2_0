@@ -96,6 +96,8 @@ public class Game
         kitchen.addexits("west",new ExitRoom(hall,kitchen));
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
         directorOffice.addexits("south",new ExitRoom(kitchen,directorOffice));
+        directorOffice.addexits("north",new ExitRoom(tulipefield,directorOffice));
+        directorOffice.addexits("east",new ExitRoom(chambreIRL,directorOffice));
         tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));
@@ -104,6 +106,7 @@ public class Game
         caseDora.addexits("south",new ExitRoom(rainbowPlace,caseDora));
         simbaPlace.addexits("east",new ExitRoom(rainbowPlace,simbaPlace));
         robotPlace.addexits("south",new MagicalExit(caseDora,robotPlace,rainbow));
+        chambreIRL.addexits("west",new ExitRoom(directorOffice,chambreIRL));
         currentRoom = garden; //Start game in the Hall
     }
 

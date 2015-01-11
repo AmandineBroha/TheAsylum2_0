@@ -521,11 +521,23 @@ public class NewJDialog extends javax.swing.JDialog {
         Character enemy = game.getCurrentRoom().getCharacter();
   
         boolean win= game.player.fight(choix, enemy);     
-            if (win){                    
+            if (win){
+                
                 instructions.setText("You defeated the enemy.");
+                if (game.getCurrentRoom().getDescription()=="in the director office")
+                {
+                String text = game.goRoom(new Command("go","east"));
+                instructions.setText(text);
+                }
             }
             else{
+                
                 instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
+                if (game.getCurrentRoom().getDescription()=="in the director office")
+                {
+                String text = game.goRoom(new Command("go","north"));
+                instructions.setText(text);
+                }
             }
         buttonGroup1.clearSelection();
         if (game.getCurrentRoom().getDescription() == "in the guardian lounge"){
