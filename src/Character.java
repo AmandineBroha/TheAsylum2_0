@@ -49,6 +49,7 @@ public class Character
         }
         else
         {
+            System.out.println("You have been hurt! You lose 1 HP !");
             HealthPoint--;
         }
     }
