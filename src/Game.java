@@ -62,7 +62,7 @@ public class Game
         directorOffice = new Room("in the Head's office","/bureauBoss.png");  
         chambreIRL = new Room("in your cell","/roomIRL.png"); 
         tulipefield = new Room(" in the tulips field","/teletubbies.png"); 
-        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png"); 
+        rainbowPlace = new Room("in the rainbowplace", "/rainbow.png"); 
         simbaPlace = new Room("in the savane Papy Brossard","/simba.png"); 
         caseDora = new Room("in the Dora's  way","/dora.png"); 
         robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow",
