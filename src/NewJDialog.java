@@ -1,9 +1,12 @@
 
 import java.awt.Image;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -299,6 +302,15 @@ public class NewJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //returns whether the player is still alive
+    private void Wait()
+    {
+        try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+    }
+    
     private boolean isAlive()
     {
         return game.player.getHealthPoint() > 0;
@@ -328,8 +340,6 @@ public class NewJDialog extends javax.swing.JDialog {
     {
         return retryPane;
     }
-    
-    
     
     private void setHP() 
     {
@@ -522,10 +532,11 @@ public class NewJDialog extends javax.swing.JDialog {
   
         boolean win= game.player.fight(choix, enemy);     
             if (win){
-                
+            
                 instructions.setText("You defeated the enemy.");
                 if (game.getCurrentRoom().getDescription()=="in the director office")
                 {
+                   Wait();
                 String text = game.goRoom(new Command("go","east"));
                 instructions.setText(text);
                 }
@@ -535,6 +546,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
                 if (game.getCurrentRoom().getDescription()=="in the director office")
                 {
+                    Wait();
                 String text = game.goRoom(new Command("go","north"));
                 instructions.setText(text);
                 }
@@ -603,7 +615,7 @@ public class NewJDialog extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(NewJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+                ;
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -617,6 +629,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+                
         
     }
 
