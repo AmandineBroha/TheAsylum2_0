@@ -33,7 +33,6 @@ public class Game
     public final Item rainbow = new Item("Magical rainbow",1);
     public final Item potion = new Item("potion", 1);
     
-    Boolean simba = false;
     
     /**
      * Create the game and initialise its internal map.
@@ -160,7 +159,6 @@ public class Game
             public void onEnter() {
                 super.onEnter();
                 NewJDialog.addTextInConsole("\"I heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
-                simba = true;
             }
             
         };

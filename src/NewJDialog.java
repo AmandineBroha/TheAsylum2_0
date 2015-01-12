@@ -451,7 +451,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private void Wait()
     {
         try {
-                Thread.sleep(300);
+                Thread.sleep(3000);
             } 
         catch (InterruptedException ex) {
                 Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -666,19 +666,16 @@ public class NewJDialog extends javax.swing.JDialog {
             setTextInConsole("You can't escape!");
         }
         
- //       if ((game.getCurrentRoom().getDescription() == "in the savane Papy Brossard") && (game.simba == true )) {
-//            
- //           int i=0;
-//
- //           while (i <= 10)
-//            {
-//                jLabel4.setVisible(true); 
- //               i++;
-//            }
-//            jLabel4.setVisible(false);
-//            //a verifier pour le bisous!!!
-//            addTextInConsole(game.player.takeItem(game.bisous));
-//        }
+        if (game.getCurrentRoom().getDescription() == "in the savane Papy Brossard") {
+            Wait();
+            Wait();
+            addTextInConsole("You must clap in your hands if you want to leave!");
+            Wait();
+            Wait();
+            addTextInConsole(game.player.takeItem(game.translator));
+            refreshItemList();
+            
+        }
         launchEnigma();
         
     }//GEN-LAST:event_leftArrowActionPerformed
