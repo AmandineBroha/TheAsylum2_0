@@ -661,7 +661,7 @@ public class NewJDialog extends javax.swing.JDialog {
             addTextInConsole("You must clap in your hands if you want to leave!");
             Wait();
             Wait();
-            addTextInConsole(game.player.takeItem(game.translator));
+            //addTextInConsole(game.player.takeItem(game.translator));
             refreshItemList();
             
         }
