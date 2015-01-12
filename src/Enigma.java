@@ -1,6 +1,7 @@
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 /**
  * Write a description of class Enigma here.
@@ -35,16 +36,6 @@ public class Enigma
         answers[2] = this.answer3;
         answers[3] = this.rightAnswer;
     }
-
-    public String getEnigma()
-    {
-        return question;
-    }
-    
-    public String getRightAnswer()
-    {
-        return rightAnswer;
-    }
     
     public String getQuestion()
     {
@@ -57,10 +48,11 @@ public class Enigma
         
         return answers;
     }
-    
-    
+
+
+     
     public boolean answer(String playerchoice){
-        if (playerchoice==answers[3]){ 
+        if (playerchoice.equals(rightAnswer)){ 
             return true;
         }
         else {return false;}

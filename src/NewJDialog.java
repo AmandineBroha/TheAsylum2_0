@@ -116,7 +116,7 @@ public class NewJDialog extends javax.swing.JDialog {
         answer3 = new javax.swing.JRadioButton();
         answer4 = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        questionLabel = new javax.swing.JLabel();
         okEnigmaButton = new javax.swing.JButton();
         enigmaButtons = new javax.swing.ButtonGroup();
         scene = new javax.swing.JLabel();
@@ -191,6 +191,12 @@ public class NewJDialog extends javax.swing.JDialog {
 
         jLabel1.setText("jLabel1");
 
+        enigmaDialog.setMaximumSize(new java.awt.Dimension(373, 216));
+        enigmaDialog.setMinimumSize(new java.awt.Dimension(373, 216));
+        enigmaDialog.setModal(true);
+        enigmaDialog.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        enigmaDialog.setPreferredSize(new java.awt.Dimension(373, 216));
+
         enigmaButtons.add(answer1);
         answer1.setText("answer 1");
         answer1.setVisible(false);
@@ -198,6 +204,7 @@ public class NewJDialog extends javax.swing.JDialog {
         enigmaButtons.add(answer2);
         answer2.setText("answer 2");
         answer2.setVisible(false);
+        answer2.setToolTipText("");
 
         enigmaButtons.add(answer3);
         answer3.setText("answer 3");
@@ -209,10 +216,12 @@ public class NewJDialog extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("<html>To get a reward,</br>answer the enigma!</html>");
+        jLabel6.setText("<html>Answer the enigma to get the reward!</html>");
         jLabel6.setToolTipText("");
 
-        jLabel5.setText("jLabel4");
+        questionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        questionLabel.setText("<question>");
+        questionLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         okEnigmaButton.setText("OK");
         okEnigmaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -226,53 +235,43 @@ public class NewJDialog extends javax.swing.JDialog {
         enigmaDialogLayout.setHorizontalGroup(
             enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(enigmaDialogLayout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(questionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
                         .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(enigmaDialogLayout.createSequentialGroup()
-                                .addComponent(answer3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(answer4))
-                            .addGroup(enigmaDialogLayout.createSequentialGroup()
-                                .addComponent(answer1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(answer2)))
-                        .addGap(80, 80, 80))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
-            .addGroup(enigmaDialogLayout.createSequentialGroup()
-                .addGap(125, 125, 125)
+                            .addComponent(answer1)
+                            .addComponent(answer3))
+                        .addGap(121, 121, 121)
+                        .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(answer2)
+                            .addComponent(answer4))
+                        .addGap(79, 79, 79))
+                    .addComponent(jLabel6))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
+                .addGap(155, 155, 155)
                 .addComponent(okEnigmaButton)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
-                    .addContainerGap(63, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(44, 44, 44)))
+                .addGap(156, 156, 156))
         );
         enigmaDialogLayout.setVerticalGroup(
             enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(questionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(answer1)
                     .addComponent(answer2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(answer4)
                     .addComponent(answer3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(okEnigmaButton)
                 .addGap(21, 21, 21))
-            .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(enigmaDialogLayout.createSequentialGroup()
-                    .addGap(64, 64, 64)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(89, Short.MAX_VALUE)))
         );
 
         enigmaButtons.add(answer1);
@@ -401,7 +400,7 @@ public class NewJDialog extends javax.swing.JDialog {
                             .addComponent(jRadioButton3)
                             .addComponent(jRadioButton1))
                         .addGap(14, 14, 14)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,7 +441,7 @@ public class NewJDialog extends javax.swing.JDialog {
                                 .addComponent(jRadioButton3)))
                         .addGap(1, 1, 1)
                         .addComponent(goButton)))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -549,36 +548,27 @@ public class NewJDialog extends javax.swing.JDialog {
     
     private void launchEnigma()
     {
-        if (isThereEnigma())
-        {
-            
+        if (isThereEnigma()){
+            //Gets the character who asks the enigma
             CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
-            int choice;
-            switch(sphynx.getName())
-            {
-                case "Dr. Zeus": choice = 0;
-                    break;
-                case "The Ninja Turtles": choice = 1;
-                    break;
-                case "Simba": choice = 8;
-                    break;
-                case "Poney King": choice = 2;
-                    break;
-                case "Helpy, the evil robot,": choice = 3;
-                    break;
-                default: choice = -1;
-            }
-            if (choice>=0)
-            {
-                Enigma theEnigma = sphynx.pickEnigma(choice);
-                String[] theAnswers = theEnigma.getAnswers();
-                jLabel5.setText(theEnigma.getQuestion());
-                answer1.setText(theAnswers[0]);
-                answer2.setText(theAnswers[1]);
-                answer3.setText(theAnswers[2]);
-                answer4.setText(theAnswers[3]);
-            }
+            //Gets the enigma and sorts the answers in a random order
+            Enigma theEnigma = sphynx.pickEnigma();
+            String[] theAnswers = theEnigma.getAnswers();
+            
+            //Write the enigma on the diallog component
+            questionLabel.setText(theEnigma.getQuestion());
+            answer1.setText(theAnswers[0]);
+            answer2.setText(theAnswers[1]);
+            answer3.setText(theAnswers[2]);
+            answer4.setText(theAnswers[3]);
+
+            //Set the dialog visible
+            answer1.setVisible(true);
+            answer2.setVisible(true);
+            answer3.setVisible(true);
+            answer4.setVisible(true);
             enigmaDialog.setVisible(true);
+            
         }
     }
     
@@ -755,9 +745,10 @@ public class NewJDialog extends javax.swing.JDialog {
             setTextInConsole("You defeated the enemy.");
             if (isTheRoom("in the Head's office"))
             {
-                //Wait();
+                Wait();
                 game.goRoom(new Command("go","east"));
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
             }
             if (isTheRoom("in the guardian lounge")){
                 addTextInConsole("\nHe dropped an old key."
@@ -776,7 +767,8 @@ public class NewJDialog extends javax.swing.JDialog {
             manche++;
             
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
-            {                
+            {
+                
                 addTextInConsole("\n You hit the zombie! Come on I can kill him !");
                
             }
@@ -793,8 +785,10 @@ public class NewJDialog extends javax.swing.JDialog {
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 if(!isAlive()){
+                    Wait();
                     game.goRoom(new Command("go","north"));
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                    hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
                 }
             }
             addTextInConsole("\n Keep Fighting");
@@ -836,8 +830,18 @@ public class NewJDialog extends javax.swing.JDialog {
                 }
         }
         CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
-        //Item reward = sphynx.getReward(choice, sphynx);
-        
+        try {
+            Enigma theEnigma = sphynx.getEnigma(questionLabel.getText());
+            if (theEnigma.answer(choice)){
+                if (sphynx.getName().equals("Helpy, the evil robot,")){
+                    sphynx.hurt();
+                    addTextInConsole("You've hurt Helpy!");
+                    if (sphynx.getHealthPoint()==0){
+                        
+                    }
+                }
+            }
+        } catch (Exception e) {addTextInConsole(e.getMessage());}
         
     }//GEN-LAST:event_okEnigmaButtonActionPerformed
 
@@ -914,7 +918,6 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -922,6 +925,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton leftArrow;
     private javax.swing.JButton okEnigmaButton;
+    private javax.swing.JLabel questionLabel;
     private javax.swing.JButton quitButton;
     private javax.swing.JButton retryButton;
     private javax.swing.JDialog retryPane;
