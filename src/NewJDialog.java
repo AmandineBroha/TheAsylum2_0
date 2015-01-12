@@ -761,6 +761,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 Wait();
                 game.goRoom(new Command("go","east"));
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
             }
             if (isTheRoom("in the guardian lounge")){
                 addTextInConsole("\nHe dropped an old key."
@@ -800,6 +801,7 @@ public class NewJDialog extends javax.swing.JDialog {
                     Wait();
                     game.goRoom(new Command("go","north"));
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                    hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
                 }
             }
             addTextInConsole("\n Keep Fighting");
