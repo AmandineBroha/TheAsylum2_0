@@ -46,7 +46,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private boolean porte1 = false;
     private boolean porte2 = false;
     private boolean porte3 = false;
-    private int manche=0;
+    private int manche=1;
     /**
      * Creates new form NewJDialog
      */
@@ -763,19 +763,19 @@ public class NewJDialog extends javax.swing.JDialog {
         }
         Character enemy = game.getCurrentRoom().getCharacter();
         
-        manche++;
-        int win= game.player.fight(choix, enemy,manche,2);     
+        
+        int win= game.player.fight(choix, enemy,manche,2);    
+        System.out.println(win);
         if (win==1){
-            manche=0;
-            instructions.setText("You defeated the enemy.");
+            manche=1;
+            setTextInConsole("You defeated the enemy.");
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 //Wait();
-                String text = game.goRoom(new Command("go","east"));
-                instructions.setText(text);
+                game.goRoom(new Command("go","east"));
             }
             if (isTheRoom("in the guardian lounge")){
-                instructions.setText(instructions.getText() + "\nHe dropped an old key."
+                addTextInConsole("\nHe dropped an old key."
                 + "\nYou decided to take it."
                 + "\nThe key has been added to\nyou're inventory.");
                 game.player.takeItem(game.item);
@@ -783,7 +783,7 @@ public class NewJDialog extends javax.swing.JDialog {
             }
             game.getCurrentRoom().removeCharacter();
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-            instructions.setText(instructions.getText() + "\nThe combat is over.");
+            addTextInConsole("\nThe combat is over.");
             setHP();
             setChoicesInvisible();
             if (!isAlive())
@@ -792,13 +792,13 @@ public class NewJDialog extends javax.swing.JDialog {
             } 
         }
         else if(win==2){
-                
-            instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
+            manche++;
+            setTextInConsole("You hurt your enemys");
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 // Wait();
-                String text = game.goRoom(new Command("go","north"));
-                instructions.setText(instructions.getText() + "\n You hit the zombie! Come on I can kill him !");
+                game.goRoom(new Command("go","north"));
+                addTextInConsole("\n You hit the zombie! Come on I can kill him !");
             }
             setHP();
         }

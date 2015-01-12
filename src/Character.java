@@ -67,16 +67,19 @@ public class Character
     public int fight(String playerchoice, Character enemy,int manche, int tour)
     {
 
-        if(combat(playerchoice) && manche==tour ){
+        if(manche==tour && combat(playerchoice)){
             enemy.hurt();
+             System.out.println("step3");
             return 1;   
         }
-        if(combat(playerchoice) && manche<tour ){
+        else if(combat(playerchoice) && manche<tour ){            
             enemy.hurt();
+             System.out.println("step4");
             return 2;   
         }
         else{ 
             this.hurt();
+             System.out.println("step5");
             return 3;
         }
        
@@ -85,6 +88,7 @@ public class Character
     public boolean combat(String choice)
     {
         int playerchoice =0 ;
+        System.out.println("step1");
        
         if (choice=="Rock"){
             playerchoice=0;
@@ -95,16 +99,20 @@ public class Character
         else{
             playerchoice=2;
         }
+        System.out.println("step2");
         
         int IAchoice= (int)(Math.random()*3);
         
         if(IAchoice == playerchoice){
-            while (IAchoice == playerchoice){
+            /*while (IAchoice == playerchoice){
                  IAchoice= (int)(Math.random()*3);
                  
                 }
+             */
+            return true;
         }
-        System.out.println(IAchoice);
+        System.out.println("IA ->"+IAchoice);
+        System.out.println("joueru ->"+playerchoice);
         //0 = rock
         //1=paper
         ///2=scissors
@@ -132,6 +140,6 @@ public class Character
             else{
                 return false;                
             }
-        }        
+        } 
     }    
 }
