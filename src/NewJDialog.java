@@ -784,7 +784,6 @@ public class NewJDialog extends javax.swing.JDialog {
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 // Wait();
-                game.goRoom(new Command("go","north"));
                 addTextInConsole("\n You hit the zombie! Come on I can kill him !");
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
             }

@@ -123,7 +123,7 @@ public class Game
             }
             
         };
-        directorOffice = new Room("in the director office","/bureauBoss.png")        {
+        directorOffice = new Room("in the Head's office","/bureauBoss.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
