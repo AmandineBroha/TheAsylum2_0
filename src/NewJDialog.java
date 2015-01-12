@@ -1,9 +1,17 @@
 
+import java.awt.Frame;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +24,22 @@ import javax.swing.JComboBox;
  * @author poste
  */
 public class NewJDialog extends javax.swing.JDialog {
+    /* SINGLETON */
+    public static NewJDialog mainWindow;
+    public static JTextArea getInstructions(){ return mainWindow.instructions; }
+    
+    /* TEXT IN CONSOLE */
+    public static void setTextInConsole(String text)
+    {
+        getInstructions().setText(text);
+    }
+    public static void addTextInConsole(String text)
+    {
+        String oldText = getInstructions().getText();
+        String newText = oldText + "\n"+ text;
+        getInstructions().setText(newText);
+    }
+    
     public static Game game = new Game();
     private boolean porte1 = false;
     private boolean porte2 = false;
@@ -26,6 +50,43 @@ public class NewJDialog extends javax.swing.JDialog {
     public NewJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        mainWindow = this;
+        //
+        this.requestFocus();
+        parent.addKeyListener(new KeyListener() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("HEY");
+                switch(e.getKeyCode())
+                {
+                    case KeyEvent.VK_LEFT:
+                        leftArrowActionPerformed(null);
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        rightArrowActionPerformed(null);
+                        break;
+                    case KeyEvent.VK_UP:
+                        upArrowActionPerformed(null);
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        downArrowActionPerformed(null);
+                        break;
+                }
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                keyPressed(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                keyPressed(e);
+            }
+
+        });
+        
         
     }
    
@@ -61,6 +122,7 @@ public class NewJDialog extends javax.swing.JDialog {
         goButton = new javax.swing.JButton();
         hpCounter = new javax.swing.JLabel();
         itemList = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
 
         retryPane.setAlwaysOnTop(true);
         retryPane.setMinimumSize(new java.awt.Dimension(350, 240));
@@ -135,27 +197,12 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton3.setVisible(false);
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Rock");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Paper");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Scissors");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
 
         downArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Actions-go-down-icon.png"))); // NOI18N
         downArrow.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +264,8 @@ public class NewJDialog extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setText("   Clap your hands!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -233,11 +282,17 @@ public class NewJDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(downArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(184, 184, 184)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,10 +319,16 @@ public class NewJDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(downArrow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,6 +383,7 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton1.setVisible(false);
         jRadioButton2.setVisible(false);
         jRadioButton3.setVisible(false);
+        jLabel4.setVisible(false);
     }
      
     public javax.swing.JDialog getRetryPane()
@@ -361,8 +423,7 @@ public class NewJDialog extends javax.swing.JDialog {
     }
     
     private void characterMessage() {
-        String current = instructions.getText();
-        instructions.setText(current + "\n" + game.getCurrentRoom().getCharacter().toString());
+        addTextInConsole(game.getCurrentRoom().getCharacter().toString());
     }
     private void refreshItemList(){
         itemList.removeAllItems();
@@ -390,12 +451,12 @@ public class NewJDialog extends javax.swing.JDialog {
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
         if (!isThereZombie() && isAlive())
         {
-            String text =game.goRoom(new Command("go","south"));
-            instructions.setText(text);
+            game.goRoom(new Command("go","south"));
+            game.getCurrentRoom().onEnter();
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
             if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
             {
-                instructions.setText(game.player.takeItem(game.fairy)
+                addTextInConsole(game.player.takeItem(game.fairy)
                     + "Its magical powers have open\none of the doors!");
                    refreshItemList();
             }
@@ -403,15 +464,15 @@ public class NewJDialog extends javax.swing.JDialog {
         else if (isThereZombie())
         {
         characterMessage();
-        instructions.setText("You can't escape!");
+        setTextInConsole("You can't escape!");
         }
     }//GEN-LAST:event_downArrowActionPerformed
 
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
         if (!isThereZombie() && isAlive())
         {
-        String text = game.goRoom(new Command("go","east"));
-        instructions.setText(text);
+        game.goRoom(new Command("go","east"));
+        game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
             if ((game.getCurrentRoom().getDescription()=="in the entry hall") && game.getkeyItem("key"))
@@ -423,49 +484,57 @@ public class NewJDialog extends javax.swing.JDialog {
         }
         else if (isThereZombie())
         {
-            instructions.setText("You can't escape!");
+            setTextInConsole("You can't escape!");
         }
         
     }//GEN-LAST:event_rightArrowActionPerformed
 
     private void leftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowActionPerformed
+        
         if (!isThereZombie() && isAlive())
         {
-        String text = game.goRoom(new Command("go","west"));
-        instructions.setText(text);
+        game.goRoom(new Command("go","west"));
+        game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte1=isChecked();
             if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
             {
-                String current = instructions.getText();
-                instructions.setText(current + game.player.takeItem(game.note));
-                refreshItemList();
+                if (game.getkeyItem("note")){
+                    addTextInConsole("You already took the note");
+                    refreshItemList();
+                }
+                else {
+                    addTextInConsole(game.player.takeItem(game.note));
+                    refreshItemList();
+                }
             }
         }
         else if (isThereZombie())
         {
-            instructions.setText("You can't escape!");
+            setTextInConsole("You can't escape!");
+        }
+        
+        if ((game.getCurrentRoom().getDescription() == "in the savane Papy Brossard") && (game.simba == true )) {
+            
+            int i=0;
+
+            while (i <= 10)
+            {
+                jLabel4.setVisible(true); 
+                i++;
+            }
+            jLabel4.setVisible(false);
+            //a verifier pour le bisous!!!
+            addTextInConsole(game.player.takeItem(game.bisous));
         }
         
     }//GEN-LAST:event_leftArrowActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
         if (!isThereZombie() && isAlive())
         {
-        String text = game.goRoom(new Command("go","north"));
-        instructions.setText(text);
+        game.goRoom(new Command("go","north"));
+        game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
             if ((game.getCurrentRoom().getDescription()=="in the guardian lounge") && isThereZombie())
@@ -477,7 +546,7 @@ public class NewJDialog extends javax.swing.JDialog {
             {
             game.player.die();
             setHP();
-            instructions.setText("Pushed by a strange force, you fall down\nthe stairs and break your neck.\n "
+            setTextInConsole("Pushed by a strange force, you fall down\nthe stairs and break your neck.\n "
                     + "A black veil falls upon your eyes\n"
                     + "and you're never going to wake up again");
             retryPane.setVisible(true);
@@ -485,7 +554,7 @@ public class NewJDialog extends javax.swing.JDialog {
         }
         else if (isThereZombie())
         {
-            instructions.setText("You can't escape!");
+            setTextInConsole("You can't escape!");
         }
 
     }//GEN-LAST:event_upArrowActionPerformed
@@ -498,12 +567,12 @@ public class NewJDialog extends javax.swing.JDialog {
                     + "\nTo fight it, use the 'Choices'\n"
                     + "button. Once you choose,\n"
                     + "click on 'Go!' \n";
-            instructions.setText(text);
+            setTextInConsole(text);
         }
         else
         {
             String text = instructions.getText() + game.printHelp();
-            instructions.setText(text);
+            setTextInConsole(text);
         }
         
     }//GEN-LAST:event_helpButtonActionPerformed
@@ -521,14 +590,14 @@ public class NewJDialog extends javax.swing.JDialog {
         Character enemy = game.getCurrentRoom().getCharacter();
         boolean win= game.player.fight(choix, enemy);
             if (win){                    
-                instructions.setText("You defeated the enemy.");
+                setTextInConsole("You defeated the enemy.");
             }
             else{
-                instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
+                setTextInConsole("You lost.\nThe enemy has hurt you\nand ran away.");
             }
         buttonGroup1.clearSelection();
         if (game.getCurrentRoom().getDescription() == "in the guardian lounge"){
-            instructions.setText(instructions.getText() + "\nHe dropped an old key."
+            setTextInConsole(instructions.getText() + "\nHe dropped an old key."
                     + "\nYou decided to take it."
                     + "\nThe key has been added to\nyou're inventory.");
             game.player.takeItem(game.item);
@@ -537,7 +606,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 game.getCurrentRoom().removeCharacter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
 
-        instructions.setText(instructions.getText() + "\nThe combat is over.");
+        addTextInConsole("\nThe combat is over.");
         setHP();
         setChoicesInvisible();
         if (!isAlive())
@@ -548,6 +617,13 @@ public class NewJDialog extends javax.swing.JDialog {
 
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
+//        new Game();
+        JFrame parent = (JFrame) this.getParent();
+        this.dispose();
+//        NewJDialog.main(null);
+        NewJDialog.game = new Game();
+        mainWindow = new NewJDialog(parent,true);
+        mainWindow.setVisible(true);
     }//GEN-LAST:event_retryButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -591,17 +667,25 @@ public class NewJDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                NewJDialog dialog = new NewJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                NewJDialog dialog = new NewJDialog(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+                mainWindow = new NewJDialog(new javax.swing.JFrame(),true);
+                mainWindow.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+                mainWindow.setVisible(true);
             }
         });
-        
+
     }
 
 
@@ -618,6 +702,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;

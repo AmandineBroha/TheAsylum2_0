@@ -9,7 +9,7 @@ import javax.swing.ButtonModel;
 public class Players extends Character
 {
     // instance variables - replace the example below with your own
-    private ArrayList<Item> listItem;
+    ArrayList<Item> listItem;
     private static final int MaxWeight = 3;
     private int totalWeight;
     private int EnnemyHealth;
@@ -17,7 +17,12 @@ public class Players extends Character
     /**
      * Constructor for objects of class Players
      */
-    public Players(Room myRoom)
+    static Players currentPlayer = new Players(Room.getRoomNamed("garden"));
+    public static Players getCurrentPlayer()
+    {
+        return currentPlayer; 
+    }
+    private Players(Room myRoom)
     {
         // initialise instance variables
         super("Robert",myRoom, 4);

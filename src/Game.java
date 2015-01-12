@@ -1,3 +1,7 @@
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -27,6 +31,8 @@ public class Game
     public final Item poney = new Item("Magical little poney",1);
     public final Item rainbow = new Item("Magical rainbow",1);
     
+    Boolean simba = false;
+    
     /**
      * Create the game and initialise its internal map.
      */
@@ -34,7 +40,8 @@ public class Game
     {
         createRooms();
         parser = new Parser();
-        player= new Players(currentRoom);
+//        player= new Players(currentRoom);
+        player = Players.getCurrentPlayer();
         
     }
 
@@ -48,22 +55,129 @@ public class Game
         Room caseDora, robotPlace;
       
         // create the rooms
+        garden = new Room("in the garden","/garden.png")
+        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("");
+            }
+            
+        };
         
-        garden = new Room("in the garden","/garden.png");
-        hall = new Room("in the entry hall","/hall.png");
-        refectory = new Room("in the refectory","/refectoire.png");
-        logeGardien = new Room("in the guardian lounge","/logegardien.png");
-        RobertRoom = new Room("in Robert's bedroom","/robert.png");
-        stairs = new Room("in the stairs","/stairs.png");
-        kitchen = new Room("in the kitchen","kitchen.png");
-        laboratory = new Room("in the laboratory","/laboratory.png");
-        directorOffice = new Room("in the director office","/bureauBoss.png");  
-        chambreIRL = new Room("in your cell","/roomIRL.png"); 
-        tulipefield = new Room(" in the tulips field","/tulipe.png"); 
-        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png"); 
-        simbaPlace = new Room("in the savane Papy Brossard","/simba.png"); 
-        caseDora = new Room("in the Dora's  way","/dora.png"); 
-        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","/fight_robot.png"); 
+//        garden = new Room("in the garden","/garden.png");
+        hall = new Room("in the entry hall","/hall.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("");
+            }
+            
+        };
+        refectory = new Room("in the refectory","/refectoire.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("");            }
+            
+        };
+        logeGardien = new Room("in the guardian lounge","/logegardien.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("");
+            }
+            
+        };
+        RobertRoom = new Room("in Robert's bedroom","/robert.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("");
+            }
+            
+        };
+        stairs = new Room("in the stairs","/stairs.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("");
+            }
+            
+        };
+        kitchen = new Room("in the kitchen","kitchen.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("");
+            }
+            
+        };
+        laboratory = new Room("in the laboratory","/laboratory.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("You are meeting a mad scientist. \n \"Hi my dear friend! \n I hope you enjoy your visit. \n Let me ask you a little question \n before you continue...\n Maybe it will help you gaining some health, \n we don't know what could\n happen to you in the future!\" ");
+            }
+            
+        };
+        directorOffice = new Room("in the director office","/bureauBoss.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("\"Hello mister De Lu. \nI was waiting for you... \n I have a lot to explain to you,\n but it is not for free.\n So first, let's fight!\"");
+            }
+            
+        };
+        chambreIRL = new Room("in your cell","/roomIRL.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("You made a good job.\n You deserve the truth. \nActually, you are a patient in the asylum,\n still mad. \nYou imagined all this adventure \nbecause that is your disease. \nI let you the choice : \nif you take the blue pill, \nyou can stay in the real world\n and be stucked here, \nor you can pick the red pill,\n which will guide you to a magical world\n and help you forgetting your state.\n What is your choice?");
+            }
+            
+        };
+        tulipefield = new Room(" in the tulips field","/tulipe.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("Welcome to the new world.\n Your first task is to help the ninja turtles\n to pass the teletubbies to go on the bridge.\n But the teletubbies do not allow it.\n To solve this and help the ninja turtles \nyou have to answer an enigma...");
+            }
+            
+        }; 
+        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("You succeeded! You are now going to meet the poney king. He has some troubles too...");
+            }
+            
+        }; 
+        simbaPlace = new Room("in the savane Papy Brossard","/simba.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("\"I heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
+                simba = true;
+            }
+            
+        };
+        caseDora = new Room("in the Dora's  way","/dora.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("\" Hi, I am Dora.\n To meet the evil robot you have to go\n through the bridge, the mountain \nand the beach. \nRepeat after me : the bridge, the mountain\n and the beach. \nAgain : the bridgte, the mountain\n and the beach. Well done! \"");
+            }
+            
+        };
+        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","/fight_robot.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("\"Did you come to intimidate me? \nI am not afraid of you!\n Let's fight!\"");
+            }
+            
+        };
         
         
         Item never = new Item("never ever EVER",999);
@@ -181,7 +295,7 @@ public class Game
      * Try to go to one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    public String goRoom(Command command) 
+    public void goRoom(Command command) 
     {
         String direction = command.getSecondWord();
             // Try to leave current room.
@@ -206,17 +320,21 @@ public class Game
                 }
             }
             if (nextRoom == null) {
-                return "There is no door!\n";
+                 NewJDialog.addTextInConsole("There is no door!\n");
+                 System.out.println("no door");
             }
             else if(nextRoom == currentRoom)
             {
-                return "The door is locked!\n";
+                 NewJDialog.addTextInConsole("The door is locked!\n");
+                 System.out.println("door locked");
             }
         
             else
             {
                 currentRoom = nextRoom;
-                return "You are " + currentRoom.getDescription() + "\n";
+                currentRoom.onEnter();
+                //return "You are " + currentRoom.getDescription() + "\n";
+                
             }
             
     }   

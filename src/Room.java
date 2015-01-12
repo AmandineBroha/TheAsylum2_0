@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,8 +16,19 @@ import java.util.Iterator;
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room 
+public abstract class Room 
 {
+    public static ArrayList<Room> instances = new ArrayList<>();
+    public static Room getRoomNamed(String name)
+    {
+        for (Room r : instances)
+        {
+            if (r.description.equals("in the "+name))
+                return r;
+        }
+        return null;
+    }
+    
     private String description;
     private HashMap<String, ExitRoom> exitMap;
     private String image;
@@ -29,15 +41,17 @@ public class Room
      * @param description The room's description.
      */
     public Room(String description)
-             {
+    {
         this.description = description;
         exitMap = new HashMap<String, ExitRoom>();
+        
+        //add this in instance list
+        instances.add(this);
     }
     
     public Room(String description, String Nomimage) 
     {
-        this.description = description;
-        exitMap = new HashMap<String, ExitRoom>();
+        this(description);
         image = Nomimage;   
     }
     
@@ -130,5 +144,10 @@ public class Room
     public String getImage()
     {
         return image;
+    }
+    
+    public  void onEnter(){
+        NewJDialog.getInstructions().setText("");
+        NewJDialog.setTextInConsole("You are "+description + "\n");
     }
 }
