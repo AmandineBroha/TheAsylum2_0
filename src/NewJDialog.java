@@ -658,7 +658,6 @@ public class NewJDialog extends javax.swing.JDialog {
         
         if (game.getCurrentRoom().getDescription() == "in the savane Papy Brossard") {
             Wait();
-            Wait();
             addTextInConsole("You must clap in your hands if you want to leave!");
             Wait();
             Wait();
