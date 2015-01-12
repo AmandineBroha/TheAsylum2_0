@@ -221,8 +221,7 @@ public class Game
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
         directorOffice.addexits("east",new ExitRoom(chambreIRL,directorOffice));
         directorOffice.addexits("north",new ExitRoom(tulipefield,directorOffice));
-        tulipefield.addexits("north",new MagicalExit(directorOffice,tulipefield,never));
-       // tulipefield.addexits("west",new MagicalExit(rainbowPlace,tulipefield,bisous));
+        tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));
         rainbowPlace.addexits("west",new ExitRoom(simbaPlace,rainbowPlace));

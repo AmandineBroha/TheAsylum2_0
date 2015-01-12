@@ -192,15 +192,19 @@ public class NewJDialog extends javax.swing.JDialog {
 
         jLabel1.setText("jLabel1");
 
+        enigmaButtons.add(answer1);
         answer1.setText("answer 1");
         answer1.setVisible(false);
 
+        enigmaButtons.add(answer2);
         answer2.setText("answer 2");
         answer2.setVisible(false);
 
+        enigmaButtons.add(answer3);
         answer3.setText("answer 3");
         answer3.setVisible(false);
 
+        enigmaButtons.add(answer4);
         answer4.setText("answer 4");
         answer4.setVisible(false);
 
@@ -261,8 +265,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(answer4)
-                    .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(answer3)))
+                    .addComponent(answer3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(okEnigmaButton)
                 .addGap(21, 21, 21))
@@ -671,19 +674,19 @@ public class NewJDialog extends javax.swing.JDialog {
             setTextInConsole("You can't escape!");
         }
         
-        if ((game.getCurrentRoom().getDescription() == "in the savane Papy Brossard") && (game.simba == true )) {
-            
-            int i=0;
-
-            while (i <= 10)
-            {
-                jLabel4.setVisible(true); 
-                i++;
-            }
-            jLabel4.setVisible(false);
-            //a verifier pour le bisous!!!
-            addTextInConsole(game.player.takeItem(game.bisous));
-        }
+ //       if ((game.getCurrentRoom().getDescription() == "in the savane Papy Brossard") && (game.simba == true )) {
+//            
+ //           int i=0;
+//
+ //           while (i <= 10)
+//            {
+//                jLabel4.setVisible(true); 
+ //               i++;
+//            }
+//            jLabel4.setVisible(false);
+//            //a verifier pour le bisous!!!
+//            addTextInConsole(game.player.takeItem(game.bisous));
+//        }
         launchEnigma();
         
     }//GEN-LAST:event_leftArrowActionPerformed
@@ -760,6 +763,7 @@ public class NewJDialog extends javax.swing.JDialog {
             {
                 //Wait();
                 game.goRoom(new Command("go","east"));
+                scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
             }
             if (isTheRoom("in the guardian lounge")){
                 addTextInConsole("\nHe dropped an old key."
@@ -773,18 +777,6 @@ public class NewJDialog extends javax.swing.JDialog {
             addTextInConsole("\nThe combat is over.");
             setHP();
             setChoicesInvisible();
-            
-            if (!isAlive())
-            {
-                if (game.getCurrentRoom().getDescription()!="in the Head's office")
-                {
-                retryPane.setVisible(true);
-            }
-                else
-                {
-                 game.goRoom(new Command("go","east"));   
-                }
-            }
         }
         else if(win==2){
             manche++;
@@ -794,13 +786,25 @@ public class NewJDialog extends javax.swing.JDialog {
                 // Wait();
                 game.goRoom(new Command("go","north"));
                 addTextInConsole("\n You hit the zombie! Come on I can kill him !");
+                scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
             }
             setHP();
+             if (!isAlive())
+                 {
+                retryPane.setVisible(true);
+            }
         }
         else{
-            instructions.setText(instructions.getText() + "\n Keep Fighting!");
-            setHP();
-        }
+            if (game.getCurrentRoom().getDescription()=="in the Head's office")
+            {
+                if(!isAlive()){
+                    game.goRoom(new Command("go","north"));
+                    scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                }
+            }
+            addTextInConsole("\n Keep Fighting");
+            setHP(); 
+            }
         buttonGroup1.clearSelection();
     }//GEN-LAST:event_goButtonActionPerformed
 

@@ -151,9 +151,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="answer4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="answer3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="answer3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="okEnigmaButton" min="-2" max="-2" attributes="0"/>
@@ -172,21 +170,33 @@
       <SubComponents>
         <Component class="javax.swing.JRadioButton" name="answer1">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="enigmaButtons"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="answer 1" postCode="answer1.setVisible(false);"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="answer2">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="enigmaButtons"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="answer 2" postCode="answer2.setVisible(false);"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="answer3">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="enigmaButtons"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="answer 3" postCode="answer3.setVisible(false);"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="answer4">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="enigmaButtons"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="answer 4" postCode="answer4.setVisible(false);"/>
           </Properties>
         </Component>
