@@ -451,7 +451,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private void Wait()
     {
         try {
-                Thread.sleep(300);
+                Thread.sleep(3000);
             } 
         catch (InterruptedException ex) {
                 Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -758,7 +758,7 @@ public class NewJDialog extends javax.swing.JDialog {
             setTextInConsole("You defeated the enemy.");
             if (isTheRoom("in the Head's office"))
             {
-                //Wait();
+                Wait();
                 game.goRoom(new Command("go","east"));
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
             }
@@ -780,7 +780,7 @@ public class NewJDialog extends javax.swing.JDialog {
             
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
-                // Wait();
+                
                 addTextInConsole("\n You hit the zombie! Come on I can kill him !");
                
             }
@@ -797,6 +797,7 @@ public class NewJDialog extends javax.swing.JDialog {
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 if(!isAlive()){
+                    Wait();
                     game.goRoom(new Command("go","north"));
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                 }
