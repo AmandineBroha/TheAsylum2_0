@@ -36,13 +36,6 @@ public class Enigma
         answers[2] = this.answer3;
         answers[3] = this.rightAnswer;
     }
-
-    
-    
-    public String getRightAnswer()
-    {
-        return rightAnswer;
-    }
     
     public String getQuestion()
     {

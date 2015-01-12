@@ -39,7 +39,7 @@ public class CharacterEnigma extends Character
                 return e;
             }
         }
-        throw new Exception("The enigma wasn't found");
+        throw new Exception("This enigma does not belong to this character");
     }
             
     //Returns an enigma from the llist at random
