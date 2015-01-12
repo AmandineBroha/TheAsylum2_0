@@ -503,6 +503,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private void setHP() 
     {
         int hp = game.player.getHealthPoint();
+        
         switch(hp)
         
         {
@@ -753,6 +754,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 game.goRoom(new Command("go","east"));
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
+                itemList.removeAllItems();
             }
             if (isTheRoom("in the guardian lounge")){
                 addTextInConsole("\nHe dropped an old key."
@@ -792,14 +794,22 @@ public class NewJDialog extends javax.swing.JDialog {
                     game.goRoom(new Command("go","north"));
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                     hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
+                    itemList.removeAllItems();
                 }
             }
-            addTextInConsole("\n Keep Fighting");
-            setHP(); 
+            
+            else 
+            {
+                    if (game.player.getHealthPoint()==0)
+        {
+            retryPane.setVisible(true);
+        }
             }
+            addTextInConsole("\n Keep Fighting");
+            setHP();
         buttonGroup1.clearSelection();
     }//GEN-LAST:event_goButtonActionPerformed
-
+    }
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
 //        new Game();
@@ -845,6 +855,7 @@ public class NewJDialog extends javax.swing.JDialog {
                         addTextInConsole("\nYou defeated Helpy!\n");
                         Wait();
                         game.player.takeItem(sphynx.getReward());
+                        refreshItemList();
                     }
                     else{
                         launchEnigma();
@@ -853,6 +864,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 else{
                     setTextInConsole("You are correct!\n");
                     game.player.takeItem(sphynx.getReward());
+                    refreshItemList();
                 }
             }
             else{
