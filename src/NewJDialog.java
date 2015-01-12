@@ -23,6 +23,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private boolean porte1 = false;
     private boolean porte2 = false;
     private boolean porte3 = false;
+    private int manche=0;
     /**
      * Creates new form NewJDialog
      */
@@ -76,7 +77,6 @@ public class NewJDialog extends javax.swing.JDialog {
 
         retryPane.setAlwaysOnTop(true);
         retryPane.setMinimumSize(new java.awt.Dimension(350, 240));
-        retryPane.setPreferredSize(new java.awt.Dimension(350, 240));
 
         jLabel2.setFont(new java.awt.Font("Chiller", 1, 36)); // NOI18N
         jLabel2.setText("YOU ARE DEAD!");
@@ -130,8 +130,6 @@ public class NewJDialog extends javax.swing.JDialog {
         );
 
         jLabel1.setText("jLabel1");
-
-        enigmaDialog.setPreferredSize(new java.awt.Dimension(300, 200));
 
         answer1.setText("answer 1");
         answer1.setVisible(false);
@@ -200,9 +198,10 @@ public class NewJDialog extends javax.swing.JDialog {
                     .addComponent(answer1)
                     .addComponent(answer2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(answer3)
-                    .addComponent(answer4))
+                .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(answer4)
+                    .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(answer3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(okEnigmaButton)
                 .addGap(21, 21, 21))
@@ -372,22 +371,20 @@ public class NewJDialog extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(helpButton)
-                                    .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(choicesButton)
-                                    .addComponent(jRadioButton1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(goButton)
-                                    .addComponent(jRadioButton3))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(helpButton)
+                                .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(choicesButton)
+                                .addComponent(jRadioButton1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(goButton)
+                                .addComponent(jRadioButton3)))))
                 .addGap(0, 9, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
@@ -403,8 +400,9 @@ public class NewJDialog extends javax.swing.JDialog {
     private void Wait()
     {
         try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
+                Thread.sleep(300);
+            } 
+        catch (InterruptedException ex) {
                 Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
             } 
     }
@@ -539,10 +537,7 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             setChoicesVisible();
             goButton.setVisible(true);
-        }
-        
-        
-        
+        }        
         else
         { 
         setChoicesInvisible();
@@ -690,47 +685,51 @@ public class NewJDialog extends javax.swing.JDialog {
                 }
         }
         Character enemy = game.getCurrentRoom().getCharacter();
-  
-        boolean win= game.player.fight(choix, enemy);     
-            if (win){
-            
-                instructions.setText("You defeated the enemy.");
-                if (game.getCurrentRoom().getDescription()=="in the director office")
-                {
-                   Wait();
+        
+        manche++;
+        int win= game.player.fight(choix, enemy,manche,2);     
+        if (win==1){
+            manche=0;
+            instructions.setText("You defeated the enemy.");
+            if (game.getCurrentRoom().getDescription()=="in the Head's office")
+            {
+                //Wait();
                 String text = game.goRoom(new Command("go","east"));
                 instructions.setText(text);
-                }
             }
-            else{
-                
-                instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
-                if (game.getCurrentRoom().getDescription()=="in the director office")
-                {
-                    Wait();
-                String text = game.goRoom(new Command("go","north"));
-                instructions.setText(text);
-                }
+            if (isTheRoom("in the guardian lounge")){
+                instructions.setText(instructions.getText() + "\nHe dropped an old key."
+                + "\nYou decided to take it."
+                + "\nThe key has been added to\nyou're inventory.");
+                game.player.takeItem(game.item);
+                refreshItemList();
             }
-        buttonGroup1.clearSelection();
-        if (isTheRoom("in the guardian lounge")){
-            instructions.setText(instructions.getText() + "\nHe dropped an old key."
-                    + "\nYou decided to take it."
-                    + "\nThe key has been added to\nyou're inventory.");
-            game.player.takeItem(game.item);
-            refreshItemList();
+            game.getCurrentRoom().removeCharacter();
+            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+            instructions.setText(instructions.getText() + "\nThe combat is over.");
+            setHP();
+            setChoicesInvisible();
+            if (!isAlive())
+            {
+                retryPane.setVisible(true);
+            } 
         }
-
-        game.getCurrentRoom().removeCharacter();
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-
-        instructions.setText(instructions.getText() + "\nThe combat is over.");
-        setHP();
-        setChoicesInvisible();
-        if (!isAlive())
-        {
-            retryPane.setVisible(true);
-        }        
+        else if(win==2){
+                
+            instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
+            if (game.getCurrentRoom().getDescription()=="in the Head's office")
+            {
+                // Wait();
+                String text = game.goRoom(new Command("go","north"));
+                instructions.setText(instructions.getText() + "\n You hit the zombie! Come on I can kill him !");
+            }
+            setHP();
+        }
+        else{
+            instructions.setText(instructions.getText() + "\n Keep Fighting!");
+            setHP();
+        }
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_goButtonActionPerformed
 
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
@@ -762,7 +761,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 }
         }
         CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
-        Item reward = sphynx.getReward(choice, sphynx)
+        //Item reward = sphynx.getReward(choice, sphynx);
         
         
     }//GEN-LAST:event_okEnigmaButtonActionPerformed

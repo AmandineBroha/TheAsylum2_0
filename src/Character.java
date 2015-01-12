@@ -64,17 +64,21 @@ public class Character
         HealthPoint += 2;
     }
     
-    public boolean fight(String playerchoice, Character enemy)
+    public int fight(String playerchoice, Character enemy,int manche, int tour)
     {
 
-        if(combat(playerchoice)){
+        if(combat(playerchoice) && manche==tour ){
             enemy.hurt();
-            return true;   
+            return 1;   
+        }
+        if(combat(playerchoice) && manche<tour ){
+            enemy.hurt();
+            return 2;   
         }
         else{ 
             this.hurt();
-            return false;
-            }
+            return 3;
+        }
        
     }
     
@@ -100,7 +104,7 @@ public class Character
                  
                 }
         }
-        
+        System.out.println(IAchoice);
         //0 = rock
         //1=paper
         ///2=scissors
