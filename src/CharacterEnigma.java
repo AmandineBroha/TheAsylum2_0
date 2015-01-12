@@ -24,6 +24,10 @@ public class CharacterEnigma extends Character
         this.reward = reward;
     }
     
+    public void playerHasReward(){
+        NewJDialog.addTextInConsole(null);
+    }
+    
     public Item getReward(){
         return reward;
     }
@@ -41,6 +45,8 @@ public class CharacterEnigma extends Character
         }
         throw new Exception("This enigma does not belong to this character");
     }
+    
+    
             
     //Returns an enigma from the llist at random
     public Enigma pickEnigma(){

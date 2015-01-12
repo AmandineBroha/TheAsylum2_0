@@ -150,7 +150,7 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("You succeeded! You are now going to meet the poney king. He has some troubles too...");
+                NewJDialog.addTextInConsole("You succeeded! You are now going to meet the Pony King. He has some troubles too...");
             }
             
         }; 
@@ -196,10 +196,30 @@ public class Game
         //Initialise characters
         Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
         Character boss = new Character("Dr. Zombie", directorOffice, 3, true);
-        CharacterEnigma scientist = new CharacterEnigma("Dr. Zeus", laboratory, potion);
-        CharacterEnigma ninjaTurtles = new CharacterEnigma("The Ninja Turtles", tulipefield, bisous);
-        CharacterEnigma simba = new CharacterEnigma("Simba", simbaPlace, translator);
-        CharacterEnigma poneyKing = new CharacterEnigma("Poney King", rainbowPlace, poney);
+        CharacterEnigma scientist = new CharacterEnigma("Dr. Zeus", laboratory, potion){
+            @Override
+            public void playerHasReward(){
+                NewJDialog.addTextInConsole("I hope the potion\ncomes in handy!");
+            }
+        };
+        CharacterEnigma ninjaTurtles = new CharacterEnigma("The Ninja Turtles", tulipefield, bisous){
+            @Override
+            public void playerHasReward(){
+                NewJDialog.addTextInConsole("Come on!\nGo see the Pony King!");
+            }
+        };
+        CharacterEnigma simba = new CharacterEnigma("Simba", simbaPlace, translator){
+            @Override
+            public void playerHasReward(){
+                NewJDialog.addTextInConsole("With that translator\nyou will understand what\n"
+                + "Pony King has to say");
+            }
+        };
+        CharacterEnigma poneyKing = new CharacterEnigma("Pony King", rainbowPlace, poney){
+                public void playerHasReward(){
+                NewJDialog.addTextInConsole("Ride the poney, find Helpy,\nAND SAVE PONY WORLD!");
+                }
+        };
         CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow);
         
         //Add the enigmas to the corresponding characters

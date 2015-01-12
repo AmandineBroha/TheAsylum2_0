@@ -551,24 +551,29 @@ public class NewJDialog extends javax.swing.JDialog {
         if (isThereEnigma()){
             //Gets the character who asks the enigma
             CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
-            //Gets the enigma and sorts the answers in a random order
-            Enigma theEnigma = sphynx.pickEnigma();
-            String[] theAnswers = theEnigma.getAnswers();
-            
-            //Write the enigma on the diallog component
-            questionLabel.setText(theEnigma.getQuestion());
-            answer1.setText(theAnswers[0]);
-            answer2.setText(theAnswers[1]);
-            answer3.setText(theAnswers[2]);
-            answer4.setText(theAnswers[3]);
+            if (!game.getkeyItem(sphynx.getReward().getDescription())){
+                //Gets the enigma and sorts the answers in a random order
+                Enigma theEnigma = sphynx.pickEnigma();
+                String[] theAnswers = theEnigma.getAnswers();
 
-            //Set the dialog visible
-            answer1.setVisible(true);
-            answer2.setVisible(true);
-            answer3.setVisible(true);
-            answer4.setVisible(true);
-            enigmaDialog.setVisible(true);
+                //Write the enigma on the diallog component
+                questionLabel.setText(theEnigma.getQuestion());
+                answer1.setText(theAnswers[0]);
+                answer2.setText(theAnswers[1]);
+                answer3.setText(theAnswers[2]);
+                answer4.setText(theAnswers[3]);
+
+                //Set the dialog visible
+                answer1.setVisible(true);
+                answer2.setVisible(true);
+                answer3.setVisible(true);
+                answer4.setVisible(true);
+                enigmaDialog.setVisible(true);
+                }
             
+            else {
+                sphynx.playerHasReward();
+            }
         }
     }
     
@@ -751,8 +756,7 @@ public class NewJDialog extends javax.swing.JDialog {
             }
             if (isTheRoom("in the guardian lounge")){
                 addTextInConsole("\nHe dropped an old key."
-                + "\nYou decided to take it."
-                + "\nThe key has been added to\nyou're inventory.");
+                + "\nYou decided to take it.");
                 game.player.takeItem(game.item);
                 refreshItemList();
             }
