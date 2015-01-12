@@ -27,9 +27,11 @@ public class Game
     public final Item fairy = new Item("Fairy dust",1);
     public final Item item = new Item("key",1);
     public final Item note = new Item("note",1);
-    public final Item bisous = new Item("Magical kiss",1);
-    public final Item poney = new Item("Magical little poney",1);
+    public final Item bisous = new Item("magical kiss",1);
+    public final Item translator = new Item("translator",1);
+    public final Item poney = new Item("magical little poney",1);
     public final Item rainbow = new Item("Magical rainbow",1);
+    public final Item potion = new Item("potion", 1);
     
     Boolean simba = false;
     
@@ -186,15 +188,23 @@ public class Game
         //Initialise characters
         Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
         Character boss = new Character("Dr. Zombie", directorOffice, 3, true);
+        Character scientist = new CharacterEnigma("Dr. Zeus", laboratory, 4, potion);
+        Character ninjaTurtles = new CharacterEnigma("The Ninja Turtles", tulipefield, 4, bisous);
+        Character simba = new CharacterEnigma("Simba", simbaPlace, 4, translator);
+        Character poneyKing = new CharacterEnigma("Poney King", rainbowPlace,100, poney);
+        Character helpy = new Character("Helpy, the evil robot,", robotPlace,4, true);
         
         //Place the characters in their respective rooms
         logeGardien.addCharacter(zombieGuardian);
         directorOffice.addCharacter(boss);
+        laboratory.addCharacter(scientist);
+        rainbowPlace.addCharacter(poneyKing);
+        simbaPlace.addCharacter(simba);
+        robotPlace.addCharacter(helpy);
         
         
         // initialise room exits
         garden.addexits("north", new ExitRoom(hall,garden));
-        
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
@@ -209,8 +219,10 @@ public class Game
         kitchen.addexits("east",new ExitRoom(laboratory,kitchen));
         kitchen.addexits("west",new ExitRoom(hall,kitchen));
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
-        directorOffice.addexits("south",new ExitRoom(kitchen,directorOffice));
-        tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
+        directorOffice.addexits("east",new ExitRoom(chambreIRL,directorOffice));
+        directorOffice.addexits("north",new ExitRoom(tulipefield,directorOffice));
+        tulipefield.addexits("north",new MagicalExit(directorOffice,tulipefield,never));
+       // tulipefield.addexits("west",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));
         rainbowPlace.addexits("west",new ExitRoom(simbaPlace,rainbowPlace));
@@ -218,6 +230,7 @@ public class Game
         caseDora.addexits("south",new ExitRoom(rainbowPlace,caseDora));
         simbaPlace.addexits("east",new ExitRoom(rainbowPlace,simbaPlace));
         robotPlace.addexits("south",new MagicalExit(caseDora,robotPlace,rainbow));
+        chambreIRL.addexits("west",new MagicalExit(directorOffice,chambreIRL,never));
         currentRoom = garden; //Start game in the Hall
     }
 

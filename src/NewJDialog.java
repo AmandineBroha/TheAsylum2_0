@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -44,6 +46,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private boolean porte1 = false;
     private boolean porte2 = false;
     private boolean porte3 = false;
+    private int manche=0;
     /**
      * Creates new form NewJDialog
      */
@@ -107,6 +110,15 @@ public class NewJDialog extends javax.swing.JDialog {
         retryButton = new javax.swing.JButton();
         quitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        enigmaDialog = new javax.swing.JDialog();
+        answer1 = new javax.swing.JRadioButton();
+        answer2 = new javax.swing.JRadioButton();
+        answer3 = new javax.swing.JRadioButton();
+        answer4 = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        okEnigmaButton = new javax.swing.JButton();
+        enigmaButtons = new javax.swing.ButtonGroup();
         scene = new javax.swing.JLabel();
         choicesButton = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -126,7 +138,6 @@ public class NewJDialog extends javax.swing.JDialog {
 
         retryPane.setAlwaysOnTop(true);
         retryPane.setMinimumSize(new java.awt.Dimension(350, 240));
-        retryPane.setPreferredSize(new java.awt.Dimension(350, 240));
 
         jLabel2.setFont(new java.awt.Font("Chiller", 1, 36)); // NOI18N
         jLabel2.setText("YOU ARE DEAD!");
@@ -180,6 +191,92 @@ public class NewJDialog extends javax.swing.JDialog {
         );
 
         jLabel1.setText("jLabel1");
+
+        answer1.setText("answer 1");
+        answer1.setVisible(false);
+
+        answer2.setText("answer 2");
+        answer2.setVisible(false);
+
+        answer3.setText("answer 3");
+        answer3.setVisible(false);
+
+        answer4.setText("answer 4");
+        answer4.setVisible(false);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("<html>To get a reward,</br>answer the enigma!</html>");
+        jLabel4.setToolTipText("");
+
+        jLabel5.setText("jLabel4");
+
+        okEnigmaButton.setText("OK");
+        okEnigmaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okEnigmaButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout enigmaDialogLayout = new javax.swing.GroupLayout(enigmaDialog.getContentPane());
+        enigmaDialog.getContentPane().setLayout(enigmaDialogLayout);
+        enigmaDialogLayout.setHorizontalGroup(
+            enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(enigmaDialogLayout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
+                        .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(enigmaDialogLayout.createSequentialGroup()
+                                .addComponent(answer3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(answer4))
+                            .addGroup(enigmaDialogLayout.createSequentialGroup()
+                                .addComponent(answer1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(answer2)))
+                        .addGap(80, 80, 80))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))))
+            .addGroup(enigmaDialogLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(okEnigmaButton)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
+                    .addContainerGap(63, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(44, 44, 44)))
+        );
+        enigmaDialogLayout.setVerticalGroup(
+            enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enigmaDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(answer1)
+                    .addComponent(answer2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(answer4)
+                    .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(answer3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(okEnigmaButton)
+                .addGap(21, 21, 21))
+            .addGroup(enigmaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(enigmaDialogLayout.createSequentialGroup()
+                    .addGap(64, 64, 64)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(89, Short.MAX_VALUE)))
+        );
+
+        enigmaButtons.add(answer1);
+        enigmaButtons.add(answer2);
+        enigmaButtons.add(answer3);
+        enigmaButtons.add(answer4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -272,13 +369,17 @@ public class NewJDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(hpCounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(leftArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(downArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -296,24 +397,24 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(helpButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(choicesButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(goButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton3)))))
+                                .addGap(7, 7, 7)
+                                .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(choicesButton)
+                            .addComponent(goButton)
+                            .addComponent(helpButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton2)
+                            .addComponent(jRadioButton3)
+                            .addComponent(jRadioButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -330,36 +431,51 @@ public class NewJDialog extends javax.swing.JDialog {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(downArrow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(leftArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(downArrow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(leftArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(rightArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(helpButton)
+                                .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(choicesButton)
+                                .addComponent(jRadioButton1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(goButton)
+                                .addComponent(jRadioButton3)))))
+                .addGap(0, 9, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 31, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(120, 120, 120))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(409, 409, 409)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(choicesButton)
-                            .addComponent(helpButton)
-                            .addComponent(goButton))))
-                .addContainerGap())
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //returns whether the player is still alive
+    private void Wait()
+    {
+        try {
+                Thread.sleep(300);
+            } 
+        catch (InterruptedException ex) {
+                Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+    }
+    
     private boolean isAlive()
     {
         return game.player.getHealthPoint() > 0;
@@ -386,12 +502,23 @@ public class NewJDialog extends javax.swing.JDialog {
         jLabel4.setVisible(false);
     }
      
+    private void setAnswersVisible()
+    {
+        answer1.setVisible(true);
+        answer2.setVisible(true);
+        answer3.setVisible(true);
+        answer4.setVisible(true);
+    }
+    
+    private void setAnswersInvisible()
+    {
+        enigmaDialog.setVisible(false);
+    }
+     
     public javax.swing.JDialog getRetryPane()
     {
         return retryPane;
     }
-    
-    
     
     private void setHP() 
     {
@@ -412,14 +539,20 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }
     
+    private boolean isTheRoom(String description)
+    {
+        return game.getCurrentRoom().getDescription().equals(description);
+    }
+    
+    //Checks if there is an enemy in the room
     private boolean isThereZombie()
     {
         return game.getCurrentRoom().hasCharacter() && game.getCurrentRoom().getCharacter().isEnemy();
     }
-    
-    private boolean isThereSomeone()
+    //Checks if there is an Enigma Character
+    private boolean isThereEnigma()
     {
-        return game.getCurrentRoom().hasCharacter();
+        return game.getCurrentRoom().hasCharacter() && !game.getCurrentRoom().getCharacter().isEnemy();
     }
     
     private void characterMessage() {
@@ -432,15 +565,48 @@ public class NewJDialog extends javax.swing.JDialog {
            itemList.addItem(i.getDescription());
         }
     }
-   
+    
+    private void launchEnigma()
+    {
+        if (isThereEnigma())
+        {
+            
+            CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
+            int choice;
+            switch(sphynx.getName())
+            {
+                case "Dr. Zeus": choice = 0;
+                    break;
+                case "The Ninja Turtles": choice = 1;
+                    break;
+                case "Simba": choice = 8;
+                    break;
+                case "Poney King": choice = 2;
+                    break;
+                case "Helpy, the evil robot,": choice = 3;
+                    break;
+                default: choice = -1;
+            }
+            if (choice>=0)
+            {
+                Enigma theEnigma = sphynx.pickEnigma(choice);
+                String[] theAnswers = theEnigma.getAnswers();
+                jLabel5.setText(theEnigma.getQuestion());
+                answer1.setText(theAnswers[0]);
+                answer2.setText(theAnswers[1]);
+                answer3.setText(theAnswers[2]);
+                answer4.setText(theAnswers[3]);
+            }
+            enigmaDialog.setVisible(true);
+        }
+    }
     
     private void choicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choicesButtonActionPerformed
         if (isThereZombie())
         {
             setChoicesVisible();
             goButton.setVisible(true);
-        }
-        
+        }        
         else
         { 
         setChoicesInvisible();
@@ -454,7 +620,7 @@ public class NewJDialog extends javax.swing.JDialog {
             game.goRoom(new Command("go","south"));
             game.getCurrentRoom().onEnter();
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-            if ((game.getCurrentRoom().getDescription()== "in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
+            if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
             {
                 addTextInConsole(game.player.takeItem(game.fairy)
                     + "Its magical powers have open\none of the doors!");
@@ -475,17 +641,22 @@ public class NewJDialog extends javax.swing.JDialog {
         game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
-            if ((game.getCurrentRoom().getDescription()=="in the entry hall") && game.getkeyItem("key"))
+            if (isTheRoom("in the entry hall") && game.getkeyItem("key"))
             {
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
                 game.getCurrentRoom().addCharacter(new Character("A zombie", game.getCurrentRoom(), 2, true));
                 characterMessage();
             }
         }
+        else if (isTheRoom("in the laboratory"))
+        {
+            
+        }
         else if (isThereZombie())
         {
             setTextInConsole("You can't escape!");
         }
+        launchEnigma();
         
     }//GEN-LAST:event_rightArrowActionPerformed
 
@@ -497,7 +668,7 @@ public class NewJDialog extends javax.swing.JDialog {
         game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte1=isChecked();
-            if (game.getCurrentRoom().getDescription() == "in Robert's bedroom")
+            if (isTheRoom("in Robert's bedroom") && !game.getkeyItem("note"))
             {
                 if (game.getkeyItem("note")){
                     addTextInConsole("You already took the note");
@@ -527,6 +698,7 @@ public class NewJDialog extends javax.swing.JDialog {
             //a verifier pour le bisous!!!
             addTextInConsole(game.player.takeItem(game.bisous));
         }
+        launchEnigma();
         
     }//GEN-LAST:event_leftArrowActionPerformed
 
@@ -537,12 +709,14 @@ public class NewJDialog extends javax.swing.JDialog {
         game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
-            if ((game.getCurrentRoom().getDescription()=="in the guardian lounge") && isThereZombie())
+            //Enter the guardian lounge for the first time
+            if (isTheRoom("in the guardian lounge") && isThereZombie())
             {
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
             characterMessage();
             }
-            else if (game.getCurrentRoom().getDescription()=="in the stairs")
+            //Enter the stairs
+            else if (isTheRoom("in the stairs"))
             {
             game.player.die();
             setHP();
@@ -550,13 +724,13 @@ public class NewJDialog extends javax.swing.JDialog {
                     + "A black veil falls upon your eyes\n"
                     + "and you're never going to wake up again");
             retryPane.setVisible(true);
-            }
+            }            
         }
         else if (isThereZombie())
         {
             setTextInConsole("You can't escape!");
         }
-
+        launchEnigma();
     }//GEN-LAST:event_upArrowActionPerformed
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
@@ -588,31 +762,51 @@ public class NewJDialog extends javax.swing.JDialog {
                 }
         }
         Character enemy = game.getCurrentRoom().getCharacter();
-        boolean win= game.player.fight(choix, enemy);
-            if (win){                    
-                setTextInConsole("You defeated the enemy.");
+        
+        manche++;
+        int win= game.player.fight(choix, enemy,manche,2);     
+        if (win==1){
+            manche=0;
+            instructions.setText("You defeated the enemy.");
+            if (game.getCurrentRoom().getDescription()=="in the Head's office")
+            {
+                //Wait();
+                String text = game.goRoom(new Command("go","east"));
+                instructions.setText(text);
             }
-            else{
-                setTextInConsole("You lost.\nThe enemy has hurt you\nand ran away.");
+            if (isTheRoom("in the guardian lounge")){
+                instructions.setText(instructions.getText() + "\nHe dropped an old key."
+                + "\nYou decided to take it."
+                + "\nThe key has been added to\nyou're inventory.");
+                game.player.takeItem(game.item);
+                refreshItemList();
             }
+            game.getCurrentRoom().removeCharacter();
+            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+            instructions.setText(instructions.getText() + "\nThe combat is over.");
+            setHP();
+            setChoicesInvisible();
+            if (!isAlive())
+            {
+                retryPane.setVisible(true);
+            } 
+        }
+        else if(win==2){
+                
+            instructions.setText("You lost.\nThe enemy has hurt you\nand ran away.");
+            if (game.getCurrentRoom().getDescription()=="in the Head's office")
+            {
+                // Wait();
+                String text = game.goRoom(new Command("go","north"));
+                instructions.setText(instructions.getText() + "\n You hit the zombie! Come on I can kill him !");
+            }
+            setHP();
+        }
+        else{
+            instructions.setText(instructions.getText() + "\n Keep Fighting!");
+            setHP();
+        }
         buttonGroup1.clearSelection();
-        if (game.getCurrentRoom().getDescription() == "in the guardian lounge"){
-            setTextInConsole(instructions.getText() + "\nHe dropped an old key."
-                    + "\nYou decided to take it."
-                    + "\nThe key has been added to\nyou're inventory.");
-            game.player.takeItem(game.item);
-            refreshItemList();
-        }  
-                game.getCurrentRoom().removeCharacter();
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-
-        addTextInConsole("\nThe combat is over.");
-        setHP();
-        setChoicesInvisible();
-        if (!isAlive())
-        {
-            retryPane.setVisible(true);
-        }        
     }//GEN-LAST:event_goButtonActionPerformed
 
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
@@ -634,6 +828,24 @@ public class NewJDialog extends javax.swing.JDialog {
     private void itemListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemListActionPerformed
+
+    private void okEnigmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okEnigmaButtonActionPerformed
+        // TODO add your handling code here:
+        enigmaDialog.setVisible(false);
+        String choice="";
+        
+        
+        for (Enumeration<AbstractButton> buttons = enigmaButtons.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+                if (button.isSelected()) {
+                    choice =button.getText();
+                }
+        }
+        CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
+        //Item reward = sphynx.getReward(choice, sphynx);
+        
+        
+    }//GEN-LAST:event_okEnigmaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -663,7 +875,7 @@ public class NewJDialog extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(NewJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+                ;
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -691,9 +903,15 @@ public class NewJDialog extends javax.swing.JDialog {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton answer1;
+    private javax.swing.JRadioButton answer2;
+    private javax.swing.JRadioButton answer3;
+    private javax.swing.JRadioButton answer4;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton choicesButton;
     private javax.swing.JButton downArrow;
+    private javax.swing.ButtonGroup enigmaButtons;
+    private javax.swing.JDialog enigmaDialog;
     private javax.swing.JButton goButton;
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel hpCounter;
@@ -703,11 +921,13 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton leftArrow;
+    private javax.swing.JButton okEnigmaButton;
     private javax.swing.JButton quitButton;
     private javax.swing.JButton retryButton;
     private javax.swing.JDialog retryPane;

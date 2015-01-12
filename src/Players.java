@@ -39,9 +39,6 @@ public class Players extends Character
         }
     }
     
-    
-    
-    
     public String takeItem(Item item)
     {
         if (totalWeight <= MaxWeight)

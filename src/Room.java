@@ -85,6 +85,8 @@ public abstract class Room
         return character;
     }
     
+    
+    
     /**
      * Adds exits to a room. 
      * @param direction The position of the exit

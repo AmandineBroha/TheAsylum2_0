@@ -19,11 +19,12 @@ public class CharacterEnigma extends Character
     private static Enigma enigme6;
     private static Enigma enigme7;
     private static ArrayList<Enigma> listEnigma;
+    private Item reward;
 
     /**
      * Constructor for objects of class Monstre
      */
-    public CharacterEnigma(String name,Room myRoom, int life)
+    public CharacterEnigma(String name,Room myRoom, int life, Item reward)
     {
         // initialise instance variables
         super(name, myRoom,life);
@@ -35,6 +36,7 @@ public class CharacterEnigma extends Character
         Enigma enigme5 = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma enigme6 = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma enigme7 = new Enigma("quel est la taille de ", "1","2","3","45");
+        Enigma enigme8 = new Enigma("quel est la taille de ", "1","2","3","45");
         listEnigma = new ArrayList<Enigma>();
         listEnigma.add(enigme0);
         listEnigma.add(enigme1);
@@ -44,6 +46,20 @@ public class CharacterEnigma extends Character
         listEnigma.add(enigme5);
         listEnigma.add(enigme6);
         listEnigma.add(enigme7);
+        listEnigma.add(enigme8);
+        this.reward = reward;
+    }
+    
+    public Item getReward(String answer, Enigma enigma)
+    {
+        if (enigma.getRightAnswer().equals(answer))
+        {
+            return reward;
+        }
+        else
+        {
+            return null;
+        }
     }
     
     public Enigma pickEnigma(int choice){
@@ -75,11 +91,11 @@ public class CharacterEnigma extends Character
             case 5:
                 return listEnigma.get(7);
                 
-            default : System.out.println("Error in picking enigma choice");
-            break;
-                
+            //character : simba
+            case 6:
+                return listEnigma.get(8);                
         }
-        System.out.println("Error in picking enigma choice");
+        System.out.close();
         return null;
     }
 }

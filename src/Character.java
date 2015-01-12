@@ -32,6 +32,11 @@ public class Character
         this.isEnemy = isEnemy;
     }
     
+    public String getName()
+    {
+        return name;
+    }
+    
     public String toString()
     {
         return name + " is in the room!\n";
@@ -54,22 +59,27 @@ public class Character
     
     //The player regains health; used when the player takes a potion
     //or to restart the game
-    public void heal()
+    public void heal(Item potion)
     {
-        HealthPoint += 2 ;
+        HealthPoint += 2;
     }
     
-    public boolean fight(String playerchoice, Character enemy)
+    public int fight(String playerchoice, Character enemy,int manche, int tour)
     {
-        
-        if(combat(playerchoice)){
+
+        if(combat(playerchoice) && manche==tour ){
             enemy.hurt();
-            return true;
+            return 1;   
+        }
+        if(combat(playerchoice) && manche<tour ){
+            enemy.hurt();
+            return 2;   
         }
         else{ 
             this.hurt();
-            return false;
-            }
+            return 3;
+        }
+       
     }
     
     public boolean combat(String choice)
@@ -94,7 +104,7 @@ public class Character
                  
                 }
         }
-        
+        System.out.println(IAchoice);
         //0 = rock
         //1=paper
         ///2=scissors
