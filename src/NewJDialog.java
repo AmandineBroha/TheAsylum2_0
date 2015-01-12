@@ -593,9 +593,9 @@ public class NewJDialog extends javax.swing.JDialog {
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
             if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
             {
-                addTextInConsole(game.player.takeItem(game.fairy)
-                    + "Its magical powers have open\none of the doors!");
-                   refreshItemList();
+                game.player.takeItem(game.fairy);
+                addTextInConsole("Its magical powers have open\none of the doors!");
+                refreshItemList();
             }
         }
         else if (isThereZombie())
@@ -646,7 +646,7 @@ public class NewJDialog extends javax.swing.JDialog {
                     refreshItemList();
                 }
                 else {
-                    addTextInConsole(game.player.takeItem(game.note));
+                    game.player.takeItem(game.note);
                     refreshItemList();
                 }
             }
@@ -829,9 +829,10 @@ public class NewJDialog extends javax.swing.JDialog {
         for (Enumeration<AbstractButton> buttons = enigmaButtons.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
                 if (button.isSelected()) {
-                    choice =button.getText();
+                    choice = button.getText();
                 }
         }
+        enigmaButtons.clearSelection();
         CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
         try {
             Enigma theEnigma = sphynx.getEnigma(questionLabel.getText());
@@ -839,9 +840,29 @@ public class NewJDialog extends javax.swing.JDialog {
                 if (sphynx.getName().equals("Helpy, the evil robot,")){
                     sphynx.hurt();
                     addTextInConsole("You've hurt Helpy!");
+                    addTextInConsole(String.valueOf(sphynx.getHealthPoint()));
                     if (sphynx.getHealthPoint()==0){
-                        
+                        addTextInConsole("\nYou defeated Helpy!\n");
+                        Wait();
+                        game.player.takeItem(sphynx.getReward());
                     }
+                    else{
+                        launchEnigma();
+                    }
+                }
+                else{
+                    setTextInConsole("You are correct!\n");
+                    game.player.takeItem(sphynx.getReward());
+                }
+            }
+            else{
+                if (sphynx.getName().equals("Helpy, the evil robot,")){
+                    addTextInConsole("OH NO!\nThat didn't affect Helpy!");
+                    launchEnigma();
+                }
+                else{
+                    addTextInConsole("LOL! Wrong answer!");
+                    launchEnigma();
                 }
             }
         } catch (Exception e) {addTextInConsole(e.getMessage());}

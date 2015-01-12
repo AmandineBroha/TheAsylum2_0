@@ -185,9 +185,9 @@ public class Game
         Item never = new Item("never ever EVER",999);
         
         //Create enigmas
-        Enigma scientist1 = new Enigma("", "1","2","3","145");
-        Enigma scientist2 = new Enigma("", "1","2","3","45");
-        Enigma scientist3 = new Enigma("", "1","2","3","45");
+        Enigma scientist1 = new Enigma("quel est la taille de ", "1","2","3","145");
+        Enigma scientist2 = new Enigma("who", "1","2","3","245");
+        Enigma scientist3 = new Enigma("", "1","2","3","345");
         Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma kingE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma turtlesE = new Enigma("quel est la taille de ", "1","2","3","45");
@@ -223,7 +223,6 @@ public class Game
         tulipefield.addCharacter(ninjaTurtles);
         simbaPlace.addCharacter(simba);
         robotPlace.addCharacter(helpy);
-        garden.addCharacter(helpy);
         
         
         // initialise room exits
