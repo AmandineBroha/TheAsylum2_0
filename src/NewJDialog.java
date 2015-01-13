@@ -786,7 +786,7 @@ public class NewJDialog extends javax.swing.JDialog {
             porte2=isChecked();
         if (!isThereZombie() && isAlive())
         {
-         if (isTheRoom("bou"))
+         if (isTheRoom("in the dark"))
             {
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
             }   
