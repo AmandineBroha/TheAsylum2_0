@@ -295,11 +295,11 @@ public class Game
         Enigma scientist2 = new Enigma("HOW MANY HOLES IN A POLO", "1","2","3","4");
         Enigma scientist3 = new Enigma("HOW MANY LETTERS IN ROBERT'S ROOM ", "12","14","16","18");
         Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
-        Enigma kingE = new Enigma("quel est la taille de ", "1","2","3","45");
+        Enigma kingE = new Enigma("What is the best ingredient of my Royal Deluxe ? ", "Goat cheese","Bacon","Salad","Mustard");
         Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
-        Enigma robotE1 = new Enigma("quel est la taille de ", "1","2","3","45");
-        Enigma robotE2 = new Enigma("quel est la taille de ", "1","2","3","45");
-        Enigma robotE3 = new Enigma("quel est la taille de ", "1","2","3","45");
+        Enigma robotE1 = new Enigma("Quelle attaque voulez vous utilisez ", "Bisousss","Updago","Rouille","Trempette");
+        Enigma robotE2 = new Enigma("Quelle attaque voulez vous utilisez ", "Petit toutou trop choupinou","DRROOGGUUUEEEE","Wall-E","Bisous Puissant");
+        Enigma robotE3 = new Enigma("Quelle attaque voulez vous utilisez ", "Je divague...vague","Trop bien ce Jeu mais un peu WTF","PONEEYYY","C'est pas bien d'être méchant");
         
         //Initialise characters
         Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
@@ -328,9 +328,15 @@ public class Game
                 NewJDialog.addTextInConsole("Ride the poney, find Helpy,\nAND SAVE PONY WORLD!");
                 }
         };
-        CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow);
+        CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow){
+            @Override
+            public void playerHasReward(){
+                NewJDialog.addTextInConsole("You beat me MF");
+            }
+        };
         
         //Add the enigmas to the corresponding characters
+        
         scientist.addEnigma(scientist1);
         scientist.addEnigma(scientist2);
         scientist.addEnigma(scientist3);
@@ -350,7 +356,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(hall,garden));
+        garden.addexits("north", new ExitRoom(robotPlace,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
