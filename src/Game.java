@@ -128,7 +128,14 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("\"Hello mister De Lu. \nI was waiting for you... \n I have a lot to explain to you,\n but it is not for free.\n So first, let's fight!\"");
+                NewJDialog.addTextInConsole("\"Hello Mr. Smith."
+                        + "\nI was waiting for you...\n"
+                        + "I will answer ALL\n"
+                        + "of your questions...\n"
+                        + "ONCE WE BATTLE!\n"
+                        + "I'm not as weak as\n"
+                        + "my henchmen!\n\n"
+                        + "Press 'Choices' to fight!");
             }
             
         };
@@ -144,7 +151,27 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("You made a good job.\n You deserve the truth. \nActually, you are a patient in the asylum,\n still mad. \nYou imagined all this adventure \nbecause that is your disease. \nI let you the choice : \nif you take the blue pill, \nyou can stay in the real world\n and be stucked here, \nor you can pick the red pill,\n which will guide you to a magical world\n and help you forgetting your state.\n What is your choice?");
+                NewJDialog.addTextInConsole("You've made a good job.\n"
+                        + "You deserve the truth, Robert.\n"
+                        + "You are not a journalist\n"
+                        + "but one of the patients of\n"
+                        + "this asylum.\n"
+                        + "Every now and then, we all\n"
+                        + "play along with your delusions.\n"
+                        + "You have a severe case of\n"
+                        + "dementia\n"
+                        + "At the end of each adventure\n"
+                        + "your head creates, I\n"
+                        + "offer you a choice:\n"
+                        + "If you take the blue pill,\n"
+                        + "you can stay in the real world\n"
+                        + "and be stuck here.\n"
+                        + "Till your dementia strikes again\n"
+                        + "If you take the red pill,\n"
+                        + "you will go live in a magical world\n"
+                        + "and forget about your...\n"
+                        + "condition.\n\n"
+                        + "What is your choice?");
             }
             
         };
@@ -241,11 +268,9 @@ public class Game
                 NewJDialog.addTextInConsole("\" Hi, I am Dora!\n"
                         + "To find the evil robot you\n"
                         + "have to go through the bridge,\n"
-                        + "the mountain, and the beach.\n");
-                
+                        + "the mountain, and the beach.\n\n");                
                 NewJDialog.addTextInConsole("Repeat after me: the bridge,\n"
-                        + "the mountain, and the beach.\n");
-                
+                        + "the mountain, and the beach.\n\n");                
                 NewJDialog.addTextInConsole("Again: the bridge,\n"
                         + "the mountain, and the beach!\n");
             }
@@ -255,7 +280,9 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("\"Did you come to intimidate me? \nI am not afraid of you!\n Let's fight!\"");
+                NewJDialog.addTextInConsole("Did you come to intimidate me?"
+                        + "\nI am not afraid of you!\n Let's fight!\n"
+                        + "\nPress 'Choices' to Start the fight!");
             }
             
         };
