@@ -203,6 +203,7 @@ public class NewJDialog extends javax.swing.JDialog {
         enigmaDialog.setMinimumSize(new java.awt.Dimension(373, 216));
         enigmaDialog.setModal(true);
         enigmaDialog.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        enigmaDialog.setPreferredSize(new java.awt.Dimension(500, 350));
 
         enigmaButtons.add(answer1);
         answer1.setText("answer 1");
@@ -316,9 +317,10 @@ public class NewJDialog extends javax.swing.JDialog {
         );
 
         choicePill.setIconImage(null);
-        choicePill.setMinimumSize(new java.awt.Dimension(300, 200));
+        choicePill.setMinimumSize(new java.awt.Dimension(500, 400));
         choicePill.setModal(true);
         choicePill.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        choicePill.setPreferredSize(new java.awt.Dimension(500, 400));
         choicePill.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setMaximumSize(new java.awt.Dimension(300, 200));
