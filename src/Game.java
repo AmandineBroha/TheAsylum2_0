@@ -138,7 +138,7 @@ public class Game
             }
             
         };
-        tulipefield = new Room(" in the tulips field","/tulipe.png")        {
+        tulipefield = new Room(" in the tulips field","/tulips.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -146,11 +146,11 @@ public class Game
             }
             
         }; 
-        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png")        {
+        rainbowPlace = new Room("in the rainbowplace","/rainbowfield.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("You succeeded! You are now going to meet the poney king. He has some troubles too...");
+                NewJDialog.addTextInConsole("You succeeded! You are now going to meet the Pony King. He has some troubles too...");
             }
             
         }; 
@@ -190,11 +190,12 @@ public class Game
         Item never = new Item("never ever EVER",999);
         
         //Create enigmas
-        Enigma scientist1 = new Enigma("", "1","2","3","145");
-        Enigma scientist2 = new Enigma("", "1","2","3","45");
-        Enigma scientist3 = new Enigma("", "1","2","3","45");
+        Enigma scientist1 = new Enigma("The Answer is really big ", "ANSWER","really big","Infinity","an elephant");
+        Enigma scientist2 = new Enigma("HOW MANY HOLES IN A POLO", "1","2","3","4");
+        Enigma scientist3 = new Enigma("HOW MANY LETTERS IN ROBERT'S ROOM ", "12","14","16","18");
+        Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma kingE = new Enigma("quel est la taille de ", "1","2","3","45");
-        Enigma turtlesE = new Enigma("quel est la taille de ", "1","2","3","45");
+        Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
         Enigma robotE1 = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma robotE2 = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma robotE3 = new Enigma("quel est la taille de ", "1","2","3","45");
@@ -202,9 +203,30 @@ public class Game
         //Initialise characters
         Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
         Character boss = new Character("Dr. Zombie", directorOffice, 3, true);
-        CharacterEnigma scientist = new CharacterEnigma("Dr. Zeus", laboratory, potion);
-        CharacterEnigma ninjaTurtles = new CharacterEnigma("The Ninja Turtles", tulipefield, bisous);
-        CharacterEnigma poneyKing = new CharacterEnigma("Poney King", rainbowPlace, poney);
+        CharacterEnigma scientist = new CharacterEnigma("Dr. Zeus", laboratory, potion){
+            @Override
+            public void playerHasReward(){
+                NewJDialog.addTextInConsole("I hope the potion\ncomes in handy!");
+            }
+        };
+        CharacterEnigma ninjaTurtles = new CharacterEnigma("The Ninja Turtles", tulipefield, bisous){
+            @Override
+            public void playerHasReward(){
+                NewJDialog.addTextInConsole("Come on!\nGo see the Pony King!");
+            }
+        };
+        CharacterEnigma simba = new CharacterEnigma("Simba", simbaPlace, translator){
+            @Override
+            public void playerHasReward(){
+                NewJDialog.addTextInConsole("With that translator\nyou will understand what\n"
+                + "Pony King has to say");
+            }
+        };
+        CharacterEnigma poneyKing = new CharacterEnigma("Pony King", rainbowPlace, poney){
+                public void playerHasReward(){
+                NewJDialog.addTextInConsole("Ride the poney, find Helpy,\nAND SAVE PONY WORLD!");
+                }
+        };
         CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow);
         
         //Add the enigmas to the corresponding characters
@@ -224,11 +246,10 @@ public class Game
         rainbowPlace.addCharacter(poneyKing);
         tulipefield.addCharacter(ninjaTurtles);
         robotPlace.addCharacter(helpy);
-        garden.addCharacter(helpy);
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(rainbowPlace,garden));
+        garden.addexits("north", new ExitRoom(tulipefield,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));

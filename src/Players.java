@@ -39,18 +39,19 @@ public class Players extends Character
         }
     }
     
-    public String takeItem(Item item)
+    public void takeItem(Item item)
     {
         if (totalWeight <= MaxWeight)
         {
         listItem.add(item);
         totalWeight+=item.getWeight();
-        return "A "+ item.getDescription() 
-                + " has been added to\n your inventory.\n";
+        NewJDialog.addTextInConsole("A "+ item.getDescription() 
+                + " has been added to\nyour inventory.\n");
     }
         else
     {
-        return "You can't carry any more items.\n";
+        NewJDialog.addTextInConsole("You wanted to take a\n "+ item.getDescription()
+                +"\nbut you can't carry any more items.\n");
     }
 }
 
