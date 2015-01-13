@@ -44,6 +44,7 @@ public class Players extends Character
         if (totalWeight <= MaxWeight)
         {
         listItem.add(item);
+        NewJDialog.refreshItemList(); 
         totalWeight+=item.getWeight();
         NewJDialog.addTextInConsole("A "+ item.getDescription() 
                 + " has been added to\nyour inventory.\n");

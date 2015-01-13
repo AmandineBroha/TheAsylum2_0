@@ -1,7 +1,9 @@
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import javax.swing.ImageIcon;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -31,7 +33,7 @@ public abstract class Room
     
     private String description;
     private HashMap<String, ExitRoom> exitMap;
-    private String image;
+    private ImageIcon image;
     private boolean hasZombie;
     private Character character;
     /**
@@ -52,7 +54,7 @@ public abstract class Room
     public Room(String description, String Nomimage) 
     {
         this(description);
-        image = Nomimage;   
+        image = new ImageIcon(getClass().getResource(Nomimage));   
     }
     
     /*
@@ -143,7 +145,7 @@ public abstract class Room
         return false;
     }
     }
-    public String getImage()
+    public ImageIcon getImage()
     {
         return image;
     }
@@ -152,4 +154,6 @@ public abstract class Room
         NewJDialog.getInstructions().setText("");
         NewJDialog.setTextInConsole("You are "+description + "\n");
     }
+    
+    
 }
