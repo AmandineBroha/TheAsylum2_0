@@ -590,7 +590,7 @@ public class NewJDialog extends javax.swing.JDialog {
         if (isThereEnigma()){
             //Gets the character who asks the enigma
             CharacterEnigma sphynx = (CharacterEnigma)game.getCurrentRoom().getCharacter();
-            if (!game.getkeyItem(sphynx.getReward().getDescription())){
+            if (!game.playerHasItem(sphynx.getReward().getDescription())){
                 //Gets the enigma and sorts the answers in a random order
                 Enigma theEnigma = sphynx.pickEnigma();
                 String[] theAnswers = theEnigma.getAnswers();
@@ -643,7 +643,7 @@ public class NewJDialog extends javax.swing.JDialog {
             //game.getCurrentRoom().onEnter();
             //setScene(game.getCurrentRoom().getImage());
             //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-            if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
+            if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.playerHasItem("Fairy dust")==false))
             {
                 game.player.takeItem(game.fairy);
                 addTextInConsole("Its magical powers have open\none of the doors!");
@@ -665,7 +665,7 @@ public class NewJDialog extends javax.swing.JDialog {
         //setScene(game.getCurrentRoom().getImage());
         //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
-            if (isTheRoom("in the entry hall") && game.getkeyItem("key"))
+            if (isTheRoom("in the entry hall") && game.playerHasItem("key"))
             {
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
                 game.getCurrentRoom().addCharacter(new Character("A zombie", game.getCurrentRoom(), 2, true));
@@ -692,9 +692,9 @@ public class NewJDialog extends javax.swing.JDialog {
             //setScene(game.getCurrentRoom().getImage());
             //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
             porte1=isChecked();
-            if (isTheRoom("in Robert's bedroom") && !game.getkeyItem("note"))
+            if (isTheRoom("in Robert's bedroom") && !game.playerHasItem("note"))
             {
-                if (game.getkeyItem("note")){
+                if (game.playerHasItem("note")){
                     addTextInConsole("You already took the note");
                 }
                 else {

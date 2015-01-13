@@ -151,7 +151,22 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("Welcome to the new world.\n Your first task is to help the ninja turtles\n to pass the teletubbies to go on the bridge.\n But the teletubbies do not allow it.\n To solve this and help the ninja turtles \nyou have to answer an enigma...");
+                if (!playerHasItem("magical kiss")){
+                    NewJDialog.addTextInConsole("Hey there!\n"
+                        +"We're the Ninja Turtles!\n"
+                        +"You've arrived to Pony World\n"
+                        +"Our King wwilll be pleased\n"
+                        +"to welcome you."
+                        +"But the Teletubbies are blocking"
+                        +"the way!.\n"
+                        +"Would you remind us their initials\n"
+                        +"so that we can call them?\n"
+                        +"Press 'Choices' to answer!\n");
+                }
+                else{
+                    CharacterEnigma turtles = (CharacterEnigma)this.getCharacter();
+                    turtles.playerHasReward();
+                }
             }
             
         }; 
@@ -159,7 +174,7 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                if (getkeyItem("translator") && !getkeyItem("magical little poney")){
+                if (playerHasItem("translator") && !playerHasItem("magical little poney")){
                     NewJDialog.addTextInConsole("\nGreetings stranger!\n"
                     +"Please be welcome into my Kingdom,\n"
                     +"the wonderful land of Pony World!\n"
@@ -178,7 +193,7 @@ public class Game
                     +"our world!");
                 }
                 
-                else if (getkeyItem("magical little poney")){
+                else if (playerHasItem("magical little poney")){
                     CharacterEnigma king;
                     king = (CharacterEnigma)this.getCharacter();
                     king.playerHasReward();
@@ -197,13 +212,22 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                //int j = 0;
-                NewJDialog.addTextInConsole("\nI heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
-//                while (j < 100){
-//                    System.out.println();
-//                }
-                NewJDialog.clapHands.setVisible(true);
-                player.takeItem(translator);
+                if (!playerHasItem("translator")){
+                    NewJDialog.addTextInConsole("\nSo you don't understand"
+                            +"\nwhat Pony King has to say?"
+                            +"\nI can give you a translator..."
+                            +"\nbut it won't be so easy! Haha!"
+                            +"\nIf you really want it... "
+                            +"\nclap your hands."
+                            +"\nTen times, please.");
+                    NewJDialog.clapHands.setVisible(true);
+                    player.takeItem(translator);     
+                }
+                else {
+                    CharacterEnigma simba =(CharacterEnigma)this.getCharacter();
+                    simba.playerHasReward();
+                }
+                
                 //NewJDialog.refreshItemList();            
             }
             
@@ -212,11 +236,20 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("\" Hi, I am Dora.\n To meet the evil robot you have to go\n through the bridge, the mountain \nand the beach. \nRepeat after me : the bridge, the mountain\n and the beach. \nAgain : the bridgte, the mountain\n and the beach. Well done! \"");
+                NewJDialog.addTextInConsole("\" Hi, I am Dora!\n"
+                        + "To find the evil robot you\n"
+                        + "have to go through the bridge,\n"
+                        + "the mountain, and the beach.\n");
+                NewJDialog.Wait();
+                NewJDialog.addTextInConsole("Repeat after me: the bridge,\n"
+                        + "the mountain, and the beach.\n");
+                NewJDialog.Wait();
+                NewJDialog.addTextInConsole("Again: the bridge,\n"
+                        + "the mountain, and the beach!\n");
             }
             
         };
-        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","fight_robot.png")        {
+        robotPlace = new Room("in the evil dark\ncreepy volcano of\nthe dark shadow","fight_robot.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -453,7 +486,7 @@ public class Game
     {
         return currentRoom;
     }
-   public boolean getkeyItem(String nameItem)
+   public boolean playerHasItem(String nameItem)
 {
     for(Item i : player.getListItem())
     {
