@@ -170,8 +170,10 @@ public class Game
                 NewJDialog.addTextInConsole("\"I heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
 //                while (j < 100){
 //                    System.out.println();
-//                } 
-                NewJDialog.addTextInConsole("You must clap in your hands if you want to leave!");
+//                }
+                NewJDialog.clapHands.setVisible(true);
+                NewJDialog.Wait();
+                NewJDialog.Wait();
                 player.takeItem(translator);
                 //NewJDialog.refreshItemList();            
             }
@@ -398,6 +400,7 @@ public class Game
             else
             {
                 currentRoom = nextRoom;
+                NewJDialog.setScene(getCurrentRoom().getImage());
                 currentRoom.onEnter();
                 //return "You are " + currentRoom.getDescription() + "\n";
                 
