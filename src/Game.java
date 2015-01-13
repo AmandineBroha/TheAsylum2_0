@@ -138,7 +138,7 @@ public class Game
             }
             
         };
-        tulipefield = new Room(" in the tulips field","/tulipe.png")        {
+        tulipefield = new Room(" in the tulips field","/tulips.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -146,7 +146,7 @@ public class Game
             }
             
         }; 
-        rainbowPlace = new Room("in the rainbowplace","/teletubbies.png")        {
+        rainbowPlace = new Room("in the rainbowplace","/rainbowfield.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -183,12 +183,12 @@ public class Game
         Item never = new Item("never ever EVER",999);
         
         //Create enigmas
-        Enigma scientist1 = new Enigma("quel est la taille de ", "1","2","3","145");
-        Enigma scientist2 = new Enigma("who", "1","2","3","245");
-        Enigma scientist3 = new Enigma("", "1","2","3","345");
+        Enigma scientist1 = new Enigma("The Answer is really big ", "ANSWER","really big","Infinity","an elephant");
+        Enigma scientist2 = new Enigma("HOW MANY HOLES IN A POLO", "1","2","3","4");
+        Enigma scientist3 = new Enigma("HOW MANY LETTERS IN ROBERT'S ROOM ", "12","14","16","18");
         Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma kingE = new Enigma("quel est la taille de ", "1","2","3","45");
-        Enigma turtlesE = new Enigma("quel est la taille de ", "1","2","3","45");
+        Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
         Enigma robotE1 = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma robotE2 = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma robotE3 = new Enigma("quel est la taille de ", "1","2","3","45");
@@ -244,7 +244,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(hall,garden));
+        garden.addexits("north", new ExitRoom(tulipefield,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));

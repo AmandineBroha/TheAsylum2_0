@@ -191,11 +191,9 @@ public class NewJDialog extends javax.swing.JDialog {
 
         jLabel1.setText("jLabel1");
 
-        enigmaDialog.setMaximumSize(new java.awt.Dimension(373, 216));
         enigmaDialog.setMinimumSize(new java.awt.Dimension(373, 216));
         enigmaDialog.setModal(true);
         enigmaDialog.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-        enigmaDialog.setPreferredSize(new java.awt.Dimension(373, 216));
 
         enigmaButtons.add(answer1);
         answer1.setText("answer 1");
@@ -370,13 +368,6 @@ public class NewJDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(hpCounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(leftArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -389,7 +380,7 @@ public class NewJDialog extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(179, 179, 179)
                                 .addComponent(itemList, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(choicesButton)
                             .addComponent(goButton)
@@ -399,16 +390,23 @@ public class NewJDialog extends javax.swing.JDialog {
                             .addComponent(jRadioButton2)
                             .addComponent(jRadioButton3)
                             .addComponent(jRadioButton1))
-                        .addGap(14, 14, 14)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(176, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 11, Short.MAX_VALUE)
                         .addComponent(scene, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(upArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,10 +426,10 @@ public class NewJDialog extends javax.swing.JDialog {
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hpCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hpCounter)
+                        .addGap(11, 11, 11)
                         .addComponent(helpButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButton2)
                             .addGroup(layout.createSequentialGroup()
@@ -441,7 +439,7 @@ public class NewJDialog extends javax.swing.JDialog {
                                 .addComponent(jRadioButton3)))
                         .addGap(1, 1, 1)
                         .addComponent(goButton)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         pack();
@@ -594,6 +592,10 @@ public class NewJDialog extends javax.swing.JDialog {
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
         if (!isThereZombie() && isAlive())
         {
+//            if(game.getCurrentRoom.getNextRoom==null){
+//                 NewJDialog.addTextInConsole("There is no door!\n");
+//            }
+           // else{    
             game.goRoom(new Command("go","south"));
             game.getCurrentRoom().onEnter();
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
@@ -603,6 +605,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 addTextInConsole("Its magical powers have open\none of the doors!");
                 refreshItemList();
             }
+           // }
         }
         else if (isThereZombie())
         {
@@ -753,7 +756,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 Wait();
                 game.goRoom(new Command("go","east"));
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-                hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
+                hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                 itemList.removeAllItems();
             }
             if (isTheRoom("in the guardian lounge")){
@@ -793,7 +796,7 @@ public class NewJDialog extends javax.swing.JDialog {
                     Wait();
                     game.goRoom(new Command("go","north"));
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-                    hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/licorne.png")));
+                    hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                     itemList.removeAllItems();
                 }
             }
