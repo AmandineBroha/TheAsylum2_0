@@ -271,6 +271,7 @@ public class Game
                         + "the mountain, and the beach.\n\n");                
                 NewJDialog.addTextInConsole("Again: the bridge,\n"
                         + "the mountain, and the beach!\n");
+                NewJDialog.Wait();
             }
             
         };
