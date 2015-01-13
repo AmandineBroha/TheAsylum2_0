@@ -203,8 +203,6 @@ public class Game
 //                    System.out.println();
 //                }
                 NewJDialog.clapHands.setVisible(true);
-                NewJDialog.Wait();
-                NewJDialog.Wait();
                 player.takeItem(translator);
                 //NewJDialog.refreshItemList();            
             }
