@@ -47,6 +47,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private boolean porte2 = false;
     private boolean porte3 = false;
     private int manche=1;
+    public Sound son=new Sound("C:\\Users\\Kevin_2\\Desktop\\regard.wav");
     /**
      * Creates new form NewJDialog
      */
@@ -562,6 +563,7 @@ public class NewJDialog extends javax.swing.JDialog {
          if (isTheRoom("in the entry hall"))
          {
              return true;
+            
          }
          return false;
     }
@@ -769,6 +771,7 @@ public class NewJDialog extends javax.swing.JDialog {
                     addTextInConsole("You already took the note");
                 }
                 else {
+                    son.start();
                     game.player.takeItem(game.note);
                 }
             }
@@ -782,7 +785,6 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_leftArrowActionPerformed
 
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
-       
             porte2=isChecked();
         if (!isThereZombie() && isAlive())
         {
