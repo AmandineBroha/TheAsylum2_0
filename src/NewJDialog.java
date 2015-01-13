@@ -47,7 +47,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private boolean porte2 = false;
     private boolean porte3 = false;
     private int manche=1;
-    public Sound son=new Sound("C:\\Users\\Kevin_2\\Desktop\\regard.wav");
+    public Sound son;
     /**
      * Creates new form NewJDialog
      */
@@ -552,6 +552,16 @@ public class NewJDialog extends javax.swing.JDialog {
                 Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
             } 
     }
+    private String findPathSon(String sons)
+    {
+        return(getClass().getResource("/regard.wav").getPath());   
+    }
+    
+    private void setSon(String sons)
+    {
+    son=new Sound(findPathSon(sons));
+    son.start();
+    }
     
     private boolean isAlive()
     {
@@ -771,7 +781,7 @@ public class NewJDialog extends javax.swing.JDialog {
                     addTextInConsole("You already took the note");
                 }
                 else {
-                    son.start();
+                    setSon("regard.wav");
                     game.player.takeItem(game.note);
                 }
             }
