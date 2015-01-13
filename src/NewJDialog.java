@@ -291,6 +291,11 @@ public class NewJDialog extends javax.swing.JDialog {
         clapHands.setModal(true);
         clapHands.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         clapHands.setPreferredSize(new java.awt.Dimension(300, 200));
+        clapHands.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                clapWait(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         jLabel4.setText("Clap your hands!");
@@ -300,16 +305,16 @@ public class NewJDialog extends javax.swing.JDialog {
         clapHandsLayout.setHorizontalGroup(
             clapHandsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clapHandsLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(68, 68, 68))
+                .addGap(27, 27, 27))
         );
         clapHandsLayout.setVerticalGroup(
             clapHandsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clapHandsLayout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
+            .addGroup(clapHandsLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
                 .addComponent(jLabel4)
-                .addGap(85, 85, 85))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         choicePill.setIconImage(null);
@@ -851,6 +856,7 @@ public class NewJDialog extends javax.swing.JDialog {
         System.out.println(win);
         if (win==1){
             game.getCurrentRoom().removeCharacter();
+            setScene(game.getCurrentRoom().getImage());
             manche=1;
             setTextInConsole("You defeated the enemy.");
             if (isTheRoom("in the Head's office"))
@@ -860,7 +866,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 
                 game.goRoom(new Command("go","east"));
                 //setScene(game.getCurrentRoom().getImage());
-                //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                 
             }
@@ -1014,6 +1020,12 @@ public class NewJDialog extends javax.swing.JDialog {
         choicePill.setVisible(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+    private void clapWait(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_clapWait
+        // TODO add your handling code here:
+        Wait();
+        Wait();
+        clapHands.setVisible(false);
+    }//GEN-LAST:event_clapWait
 
     /**
      * @param args the command line arguments

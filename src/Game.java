@@ -160,7 +160,37 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("You succeeded! You are now going to meet the Pony King. He has some troubles too...");
+                if (getkeyItem("translator") && !getkeyItem("magical little poney")){
+                    NewJDialog.addTextInConsole("\nGreetings stranger!\n"
+                    +"Please be welcome into my Kingdom,\n"
+                    +"the wonderful land of Pony World!\n"
+                    +"Oh, but our land is in\ndanger, Dear Mister...\n"
+                    + "An evil robot has emerged from the\n"
+                    + "darkness of the lands of the Volcanoes.\n"
+                    + "He has stolen the MAgical Rainbow that\n"
+                    + "holds our entire Universe together!\n"
+                    + "It is predicted that our savior\n"
+                    + "holds the answers to all of the wolrd's\n"
+                    + "enigmas.\n"
+                    + "May I verify that you, Sir, are\n"
+                    + "the savior of our world?\n"
+                    + "Click on 'Choice' to answer\n"
+                    + "the Prophecy's Enigma and save\n"
+                    +"our world!");
+                }
+                
+                else if (getkeyItem("magical little poney")){
+                    CharacterEnigma king;
+                    king = (CharacterEnigma)this.getCharacter();
+                    king.playerHasReward();
+                }
+                
+                else {
+                    NewJDialog.addTextInConsole("Yhihihihihihi!\n"
+                    + "Yihi hihi hithihiyii kihihihre\n"
+                    + "iiekkiere yihihgihihieieihie!\n");
+                }
+                
             }
             
         }; 
@@ -169,13 +199,11 @@ public class Game
             public void onEnter() {
                 super.onEnter();
                 //int j = 0;
-                NewJDialog.addTextInConsole("\"I heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
+                NewJDialog.addTextInConsole("\nI heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
 //                while (j < 100){
 //                    System.out.println();
 //                }
                 NewJDialog.clapHands.setVisible(true);
-                NewJDialog.Wait();
-                NewJDialog.Wait();
                 player.takeItem(translator);
                 //NewJDialog.refreshItemList();            
             }
