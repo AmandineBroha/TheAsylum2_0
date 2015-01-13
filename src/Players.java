@@ -26,7 +26,7 @@ public class Players extends Character
     {
         // initialise instance variables
         super("Robert",myRoom, 4);
-        listItem= new ArrayList<Item>();
+    listItem= new ArrayList<Item>();
     }
     
     //Makes the player die suddenly; it is supposed to be called when he
@@ -69,9 +69,6 @@ public ArrayList<Item> getListItem()
     
 public void rebootList()
 {
-   for(Item i : listItem)
-   {
-       listItem.remove(i);
-   }
+  listItem.clear();
 }
 }

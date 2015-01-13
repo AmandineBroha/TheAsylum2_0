@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -289,7 +290,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(kitchen,garden));
+        garden.addexits("north", new ExitRoom(hall,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
@@ -333,6 +334,12 @@ public class Game
             finished = processCommand(command);
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+    public void retry()
+    {
+        player.heal(4);
+        createRooms();
+        player.rebootList();
     }
 
     /**
