@@ -191,7 +191,8 @@ public class Game
                     + "the savior of our world?\n"
                     + "Click on 'Choice' to answer\n"
                     + "the Prophecy's Enigma and save\n"
-                    +"our world!");
+                    +"our world!"
+                    +"Press 'Choices'!\n");
                 }
                 
                 else if (playerHasItem("magical little poney")){
@@ -233,7 +234,7 @@ public class Game
             }
             
         };
-        caseDora = new Room("in the Dora's  way","dora.png")        {
+        caseDora = new Room("in the Dora's way","dora.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -241,10 +242,10 @@ public class Game
                         + "To find the evil robot you\n"
                         + "have to go through the bridge,\n"
                         + "the mountain, and the beach.\n");
-                NewJDialog.Wait();
+                
                 NewJDialog.addTextInConsole("Repeat after me: the bridge,\n"
                         + "the mountain, and the beach.\n");
-                NewJDialog.Wait();
+                
                 NewJDialog.addTextInConsole("Again: the bridge,\n"
                         + "the mountain, and the beach!\n");
             }
