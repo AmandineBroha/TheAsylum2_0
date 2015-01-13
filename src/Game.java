@@ -33,7 +33,7 @@ public class Game
     public final Item poney = new Item("magical little poney",1);
     public final Item rainbow = new Item("Magical rainbow",1);
     public final Item potion = new Item("potion", 1);
-    public final Item never = new Item("never ever EVER",999);
+    public final Item never = new Item("never ever EVER",1);
     
     
     /**
