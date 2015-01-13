@@ -355,7 +355,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(robotPlace,garden));
+        garden.addexits("north", new ExitRoom(hall,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
