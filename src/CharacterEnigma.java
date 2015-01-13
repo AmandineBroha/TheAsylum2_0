@@ -2,10 +2,10 @@ import java.util.Random;
 import java.util.ArrayList;
 
 /**
- * Write a description of class Monstre here.
+ * inheritance class of character to specify the character who ask an enigma
+ * An enigma characters have a list of riddle
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
  */
 public class CharacterEnigma extends Character
 {
@@ -32,6 +32,7 @@ public class CharacterEnigma extends Character
         return reward;
     }
     
+    // add an enigma to his list
     public void addEnigma(Enigma theEnigma){
         listEnigma.add(theEnigma);
     }
@@ -48,7 +49,7 @@ public class CharacterEnigma extends Character
     
     
             
-    //Returns an enigma from the llist at random
+    //Returns an enigma from the list at random
     public Enigma pickEnigma(){
         if (!listEnigma.isEmpty()){
             if (listEnigma.size() > 1){

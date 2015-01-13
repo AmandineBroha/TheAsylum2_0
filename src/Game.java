@@ -349,7 +349,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(Blackout,garden));
+        garden.addexits("north", new ExitRoom(hall,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
@@ -514,11 +514,12 @@ public class Game
      * whether we really quit the game.
      * @return true, if this command quits the game, false otherwise.
      */
-    
+    // return the current room
     public Room getCurrentRoom()
     {
         return currentRoom;
     }
+    // check if the players have an items with the name of this one 
    public boolean playerHasItem(String nameItem)
 {
     for(Item i : player.getListItem())

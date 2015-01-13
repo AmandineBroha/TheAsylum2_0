@@ -22,7 +22,8 @@ import javax.swing.JTextArea;
  */
 
 /**
- *
+ *the main class to the graphical aspect of the game
+ * 
  * @author poste
  */
 public class NewJDialog extends javax.swing.JDialog {
@@ -1045,7 +1046,7 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_clapWait
 
     /**
-     * @param args the command line arguments
+     * the main class to lauch the game 
      */
     
     

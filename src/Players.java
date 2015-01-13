@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import javax.swing.ButtonModel;
 /**
- * Write a description of class Players here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * this class is an inheritance class of characters
+ * She describes the players
+ * he can carry several items in the list but can't carry more than the  max weigth
  */
 public class Players extends Character
 {
@@ -18,6 +17,9 @@ public class Players extends Character
      * Constructor for objects of class Players
      */
     static Players currentPlayer = new Players(Room.getRoomNamed("garden"));
+    
+    
+    
     public static Players getCurrentPlayer()
     {
         return currentPlayer; 
@@ -26,7 +28,7 @@ public class Players extends Character
     {
         // initialise instance variables
         super("Robert",myRoom, 4);
-    listItem= new ArrayList<Item>();
+        listItem= new ArrayList<Item>();
     }
     
     //Makes the player die suddenly; it is supposed to be called when he
@@ -39,21 +41,22 @@ public class Players extends Character
         }
     }
     
+    // add an item to the player's list
     public void takeItem(Item item)
     {
         if (totalWeight <= MaxWeight)
         {
-        listItem.add(item);
-        NewJDialog.refreshItemList(); 
-        totalWeight+=item.getWeight();
-        NewJDialog.addTextInConsole("A "+ item.getDescription() 
+            listItem.add(item);
+            NewJDialog.refreshItemList(); 
+            totalWeight+=item.getWeight();
+            NewJDialog.addTextInConsole("A "+ item.getDescription() 
                 + " has been added to\nyour inventory.\n");
-    }
+        }
         else
-    {
-        NewJDialog.addTextInConsole("You wanted to take a\n "+ item.getDescription()
+        {
+            NewJDialog.addTextInConsole("You wanted to take a\n "+ item.getDescription()
                 +"\nbut you can't carry any more items.\n");
-    }
+         }
 }
 
 public ArrayList<Item> getListItem()

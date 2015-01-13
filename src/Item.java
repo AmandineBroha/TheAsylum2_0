@@ -1,9 +1,8 @@
 
 /**
- * Write a description of class Item here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * description of an item with a description and a weight
+ * 
  */
 public class Item
 {
@@ -20,6 +19,7 @@ public class Item
       this.Weight=Weight;
     }
     
+    //getter
     public int getWeight()
     {
         return Weight;

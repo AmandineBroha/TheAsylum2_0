@@ -1,10 +1,10 @@
 import java.util.Random; 
 import javax.swing.ButtonGroup;
 /**
- * Write a description of class Players here.
+ * This class describe all feature for the players and for the NPC
+ * The constructor have  a name, the room, a integer for health point and if the character is an ennemy 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
  */
 public class Character
 {
@@ -32,6 +32,7 @@ public class Character
         this.isEnemy = isEnemy;
     }
     
+    // getter 
     public String getName()
     {
         return name;
@@ -46,8 +47,7 @@ public class Character
     {
         return isEnemy;
     }
-
-
+    // the function to hurt the character
     public void hurt()
     {
         this.HealthPoint--;
@@ -68,19 +68,26 @@ public class Character
         }
     }
     
+    //function to fight with an ennemy
+    // parameters : manche -> number of this round
+    //              tour -> number of round to win
     public int fight(String playerchoice, Character enemy,int manche, int tour)
     {
-
+        //the player win the final round
         if(manche==tour && combat(playerchoice)){
             enemy.hurt();
             
             return 1;   
         }
+        
+        //the player win this round but not the fight
         else if(combat(playerchoice) && manche<tour ){            
             enemy.hurt();
              
             return 2;   
         }
+        
+        //the player lost this round
         else{ 
             this.hurt();
             
@@ -89,6 +96,9 @@ public class Character
        
     }
     
+    //the combat function return make the rock paper scissors fight and return true with the players win
+    //If it's a draw the player win
+    // the choice of a IA is choice randomly
     public boolean combat(String choice)
     {
         int playerchoice =0 ;
@@ -115,8 +125,7 @@ public class Character
              */
             return true;
         }
-       //System.out.println("IA ->"+IAchoice);
-       // System.out.println("joueru ->"+playerchoice);
+       
         //0 = rock
         //1=paper
         ///2=scissors

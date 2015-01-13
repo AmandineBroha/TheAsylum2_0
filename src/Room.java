@@ -110,6 +110,7 @@ public abstract class Room
         System.out.println();
     }
     
+    // Return the next room
     public Room getNextRoom(String direction,Item item){
         ExitRoom exit = exitMap.get(direction);
         if(exit==null){
@@ -134,6 +135,10 @@ public abstract class Room
     {
         return description;
     }
+    
+    /**
+     * @return if the door is magical
+     */
     public boolean isMagical(String direction)
     {
         if (exitMap.get(direction) instanceof MagicalExit)
@@ -142,14 +147,19 @@ public abstract class Room
         }
         else
         {
-        return false;
+            return false;
+        }
     }
-    }
+    
     public ImageIcon getImage()
     {
         return image;
     }
     
+    /**
+     * When we enter in a room 
+     * delete the text already written and aad the description of the room
+     */
     public  void onEnter(){
         NewJDialog.getInstructions().setText("");
         NewJDialog.setTextInConsole("You are "+description + "\n");

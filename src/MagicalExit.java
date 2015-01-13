@@ -1,9 +1,9 @@
 
 /**
  * Class MagicalExit, a type of door that requires a password to be open.
+ * this class is an inheritance class of exitroom
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
  */
 public class MagicalExit extends ExitRoom
 {
@@ -23,6 +23,7 @@ public class MagicalExit extends ExitRoom
     {
         return key;
     }  
+    
     public Room open(Item item)
     {
         if(key.equals(item))

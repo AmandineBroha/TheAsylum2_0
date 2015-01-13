@@ -1,9 +1,11 @@
 
 /**
- * Write a description of class ExitRoom here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
+ * The exit class represent the doors
+ * 
+ * the 2 attributs are the current roo and the next room (the room behind the door)
+ * 
  */
 public class ExitRoom
 {

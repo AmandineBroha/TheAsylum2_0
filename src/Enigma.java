@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.Objects;
 
 /**
- * Write a description of class Enigma here.
+ * Describe a type enigma 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * An enigma have a question, 3 wrong answer, one good answer
+ * 
  */
 public class Enigma
 {
@@ -36,7 +36,7 @@ public class Enigma
         answers[2] = this.answer3;
         answers[3] = this.rightAnswer;
     }
-    
+    // getter
     public String getQuestion()
     {
         return question;
@@ -50,7 +50,7 @@ public class Enigma
     }
 
     
-     
+     //return true if the players have chosen the right answer
     public boolean answer(String playerchoice){
         if (playerchoice.equals(rightAnswer)){ 
             return true;
