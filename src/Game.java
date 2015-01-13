@@ -164,8 +164,8 @@ public class Game
 //                    System.out.println();
 //                } 
                 NewJDialog.addTextInConsole("You must clap in your hands if you want to leave!");
-                NewJDialog.addTextInConsole(player.takeItem(translator));
-                //NewJDialog.refreshItemList();            
+                player.takeItem(translator);
+                           
             }
             
         };
@@ -193,7 +193,6 @@ public class Game
         Enigma scientist1 = new Enigma("The Answer is really big ", "ANSWER","really big","Infinity","an elephant");
         Enigma scientist2 = new Enigma("HOW MANY HOLES IN A POLO", "1","2","3","4");
         Enigma scientist3 = new Enigma("HOW MANY LETTERS IN ROBERT'S ROOM ", "12","14","16","18");
-        Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma kingE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
         Enigma robotE1 = new Enigma("quel est la taille de ", "1","2","3","45");
@@ -213,13 +212,6 @@ public class Game
             @Override
             public void playerHasReward(){
                 NewJDialog.addTextInConsole("Come on!\nGo see the Pony King!");
-            }
-        };
-        CharacterEnigma simba = new CharacterEnigma("Simba", simbaPlace, translator){
-            @Override
-            public void playerHasReward(){
-                NewJDialog.addTextInConsole("With that translator\nyou will understand what\n"
-                + "Pony King has to say");
             }
         };
         CharacterEnigma poneyKing = new CharacterEnigma("Pony King", rainbowPlace, poney){

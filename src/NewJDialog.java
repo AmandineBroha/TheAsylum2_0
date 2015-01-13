@@ -537,11 +537,12 @@ public class NewJDialog extends javax.swing.JDialog {
     private void characterMessage() {
         addTextInConsole(game.getCurrentRoom().getCharacter().toString());
     }
-    private void refreshItemList(){
+    public static void refreshItemList(){
         itemList.removeAllItems();
          for(Item i : game.player.getListItem())
         {
            itemList.addItem(i.getDescription());
+           
         }
     }
     
@@ -603,7 +604,6 @@ public class NewJDialog extends javax.swing.JDialog {
             {
                 game.player.takeItem(game.fairy);
                 addTextInConsole("Its magical powers have open\none of the doors!");
-                refreshItemList();
             }
            // }
         }
@@ -615,7 +615,6 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_downArrowActionPerformed
 
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
-        refreshItemList();
         if (!isThereZombie() && isAlive())
         {
         game.goRoom(new Command("go","east"));
@@ -653,11 +652,9 @@ public class NewJDialog extends javax.swing.JDialog {
             {
                 if (game.getkeyItem("note")){
                     addTextInConsole("You already took the note");
-                    refreshItemList();
                 }
                 else {
                     game.player.takeItem(game.note);
-                    refreshItemList();
                 }
             }
         }
@@ -754,7 +751,6 @@ public class NewJDialog extends javax.swing.JDialog {
                 addTextInConsole("\nHe dropped an old key."
                 + "\nYou decided to take it.");
                 game.player.takeItem(game.item);
-                refreshItemList();
             }
             game.getCurrentRoom().removeCharacter();
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
@@ -849,7 +845,6 @@ public class NewJDialog extends javax.swing.JDialog {
                         addTextInConsole("\nYou defeated Helpy!\n");
                         Wait();
                         game.player.takeItem(sphynx.getReward());
-                        refreshItemList();
                     }
                     else{
                         launchEnigma();
@@ -858,7 +853,6 @@ public class NewJDialog extends javax.swing.JDialog {
                 else{
                     setTextInConsole("You are correct!\n");
                     game.player.takeItem(sphynx.getReward());
-                    refreshItemList();
                 }
             }
             else{
@@ -944,7 +938,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel hpCounter;
     private javax.swing.JTextArea instructions;
-    private javax.swing.JComboBox itemList;
+    private static javax.swing.JComboBox itemList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
