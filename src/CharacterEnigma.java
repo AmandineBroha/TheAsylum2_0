@@ -25,7 +25,7 @@ public class CharacterEnigma extends Character
     }
     
     public void playerHasReward(){
-        NewJDialog.addTextInConsole(null);
+    
     }
     
     public Item getReward(){

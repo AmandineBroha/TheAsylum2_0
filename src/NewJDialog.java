@@ -285,6 +285,11 @@ public class NewJDialog extends javax.swing.JDialog {
         clapHands.setModal(true);
         clapHands.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         clapHands.setPreferredSize(new java.awt.Dimension(300, 200));
+        clapHands.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                clapWait(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         jLabel4.setText("Clap your hands!");
@@ -294,16 +299,16 @@ public class NewJDialog extends javax.swing.JDialog {
         clapHandsLayout.setHorizontalGroup(
             clapHandsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clapHandsLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(68, 68, 68))
+                .addGap(27, 27, 27))
         );
         clapHandsLayout.setVerticalGroup(
             clapHandsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clapHandsLayout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
+            .addGroup(clapHandsLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
                 .addComponent(jLabel4)
-                .addGap(85, 85, 85))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -936,6 +941,13 @@ public class NewJDialog extends javax.swing.JDialog {
         } catch (Exception e) {addTextInConsole(e.getMessage());}
         
     }//GEN-LAST:event_okEnigmaButtonActionPerformed
+
+    private void clapWait(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_clapWait
+        // TODO add your handling code here:
+        Wait();
+        Wait();
+        clapHands.setVisible(false);
+    }//GEN-LAST:event_clapWait
 
     /**
      * @param args the command line arguments
