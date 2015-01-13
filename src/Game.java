@@ -35,6 +35,8 @@ public class Game
     public final Item potion = new Item("potion", 1);
     public final Item never = new Item("never ever EVER",1);
     
+    boolean enterHall = false;
+    
     
     /**
      * Create the game and initialise its internal map.
@@ -51,10 +53,6 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      */
-    private void createItems()
-    {
-        
-    }
     private void createRooms()
     {
         Room garden, hall, refectory, logeGardien, RobertRoom, stairs, kitchen, laboratory;
@@ -77,7 +75,15 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("");
+                if (enterHall){
+                    System.out.println("déja entré");
+                    NewJDialog.addTextInConsole("");
+                }
+                else {
+                    enterHall = true;
+                    System.out.println("prems");
+                    NewJDialog.addTextInConsole("You just entered the Asylum... \nnow let's discover the truth! \nVisit the building.\n");
+                }
             }
             
         };
@@ -85,14 +91,14 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("");            }
+                NewJDialog.addTextInConsole("There does not seem to have a clue... \nContinue\n");            }
             
         };
         logeGardien = new Room("in the guardian lounge","logegardien.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("");
+                NewJDialog.addTextInConsole("Press 'Choices' to fight!");
             }
             
         };
@@ -100,7 +106,7 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("");
+                NewJDialog.addTextInConsole("You should thing something interesting \nhere...\n");
             }
             
         };
@@ -116,7 +122,7 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("");
+                NewJDialog.addTextInConsole("There does not seem to have a clue... \nContinue\n");
             }
             
         };
@@ -124,7 +130,7 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("You are meeting a mad scientist. \n \"Hi my dear friend! \n I hope you enjoy your visit. \n Let me ask you a little question \n before you continue...\n Maybe it will help you gaining some health, \n we don't know what could\n happen to you in the future!\" ");
+                NewJDialog.addTextInConsole("You are meeting a mad scientist. \n \"Hi my dear friend! \n I hope you enjoy your visit. \n Let me ask you a little question \n before you continue...\n Maybe it will help you gaining some \nhealth, we don't know what could\n happen to you in the future!\" \nPress 'Choices' to get the health points!\n ");
             }
             
         };
@@ -278,6 +284,7 @@ public class Game
                         + "the mountain, and the beach.\n\n");                
                 NewJDialog.addTextInConsole("Again: the bridge,\n"
                         + "the mountain, and the beach!\n");
+                NewJDialog.Wait();
             }
             
         };
@@ -361,7 +368,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(Blackout,garden));
+        garden.addexits("north", new ExitRoom(hall,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
