@@ -556,10 +556,10 @@ public class NewJDialog extends javax.swing.JDialog {
     {
         return game.player.getHealthPoint() > 0;
     }
-    
+
     private boolean isChecked()
     {
-         if (game.getCurrentRoom().getDescription()=="in the entry hall")
+         if (isTheRoom("in the entry hall"))
          {
              return true;
          }
@@ -723,13 +723,14 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_downArrowActionPerformed
 
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
+        porte3=isChecked();
         if (!isThereZombie() && isAlive())
         {
         game.goRoom(new Command("go","east"));
         //game.getCurrentRoom().onEnter();
         //setScene(game.getCurrentRoom().getImage());
         //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-        porte3=isChecked();
+        
             if (isTheRoom("in the entry hall") && game.playerHasItem("key"))
             {
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
@@ -750,13 +751,14 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_rightArrowActionPerformed
 
     private void leftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowActionPerformed
+        porte1=isChecked();
         if (!isThereZombie() && isAlive())
         {
             game.goRoom(new Command("go","west"));
             //game.getCurrentRoom().onEnter();
             //setScene(game.getCurrentRoom().getImage());
             //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-            porte1=isChecked();
+            
             if (isTheRoom("in Robert's bedroom") && !game.playerHasItem("note"))
             {
                 if (game.playerHasItem("note")){
@@ -776,6 +778,8 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_leftArrowActionPerformed
 
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
+       
+            porte2=isChecked();
         if (!isThereZombie() && isAlive())
         {
          if (isTheRoom("bou"))
@@ -786,7 +790,7 @@ public class NewJDialog extends javax.swing.JDialog {
         //game.getCurrentRoom().onEnter();
         //setScene(game.getCurrentRoom().getImage());
         //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-        porte2=isChecked();
+        
             //Enter the guardian lounge for the first time
             if (isTheRoom("in the guardian lounge") && isThereZombie())
             {
