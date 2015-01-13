@@ -507,6 +507,7 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton1.setVisible(false);
         jRadioButton2.setVisible(false);
         jRadioButton3.setVisible(false);
+        goButton.setVisible(false);
     }
      
     private void setAnswersVisible()
@@ -785,7 +786,6 @@ public class NewJDialog extends javax.swing.JDialog {
         System.out.println(win);
         if (win==1){
             game.getCurrentRoom().removeCharacter();
-            goButton.setVisible(false);
             manche=1;
             setTextInConsole("You defeated the enemy.");
             if (isTheRoom("in the Head's office"))
@@ -842,7 +842,7 @@ public class NewJDialog extends javax.swing.JDialog {
                     //setScene(game.getCurrentRoom().getImage());
                     //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                     hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
-                    itemList.removeAllItems();
+                    setChoicesInvisible();
                 }
             }
             
@@ -912,7 +912,14 @@ public class NewJDialog extends javax.swing.JDialog {
                 }
                 else{
                     setTextInConsole("You are correct!\n");
+                    if (!isTheRoom("in the laboratory"))
+                    {
                     game.player.takeItem(sphynx.getReward());
+                    }
+                    else{
+                        game.player.heal(2);
+                        setHP();
+                    }
                 }
             }
             else{

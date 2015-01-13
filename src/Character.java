@@ -62,6 +62,7 @@ public class Character
     public void heal(int Vie)
     {
         HealthPoint += Vie;
+        
     }
     
     public int fight(String playerchoice, Character enemy,int manche, int tour)
