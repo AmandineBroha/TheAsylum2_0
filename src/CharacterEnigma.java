@@ -19,7 +19,7 @@ public class CharacterEnigma extends Character
     public CharacterEnigma(String name, Room myRoom, Item reward)
     {
         // initialise instance variables
-        super(name, myRoom,4);
+        super(name, myRoom,3);
         listEnigma = new ArrayList<Enigma>();
         this.reward = reward;
     }
