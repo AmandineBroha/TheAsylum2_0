@@ -51,6 +51,10 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      */
+    private void createItems()
+    {
+        
+    }
     private void createRooms()
     {
         Room garden, hall, refectory, logeGardien, RobertRoom, stairs, kitchen, laboratory;
@@ -274,7 +278,6 @@ public class Game
                         + "the mountain, and the beach.\n\n");                
                 NewJDialog.addTextInConsole("Again: the bridge,\n"
                         + "the mountain, and the beach!\n");
-                NewJDialog.Wait();
             }
             
         };
