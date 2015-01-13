@@ -62,6 +62,10 @@ public class Character
     public void heal(int Vie)
     {
         HealthPoint += Vie;
+        if (HealthPoint>4)
+        {
+            HealthPoint=4;
+        }
     }
     
     public int fight(String playerchoice, Character enemy,int manche, int tour)
