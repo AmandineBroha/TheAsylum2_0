@@ -56,7 +56,7 @@ public class Game
     private void createRooms()
     {
         Room garden, hall, refectory, logeGardien, RobertRoom, stairs, kitchen, laboratory;
-        Room directorOffice,danslesvape, exit, chambreIRL, tulipefield, rainbowPlace,simbaPlace;
+        Room directorOffice,Blackout, exit, chambreIRL, tulipefield, rainbowPlace,simbaPlace;
         Room caseDora, robotPlace;
       
         // create the rooms
@@ -147,11 +147,11 @@ public class Game
             }
             
         };
-         danslesvape = new Room("bou","noir.png")        {
+         Blackout = new Room("in the dark","noir.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("Vous etes dans les vapes");
+                NewJDialog.addTextInConsole("You lose against the Boss.\nYou knew that something was wrong\nwith this place.\nBefore you passed out\nyou felt that he has injected\nsomething to you.\nWhen you wake up, you see nothing\nexcept your own body.\n\nTry to move in every direction to\nfind a way out.");
             }
             
         };
@@ -214,14 +214,17 @@ public class Game
                     NewJDialog.addTextInConsole("\nGreetings stranger!\n"
                     +"Please be welcome into my Kingdom,\n"
                     +"the wonderful land of Pony World!\n"
-                    +"Oh, but our land is in\ndanger, Dear Mister...\n"
+                    +"Oh, but our land is in\ndanger, "
+                    + "Dear Mister...\n"
                     + "An evil robot has emerged from the\n"
-                    + "darkness of the lands of the Volcanoes.\n"
-                    + "He has stolen the MAgical Rainbow that\n"
-                    + "holds our entire Universe together!\n"
+                    + "darkness of the lands of the "
+                    + "Volcanoes.\n"
+                    + "He has stolen the Magical "
+                    + "Rainbow that holds our entire"
+                    + "Universe together!\n"
                     + "It is predicted that our savior\n"
-                    + "holds the answers to all of the wolrd's\n"
-                    + "enigmas.\n"
+                    + "holds the answers to all of the "
+                    + "wolrd's enigmas.\n"
                     + "May I verify that you, Sir, are\n"
                     + "the savior of our world?\n"
                     + "Click on 'Choice' to answer\n"
@@ -306,9 +309,9 @@ public class Game
         Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma kingE = new Enigma("What is the best ingredient of my Royal Deluxe ? ", "Goat cheese","Bacon","Salad","Mustard");
         Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
-        Enigma robotE1 = new Enigma("Quelle attaque voulez vous utilisez ", "Bisousss","Updago","Rouille","Trempette");
-        Enigma robotE2 = new Enigma("Quelle attaque voulez vous utilisez ", "Petit toutou trop choupinou","DRROOGGUUUEEEE","Wall-E","Bisous Puissant");
-        Enigma robotE3 = new Enigma("Quelle attaque voulez vous utilisez ", "Je divague...vague","Trop bien ce Jeu mais un peu WTF","PONEEYYY","C'est pas bien d'être méchant");
+        Enigma robotE1 = new Enigma("Which fabulous attack would you use ? ", "Kiisssss","Updago","Rust","Splash");
+        Enigma robotE2 = new Enigma("Which marvelous attack would you use ? ", "Little cute puppy","DRRUUGGSSS","Wall-E","Mighty Kiss");
+        Enigma robotE3 = new Enigma("Which powerful attack would you use ?  ", "What i'm doing here ? ","This game is great but a little WTF","LLICCOORRNN","It's not good to be bad");
         
         //Initialise characters
         Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
@@ -340,7 +343,7 @@ public class Game
         CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow){
             @Override
             public void playerHasReward(){
-                NewJDialog.addTextInConsole("You beat me MF");
+                NewJDialog.addTextInConsole("You already made me sad ! ");
             }
         };
         
@@ -381,8 +384,8 @@ public class Game
         kitchen.addexits("west",new ExitRoom(hall,kitchen));
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
         directorOffice.addexits("east",new ExitRoom(chambreIRL,directorOffice));
-        directorOffice.addexits("north",new ExitRoom(danslesvape,directorOffice));
-        danslesvape.addexits("north",new ExitRoom(tulipefield,danslesvape));
+        directorOffice.addexits("north",new ExitRoom(Blackout,directorOffice));
+        Blackout.addexits("north",new ExitRoom(tulipefield,Blackout));
         tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));

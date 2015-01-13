@@ -49,7 +49,7 @@ public class Enigma
         return answers;
     }
 
-
+    
      
     public boolean answer(String playerchoice){
         if (playerchoice.equals(rightAnswer)){ 
