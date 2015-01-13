@@ -52,7 +52,7 @@ public class Game
     private void createRooms()
     {
         Room garden, hall, refectory, logeGardien, RobertRoom, stairs, kitchen, laboratory;
-        Room directorOffice, exit, chambreIRL, tulipefield, rainbowPlace,simbaPlace;
+        Room directorOffice,danslesvape, exit, chambreIRL, tulipefield, rainbowPlace,simbaPlace;
         Room caseDora, robotPlace;
       
         // create the rooms
@@ -130,6 +130,14 @@ public class Game
             }
             
         };
+         danslesvape = new Room("bou","/noir.png")        {
+            @Override
+            public void onEnter() {
+                super.onEnter();
+                NewJDialog.addTextInConsole("Vous etes dans les vapes");
+            }
+            
+        };
         chambreIRL = new Room("in your cell","/roomIRL.png")        {
             @Override
             public void onEnter() {
@@ -164,7 +172,7 @@ public class Game
 //                    System.out.println();
 //                } 
                 NewJDialog.addTextInConsole("You must clap in your hands if you want to leave!");
-                NewJDialog.addTextInConsole(player.takeItem(translator));
+                player.takeItem(translator);
                 //NewJDialog.refreshItemList();            
             }
             
@@ -249,7 +257,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(tulipefield,garden));
+        garden.addexits("north", new ExitRoom(kitchen,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
@@ -265,7 +273,8 @@ public class Game
         kitchen.addexits("west",new ExitRoom(hall,kitchen));
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
         directorOffice.addexits("east",new ExitRoom(chambreIRL,directorOffice));
-        directorOffice.addexits("north",new ExitRoom(tulipefield,directorOffice));
+        directorOffice.addexits("north",new ExitRoom(danslesvape,directorOffice));
+        danslesvape.addexits("north",new ExitRoom(tulipefield,danslesvape));
         tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));

@@ -59,9 +59,9 @@ public class Character
     
     //The player regains health; used when the player takes a potion
     //or to restart the game
-    public void heal(Item potion)
+    public void heal(int Vie)
     {
-        HealthPoint += 2;
+        HealthPoint += Vie;
     }
     
     public int fight(String playerchoice, Character enemy,int manche, int tour)

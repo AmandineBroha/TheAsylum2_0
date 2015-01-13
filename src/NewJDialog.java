@@ -586,7 +586,10 @@ public class NewJDialog extends javax.swing.JDialog {
         { 
         setChoicesInvisible();
         goButton.setVisible(false);
+        launchEnigma();
         }
+        
+        
     }//GEN-LAST:event_choicesButtonActionPerformed
 
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
@@ -637,12 +640,11 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             setTextInConsole("You can't escape!");
         }
-        launchEnigma();
+        
         
     }//GEN-LAST:event_rightArrowActionPerformed
 
     private void leftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowActionPerformed
-        
         if (!isThereZombie() && isAlive())
         {
             game.goRoom(new Command("go","west"));
@@ -653,7 +655,6 @@ public class NewJDialog extends javax.swing.JDialog {
             {
                 if (game.getkeyItem("note")){
                     addTextInConsole("You already took the note");
-                    refreshItemList();
                 }
                 else {
                     game.player.takeItem(game.note);
@@ -665,13 +666,17 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             setTextInConsole("You can't escape!");
         }
-        launchEnigma();
+        
         
     }//GEN-LAST:event_leftArrowActionPerformed
 
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
         if (!isThereZombie() && isAlive())
         {
+         if (isTheRoom("bou"))
+            {
+                hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
+            }   
         game.goRoom(new Command("go","north"));
         //game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
@@ -691,13 +696,18 @@ public class NewJDialog extends javax.swing.JDialog {
                     + "A black veil falls upon your eyes\n"
                     + "and you're never going to wake up again");
             retryPane.setVisible(true);
-            }            
+            }
+            
         }
         else if (isThereZombie())
         {
             setTextInConsole("You can't escape!");
         }
-        launchEnigma();
+        
+        
+        
+        
+        
     }//GEN-LAST:event_upArrowActionPerformed
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
@@ -731,7 +741,7 @@ public class NewJDialog extends javax.swing.JDialog {
         Character enemy = game.getCurrentRoom().getCharacter();
         int win;
          if (isTheRoom("in the Head's office")){
-             win= game.player.fight(choix, enemy,manche,5);    
+             win= game.player.fight(choix, enemy,manche,15);    
          }
          else{
              win= game.player.fight(choix, enemy,manche,2);    
@@ -739,21 +749,26 @@ public class NewJDialog extends javax.swing.JDialog {
         
         System.out.println(win);
         if (win==1){
+            game.getCurrentRoom().removeCharacter();
             goButton.setVisible(false);
             manche=1;
             setTextInConsole("You defeated the enemy.");
             if (isTheRoom("in the Head's office"))
             {
-                Wait();
+                game.getCurrentRoom().removeCharacter();
+                //Wait();
+                
                 game.goRoom(new Command("go","east"));
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
-                itemList.removeAllItems();
+                
             }
             if (isTheRoom("in the guardian lounge")){
+                
                 addTextInConsole("\nHe dropped an old key."
                 + "\nYou decided to take it.");
                 game.player.takeItem(game.item);
+                
                 refreshItemList();
             }
             game.getCurrentRoom().removeCharacter();
@@ -781,26 +796,31 @@ public class NewJDialog extends javax.swing.JDialog {
             }
         }
         else{
+           
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 if(!isAlive()){
-                    Wait();
+                    //Wait();
+                    game.player.heal(1);
+                    game.getCurrentRoom().removeCharacter();
                     game.goRoom(new Command("go","north"));
                     scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-                    hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
-                    itemList.removeAllItems();
+                    
+                    
                 }
             }
             
             else 
             {
+                addTextInConsole("\n Keep Fighting");
                     if (game.player.getHealthPoint()==0)
-        {
-            retryPane.setVisible(true);
-        }
+                    {
+                        retryPane.setVisible(true);
+                    }
+                    
             }
-            addTextInConsole("\n Keep Fighting");
-            setHP();
+            
+           setHP(); 
         buttonGroup1.clearSelection();
     }//GEN-LAST:event_goButtonActionPerformed
     }

@@ -10,7 +10,7 @@ public class Players extends Character
 {
     // instance variables - replace the example below with your own
     ArrayList<Item> listItem;
-    private static final int MaxWeight = 3;
+    private static final int MaxWeight = 10;
     private int totalWeight;
     private int EnnemyHealth;
 
@@ -65,4 +65,12 @@ public ArrayList<Item> getListItem()
     void combat(int i, ButtonModel selection) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+public void rebootList()
+{
+   for(Item i : listItem)
+   {
+       listItem.remove(i);
+   }
+}
 }
