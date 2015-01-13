@@ -53,6 +53,7 @@ public class NewJDialog extends javax.swing.JDialog {
     public NewJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        clapHands.setVisible(false);
         
         mainWindow = this;
         //
@@ -119,6 +120,8 @@ public class NewJDialog extends javax.swing.JDialog {
         questionLabel = new javax.swing.JLabel();
         okEnigmaButton = new javax.swing.JButton();
         enigmaButtons = new javax.swing.ButtonGroup();
+        clapHands = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
         scene = new javax.swing.JLabel();
         choicesButton = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -276,6 +279,32 @@ public class NewJDialog extends javax.swing.JDialog {
         enigmaButtons.add(answer2);
         enigmaButtons.add(answer3);
         enigmaButtons.add(answer4);
+
+        clapHands.setMaximumSize(new java.awt.Dimension(300, 200));
+        clapHands.setMinimumSize(new java.awt.Dimension(300, 200));
+        clapHands.setModal(true);
+        clapHands.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        clapHands.setPreferredSize(new java.awt.Dimension(300, 200));
+
+        jLabel4.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
+        jLabel4.setText("Clap your hands!");
+
+        javax.swing.GroupLayout clapHandsLayout = new javax.swing.GroupLayout(clapHands.getContentPane());
+        clapHands.getContentPane().setLayout(clapHandsLayout);
+        clapHandsLayout.setHorizontalGroup(
+            clapHandsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clapHandsLayout.createSequentialGroup()
+                .addContainerGap(73, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(68, 68, 68))
+        );
+        clapHandsLayout.setVerticalGroup(
+            clapHandsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clapHandsLayout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(85, 85, 85))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -546,6 +575,10 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }
     
+    public static void setScene(ImageIcon source){
+        scene.setIcon(source);
+    }
+    
     private void launchEnigma()
     {
         if (isThereEnigma()){
@@ -599,7 +632,8 @@ public class NewJDialog extends javax.swing.JDialog {
            // else{    
             game.goRoom(new Command("go","south"));
             //game.getCurrentRoom().onEnter();
-            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+            //setScene(game.getCurrentRoom().getImage());
+            //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
             if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
             {
                 game.player.takeItem(game.fairy);
@@ -619,7 +653,8 @@ public class NewJDialog extends javax.swing.JDialog {
         {
         game.goRoom(new Command("go","east"));
         //game.getCurrentRoom().onEnter();
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+        //setScene(game.getCurrentRoom().getImage());
+        //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
             if (isTheRoom("in the entry hall") && game.getkeyItem("key"))
             {
@@ -646,7 +681,8 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             game.goRoom(new Command("go","west"));
             //game.getCurrentRoom().onEnter();
-            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+            //setScene(game.getCurrentRoom().getImage());
+            //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
             porte1=isChecked();
             if (isTheRoom("in Robert's bedroom") && !game.getkeyItem("note"))
             {
@@ -671,7 +707,8 @@ public class NewJDialog extends javax.swing.JDialog {
         {
         game.goRoom(new Command("go","north"));
         //game.getCurrentRoom().onEnter();
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+        //setScene(game.getCurrentRoom().getImage());
+        //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
             //Enter the guardian lounge for the first time
             if (isTheRoom("in the guardian lounge") && isThereZombie())
@@ -743,7 +780,8 @@ public class NewJDialog extends javax.swing.JDialog {
             {
                 Wait();
                 game.goRoom(new Command("go","east"));
-                scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                //setScene(game.getCurrentRoom().getImage());
+                //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                 itemList.removeAllItems();
             }
@@ -753,7 +791,8 @@ public class NewJDialog extends javax.swing.JDialog {
                 game.player.takeItem(game.item);
             }
             game.getCurrentRoom().removeCharacter();
-            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+            //setScene(game.getCurrentRoom().getImage());
+            //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
             addTextInConsole("\nThe combat is over.");
             setHP();
             setChoicesInvisible();
@@ -782,7 +821,8 @@ public class NewJDialog extends javax.swing.JDialog {
                 if(!isAlive()){
                     Wait();
                     game.goRoom(new Command("go","north"));
-                    scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                    //setScene(game.getCurrentRoom().getImage());
+                    //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                     hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                     itemList.removeAllItems();
                 }
@@ -931,6 +971,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JRadioButton answer4;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton choicesButton;
+    public static javax.swing.JDialog clapHands;
     private javax.swing.JButton downArrow;
     private javax.swing.ButtonGroup enigmaButtons;
     private javax.swing.JDialog enigmaDialog;
@@ -942,6 +983,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -954,7 +996,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JButton retryButton;
     private javax.swing.JDialog retryPane;
     private javax.swing.JButton rightArrow;
-    private javax.swing.JLabel scene;
+    private static javax.swing.JLabel scene;
     private javax.swing.JButton upArrow;
     // End of variables declaration//GEN-END:variables
 }

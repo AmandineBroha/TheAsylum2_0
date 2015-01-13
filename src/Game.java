@@ -56,7 +56,7 @@ public class Game
         Room caseDora, robotPlace;
       
         // create the rooms
-        garden = new Room("in the garden","/garden.png")
+        garden = new Room("in the garden","garden.png")
         {
             @Override
             public void onEnter() {
@@ -67,7 +67,7 @@ public class Game
         };
         
 //        garden = new Room("in the garden","/garden.png");
-        hall = new Room("in the entry hall","/hall.png")        {
+        hall = new Room("in the entry hall","hall.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -75,14 +75,14 @@ public class Game
             }
             
         };
-        refectory = new Room("in the refectory","/refectoire.png")        {
+        refectory = new Room("in the refectory","refectoire.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
                 NewJDialog.addTextInConsole("");            }
             
         };
-        logeGardien = new Room("in the guardian lounge","/logegardien.png")        {
+        logeGardien = new Room("in the guardian lounge","logegardien.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -90,7 +90,7 @@ public class Game
             }
             
         };
-        RobertRoom = new Room("in Robert's bedroom","/robert.png")        {
+        RobertRoom = new Room("in Robert's bedroom","robert.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -98,7 +98,7 @@ public class Game
             }
             
         };
-        stairs = new Room("in the stairs","/stairs.png")        {
+        stairs = new Room("in the stairs","stairs.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -114,7 +114,7 @@ public class Game
             }
             
         };
-        laboratory = new Room("in the laboratory","/laboratory.png")        {
+        laboratory = new Room("in the laboratory","laboratory.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -122,7 +122,7 @@ public class Game
             }
             
         };
-        directorOffice = new Room("in the Head's office","/bureauBoss.png")        {
+        directorOffice = new Room("in the Head's office","bureauBoss.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -130,7 +130,7 @@ public class Game
             }
             
         };
-        chambreIRL = new Room("in your cell","/roomIRL.png")        {
+        chambreIRL = new Room("in your cell","roomIRL.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -138,7 +138,7 @@ public class Game
             }
             
         };
-        tulipefield = new Room(" in the tulips field","/tulips.png")        {
+        tulipefield = new Room(" in the tulips field","tulips.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -146,7 +146,7 @@ public class Game
             }
             
         }; 
-        rainbowPlace = new Room("in the rainbowplace","/rainbowfield.png")        {
+        rainbowPlace = new Room("in the rainbowplace","rainbowfield.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -154,22 +154,20 @@ public class Game
             }
             
         }; 
-        simbaPlace = new Room("in the savane Papy Brossard","/simba.png")        {
+        simbaPlace = new Room("in the savane Papy Brossard","simba.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
-                //int j = 0;
                 NewJDialog.addTextInConsole("\"I heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
-//                while (j < 100){
-//                    System.out.println();
-//                } 
-                NewJDialog.addTextInConsole("You must clap in your hands if you want to leave!");
+                NewJDialog.clapHands.setVisible(true);
+                NewJDialog.Wait();
+                NewJDialog.Wait();
                 player.takeItem(translator);
                            
             }
             
         };
-        caseDora = new Room("in the Dora's  way","/dora.png")        {
+        caseDora = new Room("in the Dora's  way","dora.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -177,7 +175,7 @@ public class Game
             }
             
         };
-        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","/fight_robot.png")        {
+        robotPlace = new Room("in the evil dark  creepy volcano of the dark shadow","fight_robot.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
@@ -381,6 +379,7 @@ public class Game
             else
             {
                 currentRoom = nextRoom;
+                NewJDialog.setScene(getCurrentRoom().getImage());
                 currentRoom.onEnter();
                 //return "You are " + currentRoom.getDescription() + "\n";
                 
