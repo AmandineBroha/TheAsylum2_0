@@ -131,10 +131,8 @@ public class Game
                 NewJDialog.addTextInConsole("\"Hello Mr. Smith."
                         + "\nI was waiting for you...\n"
                         + "I will answer ALL\n"
-                        + "of your questions...\n"
-                        + "ONCE WE BATTLE!\n"
-                        + "I'm not as weak as\n"
-                        + "my henchmen!\n\n"
+                        + "of your questions...ONCE WE BATTLE!\n"
+                        + "I'm not as weak as my henchmen!\n\n"
                         + "Press 'Choices' to fight!");
             }
             
@@ -185,7 +183,7 @@ public class Game
                         +"You've arrived to Pony World\n"
                         +"Our King wwilll be pleased\n"
                         +"to welcome you."
-                        +"But the Teletubbies are blocking"
+                        +"But the Teletubbies are\nblocking"
                         +"the way!.\n"
                         +"Would you remind us their initials\n"
                         +"so that we can call them?\n"
