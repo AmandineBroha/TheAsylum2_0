@@ -299,9 +299,9 @@ public class Game
         Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma kingE = new Enigma("What is the best ingredient of my Royal Deluxe ? ", "Goat cheese","Bacon","Salad","Mustard");
         Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
-        Enigma robotE1 = new Enigma("Quelle attaque voulez vous utilisez ", "Bisousss","Updago","Rouille","Trempette");
-        Enigma robotE2 = new Enigma("Quelle attaque voulez vous utilisez ", "Petit toutou trop choupinou","DRROOGGUUUEEEE","Wall-E","Bisous Puissant");
-        Enigma robotE3 = new Enigma("Quelle attaque voulez vous utilisez ", "Je divague...vague","Trop bien ce Jeu mais un peu WTF","PONEEYYY","C'est pas bien d'être méchant");
+        Enigma robotE1 = new Enigma("Which fabulous attack would you use ? ", "Kiisssss","Updago","Rust","Splash");
+        Enigma robotE2 = new Enigma("Which marvelous attack would you use ? ", "Little cute puppy","DRRUUGGSSS","Wall-E","Mighty Kiss");
+        Enigma robotE3 = new Enigma("Which powerful attack would you use ?  ", "What i'm doing here ? ","This game is great but a little WTF","LLICCOORRNN","It's not good to be bad");
         
         //Initialise characters
         Character zombieGuardian = new Character("A zombie",logeGardien, 2, true);
@@ -333,7 +333,7 @@ public class Game
         CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow){
             @Override
             public void playerHasReward(){
-                NewJDialog.addTextInConsole("You beat me MF");
+                NewJDialog.addTextInConsole("You already made me sad ! ");
             }
         };
         
@@ -358,7 +358,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(robotPlace,garden));
+        garden.addexits("north", new ExitRoom(hall,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));

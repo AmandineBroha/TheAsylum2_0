@@ -688,6 +688,10 @@ public class NewJDialog extends javax.swing.JDialog {
         else if(isTheRoom("in your cell")){
             choicePill.setVisible(true);
         }
+        else if (isTheRoom("in the rainbowplace") && !game.playerHasItem("translator"))
+        {
+        addTextInConsole("You must find someone who can \n help you to understand the Poney King");    
+        }
         else{ 
         setChoicesInvisible();
         goButton.setVisible(false);
