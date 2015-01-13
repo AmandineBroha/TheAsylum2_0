@@ -330,7 +330,7 @@ public class Game
         CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow){
             @Override
             public void playerHasReward(){
-                NewJDialog.addTextInConsole("You beat me MF");
+                NewJDialog.addTextInConsole("You already made me sad ! ");
             }
         };
         
@@ -355,7 +355,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(robotPlace,garden));
+        garden.addexits("north", new ExitRoom(hall,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
