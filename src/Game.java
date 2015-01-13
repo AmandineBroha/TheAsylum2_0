@@ -106,7 +106,13 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("You should thing something interesting \nhere...\n");
+                NewJDialog.addTextInConsole("You should find something interesting \nhere...\n"
+                        + "You see a note on the floor : \n"
+                        + "''I'm mad, I don't know if I ever going\n"
+                        + " to get out of this Asylum. All I know is\n"
+                        + "that I must find the director's office.''\n\n"
+                        + "That's strange, It looks like my hand writing.\n"
+                );
             }
             
         };
@@ -284,7 +290,6 @@ public class Game
                         + "the mountain, and the beach.\n\n");                
                 NewJDialog.addTextInConsole("Again: the bridge,\n"
                         + "the mountain, and the beach!\n");
-                NewJDialog.Wait();
             }
             
         };
