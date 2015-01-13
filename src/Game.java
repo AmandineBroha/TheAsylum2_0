@@ -158,7 +158,14 @@ public class Game
             @Override
             public void onEnter() {
                 super.onEnter();
+                //int j = 0;
                 NewJDialog.addTextInConsole("\"I heard you wanted something from me!\n I will not give it to you so easily haha!\n If you realy want it... \nclap your hands. 10 times.\" ");
+//                while (j < 100){
+//                    System.out.println();
+//                } 
+                NewJDialog.addTextInConsole("You must clap in your hands if you want to leave!");
+                NewJDialog.addTextInConsole(player.takeItem(translator));
+                //NewJDialog.refreshItemList();            
             }
             
         };
@@ -186,7 +193,6 @@ public class Game
         Enigma scientist1 = new Enigma("", "1","2","3","145");
         Enigma scientist2 = new Enigma("", "1","2","3","45");
         Enigma scientist3 = new Enigma("", "1","2","3","45");
-        Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma kingE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma turtlesE = new Enigma("quel est la taille de ", "1","2","3","45");
         Enigma robotE1 = new Enigma("quel est la taille de ", "1","2","3","45");
@@ -198,7 +204,6 @@ public class Game
         Character boss = new Character("Dr. Zombie", directorOffice, 3, true);
         CharacterEnigma scientist = new CharacterEnigma("Dr. Zeus", laboratory, potion);
         CharacterEnigma ninjaTurtles = new CharacterEnigma("The Ninja Turtles", tulipefield, bisous);
-        CharacterEnigma simba = new CharacterEnigma("Simba", simbaPlace, translator);
         CharacterEnigma poneyKing = new CharacterEnigma("Poney King", rainbowPlace, poney);
         CharacterEnigma helpy = new CharacterEnigma("Helpy, the evil robot,", robotPlace, rainbow);
         
@@ -207,7 +212,6 @@ public class Game
         scientist.addEnigma(scientist2);
         scientist.addEnigma(scientist3);
         ninjaTurtles.addEnigma(turtlesE);
-        simba.addEnigma(simbaE);
         poneyKing.addEnigma(kingE);
         helpy.addEnigma(robotE1);
         helpy.addEnigma(robotE2);
@@ -219,13 +223,12 @@ public class Game
         laboratory.addCharacter(scientist);
         rainbowPlace.addCharacter(poneyKing);
         tulipefield.addCharacter(ninjaTurtles);
-        simbaPlace.addCharacter(simba);
         robotPlace.addCharacter(helpy);
         garden.addCharacter(helpy);
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(hall,garden));
+        garden.addexits("north", new ExitRoom(rainbowPlace,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));

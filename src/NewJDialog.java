@@ -447,7 +447,7 @@ public class NewJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //returns whether the player is still alive
-    private void Wait()
+    public static void Wait()
     {
         try {
                 Thread.sleep(3000);
@@ -589,7 +589,7 @@ public class NewJDialog extends javax.swing.JDialog {
         if (!isThereZombie() && isAlive())
         {
             game.goRoom(new Command("go","south"));
-            game.getCurrentRoom().onEnter();
+            //game.getCurrentRoom().onEnter();
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
             if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.getkeyItem("Fairy dust")==false))
             {
@@ -606,10 +606,11 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_downArrowActionPerformed
 
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
+        refreshItemList();
         if (!isThereZombie() && isAlive())
         {
         game.goRoom(new Command("go","east"));
-        game.getCurrentRoom().onEnter();
+        //game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         porte3=isChecked();
             if (isTheRoom("in the entry hall") && game.getkeyItem("key"))
@@ -635,10 +636,10 @@ public class NewJDialog extends javax.swing.JDialog {
         
         if (!isThereZombie() && isAlive())
         {
-        game.goRoom(new Command("go","west"));
-        game.getCurrentRoom().onEnter();
-        scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
-        porte1=isChecked();
+            game.goRoom(new Command("go","west"));
+            //game.getCurrentRoom().onEnter();
+            scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+            porte1=isChecked();
             if (isTheRoom("in Robert's bedroom") && !game.getkeyItem("note"))
             {
                 if (game.getkeyItem("note")){
@@ -655,16 +656,6 @@ public class NewJDialog extends javax.swing.JDialog {
         {
             setTextInConsole("You can't escape!");
         }
-        
-        if (game.getCurrentRoom().getDescription() == "in the savane Papy Brossard") {
-            Wait();
-            addTextInConsole("You must clap in your hands if you want to leave!");
-            Wait();
-            Wait();
-            //addTextInConsole(game.player.takeItem(game.translator));
-            refreshItemList();
-            
-        }
         launchEnigma();
         
     }//GEN-LAST:event_leftArrowActionPerformed
@@ -673,7 +664,7 @@ public class NewJDialog extends javax.swing.JDialog {
         if (!isThereZombie() && isAlive())
         {
         game.goRoom(new Command("go","north"));
-        game.getCurrentRoom().onEnter();
+        //game.getCurrentRoom().onEnter();
         scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
         porte2=isChecked();
             //Enter the guardian lounge for the first time

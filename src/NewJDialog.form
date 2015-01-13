@@ -94,18 +94,12 @@
     </Component>
     <Container class="javax.swing.JDialog" name="enigmaDialog">
       <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[373, 216]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[373, 216]"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
         <Property name="modalExclusionType" type="java.awt.Dialog$ModalExclusionType" editor="org.netbeans.modules.form.editors.EnumEditor">
           <Value id="APPLICATION_EXCLUDE"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[373, 216]"/>
         </Property>
       </Properties>
       <AuxValues>
