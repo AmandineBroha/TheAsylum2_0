@@ -5,19 +5,9 @@ import javax.swing.JPanel;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
+ *  
  * 
- *  To play this game, create an instance of this class and call the "play"
- *  method.
  * 
- *  This main class creates and initialises all the others: it creates all
- *  rooms, creates the parser and starts the game.  It also evaluates and
- *  executes the commands that the parser returns.
- * 
- * @author  Michael Kolling and David J. Barnes
- * @version 2006.03.30
  */
 
 public class Game 
@@ -25,6 +15,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     protected final  Players player; 
+    //declarations of items using in the game
     public final Item fairy = new Item("Fairy dust",1);
     public final Item item = new Item("key",1);
     public final Item note = new Item("note",1);
@@ -57,7 +48,7 @@ public class Game
         Room directorOffice,danslesvape, exit, chambreIRL, tulipefield, rainbowPlace,simbaPlace;
         Room caseDora, robotPlace;
       
-        // create the rooms
+        // create the rooms with a description of the room and a link for its  picture
         garden = new Room("in the garden","garden.png")
         {
             @Override
@@ -400,6 +391,8 @@ public class Game
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
+    
+    // When the player die this function make appear a pop up to retry or to quit
     public void retry()
     {
         player.heal(4);
@@ -468,20 +461,23 @@ public class Game
     public void goRoom(Command command) 
     {
         String direction = command.getSecondWord();
-            // Try to leave current room.
-            Room nextRoom = null;
-            Item item = null;
-            
-            if (player.getListItem().isEmpty() && (currentRoom.isMagical(direction)))
+        // Try to leave current room.
+        Room nextRoom = null;
+        Item item = null;
+        
+        
+        if (player.getListItem().isEmpty() && (currentRoom.isMagical(direction)))
             {
                 nextRoom=currentRoom;
             }
-            else if (player.getListItem().isEmpty() && !(currentRoom.isMagical(direction)))
+        
+        else if (player.getListItem().isEmpty() && !(currentRoom.isMagical(direction)))
             {
             
                 nextRoom = currentRoom.getNextRoom(direction,item);
             }
-            else
+        //the door is a magical door but the players have the items to unlock it
+        else
             {
                 for (Item i : player.getListItem())
                 {
@@ -489,23 +485,23 @@ public class Game
                     if(nextRoom != currentRoom)break;
                 }
             }
-            if (nextRoom == null) {
+        //If there is no doors in the direction
+        if (nextRoom == null) {
                  NewJDialog.addTextInConsole("There is no door!\n");
                  System.out.println("no door");
             }
-            else if(nextRoom == currentRoom)
+        // if the doors is locked 
+        else if(nextRoom == currentRoom)
             {
                  NewJDialog.addTextInConsole("The door is locked!\n");
                  System.out.println("door locked");
             }
-        
-            else
+        //The players can access to the next room    
+        else
             {
                 currentRoom = nextRoom;
                 NewJDialog.setScene(getCurrentRoom().getImage());
-                currentRoom.onEnter();
-                //return "You are " + currentRoom.getDescription() + "\n";
-                
+                currentRoom.onEnter();                                
             }
             
     }   
