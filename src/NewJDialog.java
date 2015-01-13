@@ -927,7 +927,6 @@ public class NewJDialog extends javax.swing.JDialog {
             }
             
            setHP(); 
-        buttonGroup1.clearSelection();
     }//GEN-LAST:event_goButtonActionPerformed
     }
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
