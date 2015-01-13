@@ -286,11 +286,9 @@ public class NewJDialog extends javax.swing.JDialog {
         enigmaButtons.add(answer3);
         enigmaButtons.add(answer4);
 
-        clapHands.setMaximumSize(new java.awt.Dimension(300, 200));
         clapHands.setMinimumSize(new java.awt.Dimension(300, 200));
         clapHands.setModal(true);
         clapHands.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-        clapHands.setPreferredSize(new java.awt.Dimension(300, 200));
         clapHands.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 clapWait(evt);
@@ -318,7 +316,6 @@ public class NewJDialog extends javax.swing.JDialog {
         );
 
         choicePill.setIconImage(null);
-        choicePill.setMaximumSize(new java.awt.Dimension(300, 200));
         choicePill.setMinimumSize(new java.awt.Dimension(300, 200));
         choicePill.setModal(true);
         choicePill.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
@@ -392,6 +389,7 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton1.setText("Rock");
 
         buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setSelected(true);
         jRadioButton2.setText("Paper");
 
         buttonGroup1.add(jRadioButton3);
@@ -687,6 +685,10 @@ public class NewJDialog extends javax.swing.JDialog {
         }        
         else if(isTheRoom("in your cell")){
             choicePill.setVisible(true);
+        }
+        else if (isTheRoom("in the rainbowplace") && !game.playerHasItem("translator"))
+        {
+        addTextInConsole("You must find someone who can \n help you to understand the Poney King");    
         }
         else{ 
         setChoicesInvisible();
