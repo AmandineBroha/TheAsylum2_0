@@ -33,6 +33,7 @@ public class Game
     public final Item poney = new Item("magical little poney",1);
     public final Item rainbow = new Item("Magical rainbow",1);
     public final Item potion = new Item("potion", 1);
+    public final Item never = new Item("never ever EVER",999);
     
     
     /**
@@ -198,7 +199,7 @@ public class Game
         };
         
         
-        Item never = new Item("never ever EVER",999);
+        
         
         //Create enigmas
         Enigma scientist1 = new Enigma("The Answer is really big ", "ANSWER","really big","Infinity","an elephant");
@@ -286,7 +287,7 @@ public class Game
         caseDora.addexits("south",new ExitRoom(rainbowPlace,caseDora));
         simbaPlace.addexits("east",new ExitRoom(rainbowPlace,simbaPlace));
         robotPlace.addexits("south",new MagicalExit(caseDora,robotPlace,rainbow));
-        chambreIRL.addexits("west",new MagicalExit(directorOffice,chambreIRL,never));
+        chambreIRL.addexits("north",new MagicalExit(tulipefield,chambreIRL,never));
         currentRoom = garden; //Start game in the Hall
     }
 
