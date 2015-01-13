@@ -216,7 +216,7 @@ public class Game
                     + "the savior of our world?\n"
                     + "Click on 'Choice' to answer\n"
                     + "the Prophecy's Enigma and save\n"
-                    +"our world!"
+                    +"our world!\n"
                     +"Press 'Choices'!\n");
                 }
                 

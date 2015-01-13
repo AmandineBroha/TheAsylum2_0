@@ -825,11 +825,21 @@ public class NewJDialog extends javax.swing.JDialog {
         if (isThereZombie())
         {
             String text = instructions.getText()
-                    + "\nTo fight it, use the 'Choices'\n"
+                    + "\nTo fight, use the 'Choices'\n"
                     + "button. Once you choose,\n"
                     + "click on 'Go!' \n";
             setTextInConsole(text);
         }
+        
+        else if (isTheRoom("in the rainbowplace")){
+            String text = instructions.getText()
+                    + "\nIt seems that you need"
+                    + "\nsomthing to translate what"
+                    + "\nthe King is saying."
+                    + "\n\nTry mmoving around!";
+            addTextInConsole(text);
+        }
+        
         else
         {
             String text = instructions.getText() + game.printHelp();
