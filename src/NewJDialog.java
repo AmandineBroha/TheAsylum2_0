@@ -36,6 +36,7 @@ public class NewJDialog extends javax.swing.JDialog {
     {
         getInstructions().setText(text);
     }
+    //Display text in the console text without delete the old one
     public static void addTextInConsole(String text)
     {
         String oldText = getInstructions().getText();
@@ -59,6 +60,7 @@ public class NewJDialog extends javax.swing.JDialog {
         mainWindow = this;
         //
         this.requestFocus();
+        // move with the arrowkey
         parent.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -542,7 +544,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //returns whether the player is still alive
+    //freeze the script for 3s
     public static void Wait()
     {
         try {
@@ -552,12 +554,12 @@ public class NewJDialog extends javax.swing.JDialog {
                 Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
             } 
     }
-    
+    //check is the player is alive
     private boolean isAlive()
     {
         return game.player.getHealthPoint() > 0;
     }
-
+    
     private boolean isChecked()
     {
          if (isTheRoom("in the entry hall"))
@@ -566,7 +568,9 @@ public class NewJDialog extends javax.swing.JDialog {
          }
          return false;
     }
-    
+    /**
+     * Display or not the 3 radio button
+     */
     private void setChoicesVisible() {
         jRadioButton1.setVisible(true);
         jRadioButton2.setVisible(true);
@@ -578,7 +582,9 @@ public class NewJDialog extends javax.swing.JDialog {
         jRadioButton3.setVisible(false);
         goButton.setVisible(false);
     }
-     
+     /**
+     * Display or not the answer on the enigma pop up
+     */
     private void setAnswersVisible()
     {
         answer1.setVisible(true);
@@ -591,12 +597,17 @@ public class NewJDialog extends javax.swing.JDialog {
     {
         enigmaDialog.setVisible(false);
     }
-     
+     /**
+     * return the retry panel
+     */
     public javax.swing.JDialog getRetryPane()
     {
         return retryPane;
     }
     
+    /**
+     * Display the number of hearth in function of the player's life
+     */
     private void setHP() 
     {
         int hp = game.player.getHealthPoint();
@@ -617,6 +628,9 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }
     
+    /**
+     * check with the description if the players is in the room given in parameters
+     */
     private boolean isTheRoom(String description)
     {
         return game.getCurrentRoom().getDescription().equals(description);
@@ -636,6 +650,9 @@ public class NewJDialog extends javax.swing.JDialog {
     private void characterMessage() {
         addTextInConsole(game.getCurrentRoom().getCharacter().toString());
     }
+    /**
+     * Display in the combo box the item of the player
+     */
     public static void refreshItemList(){
         itemList.removeAllItems();
          for(Item i : game.player.getListItem())
@@ -645,10 +662,16 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }
     
+    /**
+     * Display the picture of the room
+     */
     public static void setScene(ImageIcon source){
         scene.setIcon(source);
     }
     
+    /**
+     * Launch  
+     */
     private void launchEnigma()
     {
         if (isThereEnigma()){
@@ -680,7 +703,16 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }
     
+    /**
+     * Click on the Choice button
+     */
     private void choicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choicesButtonActionPerformed
+     /**
+     * If there is a zompbie in the room display the radio button
+     * if the players is in his cell display the pills pop up
+     *Add dialog if the players is in the rainbowplace to hapl the player
+     *else do nothing
+     */
         if (isThereZombie())
         {
             setChoicesVisible();
@@ -702,17 +734,17 @@ public class NewJDialog extends javax.swing.JDialog {
         
     }//GEN-LAST:event_choicesButtonActionPerformed
 
+    /**
+     * click on down arrow
+     */
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
+     /**
+     *  execute the go south command
+     */
         if (!isThereZombie() && isAlive())
         {
-//            if(game.getCurrentRoom.getNextRoom==null){
-//                 NewJDialog.addTextInConsole("There is no door!\n");
-//            }
-           // else{    
-            game.goRoom(new Command("go","south"));
-            //game.getCurrentRoom().onEnter();
-            //setScene(game.getCurrentRoom().getImage());
-            //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
+  
+            game.goRoom(new Command("go","south"));           
             if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.playerHasItem("Fairy dust")==false))
             {
                 game.player.takeItem(game.fairy);
@@ -727,6 +759,9 @@ public class NewJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_downArrowActionPerformed
 
+    /**
+     * Click on right arrow
+     */
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
         porte3=isChecked();
         if (!isThereZombie() && isAlive())
@@ -755,6 +790,10 @@ public class NewJDialog extends javax.swing.JDialog {
         
     }//GEN-LAST:event_rightArrowActionPerformed
 
+    
+    /**
+     * click on left arrow
+     */
     private void leftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowActionPerformed
         porte1=isChecked();
         if (!isThereZombie() && isAlive())
@@ -782,6 +821,9 @@ public class NewJDialog extends javax.swing.JDialog {
         
     }//GEN-LAST:event_leftArrowActionPerformed
 
+    /**
+     * Up arrow
+     */
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
        
             porte2=isChecked();
@@ -825,8 +867,14 @@ public class NewJDialog extends javax.swing.JDialog {
         
     }//GEN-LAST:event_upArrowActionPerformed
 
+    
+    /**
+     * Help button
+     */
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
-        // TODO add your handling code here:
+     /**
+     * Display in the console text a help for the player in function of the room 
+     */
         if (isThereZombie())
         {
             String text = instructions.getText()
