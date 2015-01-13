@@ -861,7 +861,7 @@ public class NewJDialog extends javax.swing.JDialog {
         Character enemy = game.getCurrentRoom().getCharacter();
         int win;
          if (isTheRoom("in the Head's office")){
-             win= game.player.fight(choix, enemy,manche,1);    
+             win= game.player.fight(choix, enemy,manche,5);    
          }
          else{
              win= game.player.fight(choix, enemy,manche,2);    
