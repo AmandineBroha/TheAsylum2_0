@@ -786,6 +786,7 @@ public class NewJDialog extends javax.swing.JDialog {
         System.out.println(win);
         if (win==1){
             game.getCurrentRoom().removeCharacter();
+            setScene(game.getCurrentRoom().getImage());
             manche=1;
             setTextInConsole("You defeated the enemy.");
             if (isTheRoom("in the Head's office"))
@@ -795,7 +796,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 
                 game.goRoom(new Command("go","east"));
                 //setScene(game.getCurrentRoom().getImage());
-                //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+                
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                 
             }
