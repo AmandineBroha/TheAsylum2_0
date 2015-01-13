@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -303,6 +304,12 @@ public class Game
             finished = processCommand(command);
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+    public void retry()
+    {
+        player.heal(4);
+        createRooms();
+        player.rebootList();
     }
 
     /**

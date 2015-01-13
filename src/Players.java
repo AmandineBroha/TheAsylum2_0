@@ -69,9 +69,6 @@ public ArrayList<Item> getListItem()
     
 public void rebootList()
 {
-   for(Item i : listItem)
-   {
-       listItem.remove(i);
-   }
+  listItem.clear();
 }
 }

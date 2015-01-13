@@ -834,13 +834,12 @@ public class NewJDialog extends javax.swing.JDialog {
            
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
+                addTextInConsole("\n Keep Fighting");
                 if(!isAlive()){
                     //Wait();
                     game.player.heal(1);
                     game.getCurrentRoom().removeCharacter();
                     game.goRoom(new Command("go","north"));
-                    //setScene(game.getCurrentRoom().getImage());
-                    //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
                     hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                     setChoicesInvisible();
                 }
@@ -862,13 +861,14 @@ public class NewJDialog extends javax.swing.JDialog {
     }
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
-//        new Game();
         JFrame parent = (JFrame) this.getParent();
+        game.retry();
         this.dispose();
-//        NewJDialog.main(null);
         NewJDialog.game = new Game();
         mainWindow = new NewJDialog(parent,true);
         mainWindow.setVisible(true);
+        System.exit(1);
+        
     }//GEN-LAST:event_retryButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
