@@ -55,7 +55,7 @@ public class NewJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         clapHands.setVisible(false);
-        
+        setSon("creepy.wav");
         mainWindow = this;
         //
         this.requestFocus();
@@ -554,7 +554,7 @@ public class NewJDialog extends javax.swing.JDialog {
     }
     private String findPathSon(String sons)
     {
-        return(getClass().getResource("/regard.wav").getPath());   
+        return(getClass().getResource(sons).getPath());   
     }
     
     private void setSon(String sons)
