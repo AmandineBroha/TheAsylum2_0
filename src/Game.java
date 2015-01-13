@@ -45,7 +45,7 @@ public class Game
     private void createRooms()
     {
         Room garden, hall, refectory, logeGardien, RobertRoom, stairs, kitchen, laboratory;
-        Room directorOffice,danslesvape, exit, chambreIRL, tulipefield, rainbowPlace,simbaPlace;
+        Room directorOffice,Blackout, exit, chambreIRL, tulipefield, rainbowPlace,simbaPlace;
         Room caseDora, robotPlace;
       
         // create the rooms with a description of the room and a link for its  picture
@@ -128,11 +128,11 @@ public class Game
             }
             
         };
-         danslesvape = new Room("bou","noir.png")        {
+         Blackout = new Room("in the dark","noir.png")        {
             @Override
             public void onEnter() {
                 super.onEnter();
-                NewJDialog.addTextInConsole("Vous etes dans les vapes");
+                NewJDialog.addTextInConsole("You lose against the Boss.\nYou knew that something was wrong\nwith this place.\nBefore you passed out\nyou felt that he has injected\nsomething to you.\nWhen you wake up, you see nothing\nexcept your own body.\n\nTry to move in every direction to\nfind a way out.");
             }
             
         };
@@ -195,14 +195,17 @@ public class Game
                     NewJDialog.addTextInConsole("\nGreetings stranger!\n"
                     +"Please be welcome into my Kingdom,\n"
                     +"the wonderful land of Pony World!\n"
-                    +"Oh, but our land is in\ndanger, Dear Mister...\n"
+                    +"Oh, but our land is in\ndanger, "
+                    + "Dear Mister...\n"
                     + "An evil robot has emerged from the\n"
-                    + "darkness of the lands of the Volcanoes.\n"
-                    + "He has stolen the MAgical Rainbow that\n"
-                    + "holds our entire Universe together!\n"
+                    + "darkness of the lands of the "
+                    + "Volcanoes.\n"
+                    + "He has stolen the Magical "
+                    + "Rainbow that holds our entire"
+                    + "Universe together!\n"
                     + "It is predicted that our savior\n"
-                    + "holds the answers to all of the wolrd's\n"
-                    + "enigmas.\n"
+                    + "holds the answers to all of the "
+                    + "wolrd's enigmas.\n"
                     + "May I verify that you, Sir, are\n"
                     + "the savior of our world?\n"
                     + "Click on 'Choice' to answer\n"
@@ -346,7 +349,7 @@ public class Game
         
         
         // initialise room exits
-        garden.addexits("north", new ExitRoom(hall,garden));
+        garden.addexits("north", new ExitRoom(Blackout,garden));
         hall.addexits("north", new MagicalExit(stairs,hall,item));
         hall.addexits("east", new MagicalExit(kitchen,hall,item));
         hall.addexits("south",new MagicalExit(garden,hall,never));
@@ -362,8 +365,8 @@ public class Game
         kitchen.addexits("west",new ExitRoom(hall,kitchen));
         laboratory.addexits("west",new ExitRoom(kitchen,laboratory));
         directorOffice.addexits("east",new ExitRoom(chambreIRL,directorOffice));
-        directorOffice.addexits("north",new ExitRoom(danslesvape,directorOffice));
-        danslesvape.addexits("north",new ExitRoom(tulipefield,danslesvape));
+        directorOffice.addexits("north",new ExitRoom(Blackout,directorOffice));
+        Blackout.addexits("north",new ExitRoom(tulipefield,Blackout));
         tulipefield.addexits("north",new MagicalExit(rainbowPlace,tulipefield,bisous));
         rainbowPlace.addexits("north",new MagicalExit(caseDora,rainbowPlace,poney));
         rainbowPlace.addexits("south",new ExitRoom(tulipefield,rainbowPlace));
