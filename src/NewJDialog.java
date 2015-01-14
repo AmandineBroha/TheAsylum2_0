@@ -380,23 +380,26 @@ public class NewJDialog extends javax.swing.JDialog {
 
         Credit.setMaximumSize(new java.awt.Dimension(800, 700));
         Credit.setMinimumSize(new java.awt.Dimension(800, 700));
+        Credit.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        Credit.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         Credit.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dora.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/end.png"))); // NOI18N
+        jLabel7.setOpaque(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 489, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         Credit.getContentPane().add(jPanel2, new java.awt.GridBagConstraints());
@@ -788,7 +791,11 @@ public class NewJDialog extends javax.swing.JDialog {
         if (!isThereZombie() && isAlive())
         {
   
-            game.goRoom(new Command("go","south"));           
+            game.goRoom(new Command("go","south"));
+            //end the game
+            if (isTheRoom("in the rainbowplace") &&(game.playerHasItem("Magical rainbow")) ){
+                Credit.setVisible(true);
+            }
             if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.playerHasItem("Fairy dust")==false))
             {
                 game.player.takeItem(game.fairy);
@@ -812,7 +819,10 @@ public class NewJDialog extends javax.swing.JDialog {
         if (!isThereZombie() && isAlive())
         {
         game.goRoom(new Command("go","east"));
-        
+        //end the game
+            if (isTheRoom("in the rainbowplace") &&(game.playerHasItem("Magical rainbow")) ){
+                Credit.setVisible(true);
+            }
             // if the player is in the hall and got the key , he can go to the left
             if (isTheRoom("in the entry hall") && game.playerHasItem("key"))
             {
@@ -842,8 +852,11 @@ public class NewJDialog extends javax.swing.JDialog {
         porte1=isChecked();
         if (!isThereZombie() && isAlive())
         {
-            game.goRoom(new Command("go","west"));   
-            
+            game.goRoom(new Command("go","west"));
+            //end the game
+            if (isTheRoom("in the rainbowplace") &&(game.playerHasItem("Magical rainbow")) ){
+                Credit.setVisible(true);
+            }
             // if the player is in the robert room a song is playing and he take the note  
             if (isTheRoom("in Robert's bedroom") && !game.playerHasItem("note"))
             {
@@ -875,12 +888,16 @@ public class NewJDialog extends javax.swing.JDialog {
         porte2=isChecked();
         if (!isThereZombie() && isAlive())
         {
+            //end the game
+            if (isTheRoom("in the rainbowplace") &&(game.playerHasItem("Magical rainbow")) ){
+                Credit.setVisible(true);
+            }
             // modify the health bar
-         if (isTheRoom("in the dark"))
+            if (isTheRoom("in the dark"))
             {
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
             }   
-        game.goRoom(new Command("go","north"));
+            game.goRoom(new Command("go","north"));
                 
             //Enter the guardian lounge for the first time
             if (isTheRoom("in the guardian lounge") && isThereZombie())
