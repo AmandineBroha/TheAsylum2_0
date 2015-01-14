@@ -753,11 +753,12 @@ public class NewJDialog extends javax.swing.JDialog {
                 game.getCurrentRoom().addCharacter(new Character("A zombie", game.getCurrentRoom(), 2, true));
                 characterMessage();
             }
-        }
-        else if (isTheRoom("in the laboratory"))
+            else if (isTheRoom("in the laboratory"))
         {
-            
+         setSon("/scientist.wav");   
         }
+        }
+        
         else if (isThereZombie())
         {
             setTextInConsole("You can't escape!");
@@ -885,6 +886,7 @@ public class NewJDialog extends javax.swing.JDialog {
         
         System.out.println(win);
         if (win==1){
+            setSon("yeah.wav");
             game.getCurrentRoom().removeCharacter();
             setScene(game.getCurrentRoom().getImage());
             manche=1;
@@ -915,7 +917,7 @@ public class NewJDialog extends javax.swing.JDialog {
         }
         else if(win==2){
             manche++;
-            
+            setSon("/punch.wav");
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 
@@ -932,7 +934,7 @@ public class NewJDialog extends javax.swing.JDialog {
             }
         }
         else{
-           
+          setSon("/scream.wav");
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 addTextInConsole("\n Keep Fighting");
@@ -963,6 +965,7 @@ public class NewJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         JFrame parent = (JFrame) this.getParent();
         game.retry();
+        son.stop();
         this.dispose();
         NewJDialog.game = new Game();
         mainWindow = new NewJDialog(parent,true);
