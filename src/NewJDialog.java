@@ -555,17 +555,24 @@ public class NewJDialog extends javax.swing.JDialog {
                 Logger.getLogger(NewJDialog.class.getName()).log(Level.SEVERE, null, ex);
             } 
     }
+    /**
+     * Find the path for a song
+     */
     private String findPathSon(String sons)
     {
         return(getClass().getResource("/regard.wav").getPath());   
     }
-    
+    /**
+     * create a new sound
+     */
     private void setSon(String sons)
     {
     son=new Sound(findPathSon(sons));
     son.start();
     }
-    
+    /**
+     * check if the player is alive
+     */
     private boolean isAlive()
     {
         return game.player.getHealthPoint() > 0;
@@ -745,14 +752,15 @@ public class NewJDialog extends javax.swing.JDialog {
         
         
     }//GEN-LAST:event_choicesButtonActionPerformed
-
+ 
+    // All the arrow key are using to move from room to room
+    // For each arrow if is there a zombie in the room the player can't move
     /**
      * click on down arrow
+     * execute the go south command
      */
     private void downArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downArrowActionPerformed
-     /**
-     *  execute the go south command
-     */
+     
         if (!isThereZombie() && isAlive())
         {
   
@@ -772,17 +780,16 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_downArrowActionPerformed
 
     /**
-     * Click on right arrow
+     * Click on right arrow 
+     * execute the go east command
      */
     private void rightArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightArrowActionPerformed
         porte3=isChecked();
         if (!isThereZombie() && isAlive())
         {
         game.goRoom(new Command("go","east"));
-        //game.getCurrentRoom().onEnter();
-        //setScene(game.getCurrentRoom().getImage());
-        //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
         
+            // if the player is in the hall and got the key , he can go to the left
             if (isTheRoom("in the entry hall") && game.playerHasItem("key"))
             {
                 scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hallzombie.png")));
@@ -805,16 +812,15 @@ public class NewJDialog extends javax.swing.JDialog {
     
     /**
      * click on left arrow
+     * execute the go west command
      */
     private void leftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftArrowActionPerformed
         porte1=isChecked();
         if (!isThereZombie() && isAlive())
         {
-            game.goRoom(new Command("go","west"));
-            //game.getCurrentRoom().onEnter();
-            //setScene(game.getCurrentRoom().getImage());
-            //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage())));
+            game.goRoom(new Command("go","west"));   
             
+            // if the player is in the robert room a song is playing and he take the note  
             if (isTheRoom("in Robert's bedroom") && !game.playerHasItem("note"))
             {
                 if (game.playerHasItem("note")){
@@ -836,27 +842,29 @@ public class NewJDialog extends javax.swing.JDialog {
 
     /**
      * Up arrow
+     * execute the go north command
      */
     private void upArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upArrowActionPerformed
-            porte2=isChecked();
+     /**
+     * 
+     */
+        porte2=isChecked();
         if (!isThereZombie() && isAlive())
         {
+            // modify the health bar
          if (isTheRoom("in the dark"))
             {
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
             }   
         game.goRoom(new Command("go","north"));
-        //game.getCurrentRoom().onEnter();
-        //setScene(game.getCurrentRoom().getImage());
-        //scene.setIcon(new javax.swing.ImageIcon(getClass().getResource(game.getCurrentRoom().getImage()))); 
-        
+                
             //Enter the guardian lounge for the first time
             if (isTheRoom("in the guardian lounge") && isThereZombie())
             {
             scene.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logegardienzombie.png")));
             characterMessage();
             }
-            //Enter the stairs
+            //Enter the stairs and die 
             else if (isTheRoom("in the stairs"))
             {
             game.player.die();
@@ -913,6 +921,10 @@ public class NewJDialog extends javax.swing.JDialog {
         
     }//GEN-LAST:event_helpButtonActionPerformed
 
+    /**
+     * go button are using to validate answer of the player during a fight
+     * in function of the room it's not the same fight and the same number of round
+     */
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
        
         String choix="";
@@ -932,12 +944,17 @@ public class NewJDialog extends javax.swing.JDialog {
              win= game.player.fight(choix, enemy,manche,2);    
          }
         
+     /**
+     * several kind of win are possible
+     */
         System.out.println(win);
+        // the plyers win the final round
         if (win==1){
             game.getCurrentRoom().removeCharacter();
             setScene(game.getCurrentRoom().getImage());
             manche=1;
             setTextInConsole("You defeated the enemy.");
+            // Go to the real world when the boss is defeated
             if (isTheRoom("in the Head's office"))
             {
                 game.getCurrentRoom().removeCharacter();
@@ -949,6 +966,7 @@ public class NewJDialog extends javax.swing.JDialog {
                 hpCounter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fuk.png")));
                 
             }
+            // when the zombie is defeated he give to the player a key
             if (isTheRoom("in the guardian lounge")){
                 
                 addTextInConsole("\nHe dropped an old key."
@@ -962,6 +980,7 @@ public class NewJDialog extends javax.swing.JDialog {
             setHP();
             setChoicesInvisible();
         }
+        // the playeer win a round
         else if(win==2){
             manche++;
             
@@ -975,13 +994,15 @@ public class NewJDialog extends javax.swing.JDialog {
                 setTextInConsole("You hurt your enemys");
             }
             setHP();
+            // check if hhe's still alive
              if (!isAlive())
                  {
                 retryPane.setVisible(true);
             }
         }
+        // the player lose the round
         else{
-           
+           // in the head office if the player lose he go to the poney world
             if (game.getCurrentRoom().getDescription()=="in the Head's office")
             {
                 addTextInConsole("\n Keep Fighting");
@@ -1008,6 +1029,12 @@ public class NewJDialog extends javax.swing.JDialog {
            setHP(); 
     }//GEN-LAST:event_goButtonActionPerformed
     }
+    
+    
+    /**
+     * the retry button are only visible in the retry pop up
+     * exit a new "game" and exit the game running
+     */
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
         JFrame parent = (JFrame) this.getParent();
@@ -1020,6 +1047,9 @@ public class NewJDialog extends javax.swing.JDialog {
         
     }//GEN-LAST:event_retryButtonActionPerformed
 
+    /**
+     *  exit the game running
+     */
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -1099,7 +1129,7 @@ public class NewJDialog extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton2ActionPerformed
     private void clapWait(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_clapWait
-        // TODO add your handling code here:
+        // wait in the clap your hands pop up
         Wait();
         Wait();
         clapHands.setVisible(false);
