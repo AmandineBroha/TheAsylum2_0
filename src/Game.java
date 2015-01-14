@@ -188,9 +188,9 @@ public class Game
                     NewJDialog.addTextInConsole("Hey there!\n"
                         +"We're the Ninja Turtles!\n"
                         +"You've arrived to Pony World\n"
-                        +"Our King wwilll be pleased\n"
+                        +"Our King will be pleased\n"
                         +"to welcome you."
-                        +"But the Teletubbies are\nblocking"
+                        +"But the Teletubbies are\nblocking "
                         +"the way!.\n"
                         +"Would you remind us their initials\n"
                         +"so that we can call them?\n"
@@ -302,7 +302,7 @@ public class Game
         Enigma scientist1 = new Enigma("The Answer is really big ", "ANSWER","really big","Infinity","an elephant");
         Enigma scientist2 = new Enigma("HOW MANY HOLES IN A POLO", "1","2","3","4");
         Enigma scientist3 = new Enigma("HOW MANY LETTERS IN ROBERT'S ROOM ", "12","14","16","18");
-        Enigma simbaE = new Enigma("quel est la taille de ", "1","2","3","45");
+        Enigma simbaE = new Enigma("What was the name of my father?", "Timbo","Rafiki","Pumba","Muafasa");
         Enigma kingE = new Enigma("What is the best ingredient of my Royal Deluxe ? ", "Goat cheese","Bacon","Salad","Mustard");
         Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
         Enigma robotE1 = new Enigma("Which fabulous attack would you use ? ", "Kiisssss","Updago","Rust","Splash");
@@ -423,7 +423,11 @@ public class Game
      */
     public String printWelcome()
     {
-        String s = "\nYou've arrived in front of the Asylum.\n"
+        String s = "THE ASYLUM:\n"
+                + "You are a journalist who\n"
+                + "came here to find some clues\n"
+                + "on unethical experiments\n"
+                + "performed on the mentally ill.\n"
                 + "Are you ready to get some clues?\n"
                 + "Press the 'Help' button if you ever feel lost\n"
                 + "You are " + currentRoom.getDescription() + "\n";
@@ -464,9 +468,9 @@ public class Game
      */
     public String printHelp() 
     {
-        String s = "HELP: \nYou came here to find some clues\n"
-                + "about unethical experiments\n"
-                + "on the mentally ill.\n"
+        String s = "HELP: \nYou came here to find\n"
+                + "some clues on unethical experiments\n"
+                + "performed on the mentally ill.\n"
                 + "Click on the arrows to\n"
                 + "head to different rooms.\n";
         return s;

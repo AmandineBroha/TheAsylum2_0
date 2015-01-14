@@ -210,6 +210,7 @@ public class NewJDialog extends javax.swing.JDialog {
         enigmaDialog.setMinimumSize(new java.awt.Dimension(373, 216));
         enigmaDialog.setModal(true);
         enigmaDialog.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        enigmaDialog.setType(java.awt.Window.Type.POPUP);
 
         enigmaButtons.add(answer1);
         answer1.setText("answer 1");
@@ -382,7 +383,15 @@ public class NewJDialog extends javax.swing.JDialog {
         Credit.setMinimumSize(new java.awt.Dimension(800, 700));
         Credit.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         Credit.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        Credit.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                closeDialog(evt);
+            }
+        });
         Credit.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(850, 500));
+        jPanel2.setMinimumSize(new java.awt.Dimension(850, 500));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/end.png"))); // NOI18N
         jLabel7.setOpaque(true);
@@ -795,6 +804,7 @@ public class NewJDialog extends javax.swing.JDialog {
             //end the game
             if (isTheRoom("in the rainbowplace") &&(game.playerHasItem("Magical rainbow")) ){
                 Credit.setVisible(true);
+                
             }
             if (isTheRoom("in the entry hall") && porte1 && porte2 && porte3 && (game.playerHasItem("Fairy dust")==false))
             {
@@ -1081,12 +1091,16 @@ public class NewJDialog extends javax.swing.JDialog {
     private void retryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retryButtonActionPerformed
         // TODO add your handling code here:
         JFrame parent = (JFrame) this.getParent();
+        
         game.retry();
+        
         this.dispose();
         NewJDialog.game = new Game();
         mainWindow = new NewJDialog(parent,true);
         mainWindow.setVisible(true);
+        son.stop();
         System.exit(1);
+        
         
     }//GEN-LAST:event_retryButtonActionPerformed
 
@@ -1187,6 +1201,11 @@ public class NewJDialog extends javax.swing.JDialog {
         Wait();
         clapHands.setVisible(false);
     }//GEN-LAST:event_clapWait
+
+    private void closeDialog(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_closeDialog
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_closeDialog
 
     /**
      * the main class to lauch the game 
