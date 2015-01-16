@@ -113,16 +113,11 @@ public class Character
         else{
             playerchoice=2;
         }
-       // System.out.println("step2");
         
         int IAchoice= (int)(Math.random()*3);
         
         if(IAchoice == playerchoice){
-            /*while (IAchoice == playerchoice){
-                 IAchoice= (int)(Math.random()*3);
-                 
-                }
-             */
+            
             return true;
         }
        

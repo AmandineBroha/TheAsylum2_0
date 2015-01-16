@@ -16,15 +16,15 @@ public class Game
     private Room currentRoom;
     protected final  Players player; 
     //declarations of items using in the game
-    public final Item fairy = new Item("Fairy dust",1);
-    public final Item item = new Item("key",1);
-    public final Item note = new Item("note",1);
-    public final Item bisous = new Item("magical kiss",1);
-    public final Item translator = new Item("translator",1);
-    public final Item poney = new Item("magical little poney",1);
-    public final Item rainbow = new Item("Magical rainbow",1);
-    public final Item potion = new Item("potion", 1);
-    public final Item never = new Item("never ever EVER",1);
+     public final Item fairy = new Item("Fairy dust",1);
+     public final Item item = new Item("key",1);
+     public final Item note = new Item("note",1);
+     public final Item bisous = new Item("magical kiss",1);
+     public final Item translator = new Item("translator",1);
+     public final Item poney = new Item("magical little poney",1);
+     public final Item rainbow = new Item("Magical rainbow",1);
+     public final Item potion = new Item("potion", 1);
+     public final Item never = new Item("never ever EVER",1); 
     
     boolean enterHall = false;
     
@@ -36,7 +36,6 @@ public class Game
     {
         createRooms();
         parser = new Parser();
-//        player= new Players(currentRoom);
         player = Players.getCurrentPlayer();
         
     }
@@ -44,6 +43,7 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      */
+   
     private void createRooms()
     {
         Room garden, hall, refectory, logeGardien, RobertRoom, stairs, kitchen, laboratory;
@@ -67,12 +67,10 @@ public class Game
             public void onEnter() {
                 super.onEnter();
                 if (enterHall){
-                    System.out.println("déja entré");
                     NewJDialog.addTextInConsole("");
                 }
                 else {
                     enterHall = true;
-                    System.out.println("prems");
                     NewJDialog.addTextInConsole("You just entered the Asylum... \nnow let's discover the truth! \nVisit the building.\n");
                 }
             }
@@ -302,7 +300,6 @@ public class Game
         Enigma scientist1 = new Enigma("The Answer is really big ", "ANSWER","really big","Infinity","an elephant");
         Enigma scientist2 = new Enigma("HOW MANY HOLES IN A POLO", "1","2","3","4");
         Enigma scientist3 = new Enigma("HOW MANY LETTERS IN ROBERT'S ROOM ", "12","14","16","18");
-        Enigma simbaE = new Enigma("What was the name of my father?", "Timbo","Rafiki","Pumba","Muafasa");
         Enigma kingE = new Enigma("What is the best ingredient of my Royal Deluxe ? ", "Goat cheese","Bacon","Salad","Mustard");
         Enigma turtlesE = new Enigma("What are the initial letter of the teletubbies", "L-L,T-D,P,S","K,C,D,Q","P,W,L,P","T-W,L-L,D,P");
         Enigma robotE1 = new Enigma("Which fabulous attack would you use ? ", "Kiisssss","Updago","Rust","Splash");
@@ -359,6 +356,7 @@ public class Game
         directorOffice.addCharacter(boss);
         laboratory.addCharacter(scientist);
         rainbowPlace.addCharacter(poneyKing);
+        simbaPlace.addCharacter(simba);
         tulipefield.addCharacter(ninjaTurtles);
         robotPlace.addCharacter(helpy);
         
@@ -397,18 +395,6 @@ public class Game
     /**
      *  Main play routine.  Loops until end of play.
      */
-    public void play() 
-    {            
-        // Enter the main command loop.  Here we repeatedly read commands and
-        // execute them until the game is over.
-                
-        boolean finished = false;
-        while (! finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-        System.out.println("Thank you for playing.  Good bye.");
-    }
     
     // When the player die this function make appear a pop up to retry or to quit
     public void retry()
@@ -441,22 +427,17 @@ public class Game
      */
     private boolean processCommand(Command command) 
     {
-        boolean wantToQuit = false;
-
         if(command.isUnknown()) {
             System.out.println("I don't know what you mean...");
             return false;
         }
 
         String commandWord = command.getCommandWord();
-        if (commandWord.equals("help"))
-            printHelp();
-        else if (commandWord.equals("go"))
+        if (commandWord.equals("go"))
+        {
             goRoom(command);
-        else if (commandWord.equals("quit"))
-            wantToQuit = true;
-
-        return wantToQuit;
+    }
+        return true;
     }
 
     // implementations of user commands:
@@ -510,13 +491,11 @@ public class Game
         //If there is no doors in the direction
         if (nextRoom == null) {
                  NewJDialog.addTextInConsole("There is no door!\n");
-                 System.out.println("no door");
             }
         // if the doors is locked 
         else if(nextRoom == currentRoom)
             {
                  NewJDialog.addTextInConsole("The door is locked!\n");
-                 System.out.println("door locked");
             }
         //The players can access to the next room    
         else

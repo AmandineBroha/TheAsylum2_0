@@ -11,7 +11,6 @@ public class Players extends Character
     ArrayList<Item> listItem;
     private static final int MaxWeight = 10;
     private int totalWeight;
-    private int EnnemyHealth;
 
     /**
      * Constructor for objects of class Players
@@ -64,11 +63,6 @@ public ArrayList<Item> getListItem()
     return listItem;
 }
 
-
-
-    void combat(int i, ButtonModel selection) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 public void rebootList()
 {
