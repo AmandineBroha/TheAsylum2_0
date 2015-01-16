@@ -1,7 +1,4 @@
 
-import java.util.ArrayList;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 

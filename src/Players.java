@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import javax.swing.ButtonModel;
 /**
  * this class is an inheritance class of characters
  * She describes the players

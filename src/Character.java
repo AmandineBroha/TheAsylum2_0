@@ -1,5 +1,4 @@
-import java.util.Random; 
-import javax.swing.ButtonGroup;
+
 /**
  * This class describe all feature for the players and for the NPC
  * The constructor have  a name, the room, a integer for health point and if the character is an ennemy 
